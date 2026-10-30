@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #EEEBE7;
+  --foreground: #2E3A24;
+}
+
+html {
+  direction: rtl;
+  text-align: right;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Tactile Active Feedback for Rural & Mobile Users */
+.btn-touch {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+.btn-touch:active {
+  transform: scale(0.96);
+}
+
+.card-touch {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+.card-touch:hover {
+  transform: translateY(-2px);
+}
+.card-touch:active {
+  transform: scale(0.98);
+}
+
+/* Ensure focus visibility for accessibility across all interactive elements */
+:focus-visible {
+  outline: 2px solid #56CFE1;
+  outline-offset: 2px;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EEEBE7;
+}
+::-webkit-scrollbar-thumb {
+  background: #DFDDD4;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #696969;
+}

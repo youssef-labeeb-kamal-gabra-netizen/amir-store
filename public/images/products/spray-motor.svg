@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78716c"/>
+      <stop offset="50%" stop-color="#44403c"/>
+      <stop offset="100%" stop-color="#292524"/>
+    </linearGradient>
+    <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="50%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+    <linearGradient id="engineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#bgGrad)" rx="24"/>
+  <circle cx="300" cy="225" r="180" fill="#047857" opacity="0.15"/>
+  <circle cx="300" cy="225" r="130" fill="#f59e0b" opacity="0.08"/>
+  <!-- Base Frame -->
+  <rect x="120" y="320" width="360" height="24" rx="12" fill="#1c1917" stroke="#44403c" stroke-width="4"/>
+  <rect x="150" y="344" width="30" height="30" rx="6" fill="#0c0a09"/>
+  <rect x="420" y="344" width="30" height="30" rx="6" fill="#0c0a09"/>
+  <!-- Engine Block -->
+  <rect x="160" y="170" width="150" height="150" rx="16" fill="url(#engineGrad)" stroke="#7f1d1d" stroke-width="4"/>
+  <!-- Fuel Tank -->
+  <rect x="170" y="120" width="130" height="50" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="3"/>
+  <rect x="220" y="105" width="30" height="15" rx="4" fill="#334155"/>
+  <!-- Recoil Starter -->
+  <circle cx="235" cy="245" r="45" fill="#1c1917" stroke="#475569" stroke-width="6"/>
+  <circle cx="235" cy="245" r="20" fill="#475569"/>
+  <!-- Pump Unit (Brass Cylinder Block) -->
+  <rect x="320" y="200" width="120" height="120" rx="12" fill="url(#brassGrad)" stroke="#713f12" stroke-width="4"/>
+  <!-- Three Pistons Housing -->
+  <circle cx="350" cy="240" r="14" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/>
+  <circle cx="380" cy="240" r="14" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/>
+  <circle cx="410" cy="240" r="14" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/>
+  <!-- Pressure Regulator & Gauge -->
+  <rect x="365" y="145" width="30" height="55" rx="6" fill="url(#brassGrad)"/>
+  <circle cx="380" cy="130" r="22" fill="#ffffff" stroke="#1e293b" stroke-width="4"/>
+  <path d="M380 130 L392 122" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="380" cy="130" r="3" fill="#1e293b"/>
+  <!-- Hose Outlet Connections -->
+  <rect x="440" y="225" width="35" height="16" rx="4" fill="url(#brassGrad)"/>
+  <rect x="440" y="255" width="35" height="16" rx="4" fill="url(#brassGrad)"/>
+  <!-- Brand Badge -->
+  <rect x="185" y="275" width="100" height="24" rx="6" fill="#0f172a"/>
+  <text x="235" y="291" fill="#f8fafc" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="middle">LKL SP-450</text>
+  <text x="300" y="415" fill="#a7f3d0" font-size="16" font-family="sans-serif" font-weight="bold" text-anchor="middle">محرك ومجموعة رش زراعي عالي الضغط</text>
+</svg>

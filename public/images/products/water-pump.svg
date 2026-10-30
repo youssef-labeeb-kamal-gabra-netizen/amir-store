@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wpBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="pumpCast" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+    <linearGradient id="metalChassis" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#wpBgGrad)" rx="24"/>
+  <circle cx="300" cy="225" r="170" fill="#0284c7" opacity="0.12"/>
+  <!-- Base Stand -->
+  <rect x="130" y="325" width="340" height="24" rx="12" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+  <!-- Motor Housing -->
+  <rect x="160" y="180" width="150" height="145" rx="16" fill="url(#metalChassis)" stroke="#1e293b" stroke-width="4"/>
+  <!-- Motor Cooling Fins -->
+  <line x1="180" y1="195" x2="180" y2="310" stroke="#1e293b" stroke-width="4"/>
+  <line x1="205" y1="195" x2="205" y2="310" stroke="#1e293b" stroke-width="4"/>
+  <line x1="230" y1="195" x2="230" y2="310" stroke="#1e293b" stroke-width="4"/>
+  <line x1="255" y1="195" x2="255" y2="310" stroke="#1e293b" stroke-width="4"/>
+  <line x1="280" y1="195" x2="280" y2="310" stroke="#1e293b" stroke-width="4"/>
+  <!-- Terminal Box -->
+  <rect x="200" y="145" width="70" height="35" rx="6" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+  <!-- Centrifugal Volute Pump Body -->
+  <circle cx="385" cy="240" r="75" fill="url(#pumpCast)" stroke="#0c4a6e" stroke-width="5"/>
+  <circle cx="385" cy="240" r="45" fill="#075985" stroke="#38bdf8" stroke-width="3"/>
+  <!-- Suction Flange (Front/Center) -->
+  <circle cx="385" cy="240" r="28" fill="#0f172a" stroke="#e2e8f0" stroke-width="3"/>
+  <circle cx="385" cy="240" r="16" fill="#38bdf8" opacity="0.6"/>
+  <!-- Discharge Flange (Top) -->
+  <path d="M370 170 L400 170 L405 120 L365 120 Z" fill="url(#pumpCast)" stroke="#0c4a6e" stroke-width="3"/>
+  <rect x="355" y="110" width="60" height="16" rx="4" fill="#075985" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Bolts on Flange -->
+  <circle cx="365" cy="118" r="3" fill="#ffffff"/>
+  <circle cx="405" cy="118" r="3" fill="#ffffff"/>
+  <!-- Water Waves Details -->
+  <path d="M140 375 Q 160 365 180 375 T 220 375 T 260 375 T 300 375 T 340 375 T 380 375 T 420 375 T 460 375" stroke="#38bdf8" stroke-width="3" fill="none" opacity="0.4"/>
+  <text x="300" y="415" fill="#bae6fd" font-size="16" font-family="sans-serif" font-weight="bold" text-anchor="middle">طلمبة مياه ري وسحب زراعية - LKL WP-3000</text>
+</svg>

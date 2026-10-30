@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="spBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="ceramic" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#spBg)" rx="24"/>
+  <circle cx="300" cy="225" r="160" fill="#eab308" opacity="0.08"/>
+  <!-- Three Ceramic Pistons -->
+  <!-- Piston 1 -->
+  <rect x="180" y="140" width="30" height="150" rx="8" fill="url(#ceramic)" stroke="#94a3b8" stroke-width="3"/>
+  <rect x="175" y="270" width="40" height="25" rx="6" fill="url(#brass)"/>
+  <!-- Piston 2 -->
+  <rect x="235" y="125" width="30" height="150" rx="8" fill="url(#ceramic)" stroke="#94a3b8" stroke-width="3"/>
+  <rect x="230" y="255" width="40" height="25" rx="6" fill="url(#brass)"/>
+  <!-- Piston 3 -->
+  <rect x="290" y="140" width="30" height="150" rx="8" fill="url(#ceramic)" stroke="#94a3b8" stroke-width="3"/>
+  <rect x="285" y="270" width="40" height="25" rx="6" fill="url(#brass)"/>
+  <!-- Pressure Seals / O-Rings -->
+  <circle cx="390" cy="180" r="45" fill="none" stroke="#0284c7" stroke-width="12"/>
+  <circle cx="390" cy="180" r="30" fill="none" stroke="#0369a1" stroke-width="8"/>
+  <circle cx="445" cy="255" r="35" fill="none" stroke="#059669" stroke-width="10"/>
+  <!-- Ball Bearing Unit -->
+  <circle cx="360" cy="285" r="40" fill="#475569" stroke="#94a3b8" stroke-width="4"/>
+  <circle cx="360" cy="285" r="22" fill="#1e293b"/>
+  <!-- Balls inside bearing -->
+  <circle cx="360" cy="255" r="6" fill="#f8fafc"/>
+  <circle cx="360" cy="315" r="6" fill="#f8fafc"/>
+  <circle cx="330" cy="285" r="6" fill="#f8fafc"/>
+  <circle cx="390" cy="285" r="6" fill="#f8fafc"/>
+  <text x="300" y="415" fill="#fef08a" font-size="16" font-family="sans-serif" font-weight="bold" text-anchor="middle">قطع غيار أصلية وبساتم سيراميك وجلود ضغط - LKL PK-30</text>
+</svg>
