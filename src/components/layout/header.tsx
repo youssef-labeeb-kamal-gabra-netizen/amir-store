@@ -33,8 +33,8 @@ interface HeaderProps {
 
 const quickNavLinks = [
   { href: "/", label: "الرئيسية" },
-  { href: "/products", label: "الكتالوج" },
-  { href: "/about", label: "عن الشركة" },
+  { href: "/products", label: "مجموعة العطور" },
+  { href: "/about", label: "عن أمير ستور" },
   { href: "/contact", label: "تواصل معنا" },
 ];
 
@@ -47,32 +47,25 @@ export function Header({ user, settings }: HeaderProps) {
   const rawWhatsApp = settings?.whatsapp || env.business.whatsapp || "01220792948";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
-    "السلام عليكم، أود الاستفسار عن الآلات والمعدات الزراعية وقطع الغيار لدى شركة لبيب كمال لبيب."
+    "السلام عليكم، أود الاستفسار عن تشكيلة العطور والعود المتاحة لدى متجر أمير ستور."
   )}`;
-  const mapsUrl = settings?.googleMapsUrl || env.business.googleMapsUrl || "https://maps.app.goo.gl/87VQjF6s9bEyF9yz7";
 
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-brand-neutral-200 bg-white/95 backdrop-blur-md shadow-xs">
         {/* Top micro-bar for verified contact info, history & location */}
-        <div className="hidden lg:block border-b border-emerald-900/60 bg-[#022c22] text-white text-xs py-2 px-4 sm:px-6 lg:px-8">
+        <div className="hidden lg:block border-b border-brand-green-950 bg-brand-green-800 text-white text-xs py-2 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-5">
-              <span className="flex items-center gap-1.5 text-emerald-100/90">
+              <span className="flex items-center gap-1.5 text-oud-surfaceLight">
                 <Sparkles className="h-3.5 w-3.5 text-brand-gold-400" />
-                <span>تأسسنا كمحل سنة 2005 • جذور راسخة وخبرة تتجاوز 20 عاماً</span>
+                <span>متجر أمير ستور • عطور أصلية فاخرة وضمان ثبات وأصالة 100%</span>
               </span>
-              <span className="text-emerald-800">|</span>
-              <a
-                href={mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-emerald-100/90 hover:text-brand-gold-300 transition-colors"
-                title="عرض الموقع على خرائط جوجل"
-              >
+              <span className="text-brand-green-700">|</span>
+              <span className="flex items-center gap-1 text-oud-surfaceLight">
                 <MapPin className="h-3.5 w-3.5 text-brand-gold-400" />
-                <span>الشرقية — طريق مصر الزراعي (الجديدة، مركز منيا القمح)</span>
-              </a>
+                <span>شحن وتوصيل سريع لكافة المحافظات</span>
+              </span>
             </div>
 
             <div className="flex items-center gap-4 text-xs font-semibold">

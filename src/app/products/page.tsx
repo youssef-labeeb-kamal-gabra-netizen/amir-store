@@ -5,9 +5,9 @@ import { ProductCatalogView } from "@/components/products/product-catalog-view";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
-  title: "كتالوج الآلات والمعدات الزراعية",
+  title: "مجموعة العطور والعود الفاخر",
   description:
-    "استعرض أحدث محركات الرش، طلمبات ومحركات مياه الري، محركات الديزل، ومستلزمات شبكات الري وقطع الغيار المعتمدة لدى شركة لبيب كمال.",
+    "استعرض أفخم أدهان العود الطبيعية، العطور الشرقية والفرنسية الملكية، والمسك والبخور الفاخر لدى متجر أمير ستور.",
   canonicalUrl: "/products",
 });
 

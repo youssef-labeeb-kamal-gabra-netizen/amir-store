@@ -3,59 +3,59 @@ import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/common/faq-section";
-import { Tractor, Wrench, Droplets, Cpu, Phone, CheckCircle2 } from "lucide-react";
+import { Sparkles, Gift, Heart, ShieldCheck, Phone, CheckCircle2 } from "lucide-react";
 
 export const metadata = constructMetadata({
-  title: "الخدمات والدعم الفني | شركة لبيب كمال",
+  title: "خدماتنا العطرية الفاخرة | أمير ستور",
   description:
-    "استكشف خدمات توريد المعدات الزراعية، استشارات حسابات طلمبات ومحركات الري، وتأمين قطع الغيار الأصلية مع الدعم الفني المباشر من شركة لبيب كمال.",
+    "استكشف خدمات متجر أمير ستور في تصميم باقات الإهداء الملكية، استشارات اختيار النوتات العطرية، وتوريد العطور والعود للمناسبات والشركات.",
   canonicalUrl: "/services",
 });
 
 export default function ServicesPage() {
   const services = [
     {
-      icon: <Tractor className="h-8 w-8 text-brand-green-700" />,
-      title: "توريد الآلات والمعدات الزراعية",
+      icon: <Gift className="h-8 w-8 text-brand-gold-600" />,
+      title: "تصميم باقات وصناديق الإهداء الملكية",
       description:
-        "نوفر للمزارع والمشروعات تشكيلة واسعة من محركات الرش، ومعدات خدمة الأرض والعزاقات، ومحركات الديزل عالية العزم التي تلائم مختلف المساحات والمحاصيل الحقلية والبستانية.",
+        "نبتكر لك صناديق إهداء فاخرة مكسوة بالمخمل والجلد، منسقة بأفخم العطور وأدهان العود والمباخر، مع كارت إهداء مطبوع بعبارتك الخاصة لتقديمها في كافة المناسبات والأعراس.",
       points: [
-        "مطابقة لمعايير المتانة والتشغيل الميداني",
-        "تنوع القدرات والموديلات لتناسب طبيعة كل أرض",
-        "إرشادات تشغيل متكاملة لكل معدّة",
+        "تغليف ملكي راقٍ يحمل شعار أمير ستور المذهب",
+        "حرية اختيار محتويات الصندوق (عطور، مسك، دهن عود)",
+        "كارت إهداء مخصص مجاني مع كل صندوق",
       ],
     },
     {
-      icon: <Droplets className="h-8 w-8 text-brand-green-700" />,
-      title: "استشارات طلمبات ومحركات الري",
+      icon: <Sparkles className="h-8 w-8 text-brand-gold-600" />,
+      title: "الاستشارات العطرية وتحديد التوقيع الشخصي",
       description:
-        "حساب الضغوط وتدفقات المياه المطلوبة لشبكات الري بالغمر، أو الري بالرش والتنقيط، وتحديد القوة الحصانية والقطر الأنسب للطلمبة لتقليل استهلاك الوقود وتفادي هدر الطاقة.",
+        "هل تبحث عن عطر يعبر عن شخصيتك أو تبحث عن نوتة معينة (توباكو، عنبر، فانيليا، عود)؟ خبراؤنا يقدمون لك المشورة لاختيار التركيبة والتركيز المثالي لمناسبتك.",
       points: [
-        "دراسة أعماق الآبار ومصادر التغذية المائية",
-        "موازنة الضغوط ومعدل التصرف (متر مكعب/ساعة)",
-        "ترشيد استهلاك الوقود والطاقة التشغيلية",
+        "تحديد العطور المناسبة لبيئة العمل والمناسبات الليلية",
+        "شرح كامل لطبقات الهرم العطري والافتتاحية والقاعدة",
+        "نصائح لزيادة الفوحان وثبات العطر لأقصى مدة",
       ],
     },
     {
-      icon: <Wrench className="h-8 w-8 text-brand-green-700" />,
-      title: "تأمين قطع الغيار الأصلية ومستلزمات الصيانة",
+      icon: <Heart className="h-8 w-8 text-brand-gold-600" />,
+      title: "تجهيز هدايا الشركات والمناسبات الخاصة",
       description:
-        "نوفر قطع الغيار الاستهلاكية ومجموعات الإصلاح (بساتم سيراميك، جلود ضغط، صمامات، رشاشات، فلاتر تنقية) لضمان استمرار عمل المعدات دون توقف في مواسم الري والرش الحرجة.",
+        "نوفر توزيعات عطرية فاخرة وأطقم ميني عطور للمؤتمرات، مناسبات التخرج، والأعراس بأسعار خاصة وخيارات تخصيص للشعارات.",
       points: [
-        "بساتم وجلود ضغط عالية الكفاءة لمواتير الرش",
-        "فلاتر شبكية وفلاتر ديسك أصلية لمحطات الري",
-        "أطقم صيانة سريعة سهلة التركيب",
+        "كميات مخصصة مع شحن وتوصيل فوري لكافة المحافظات",
+        "تنسيق أنيق ومميز يترك انطباعاً لا ينسى لدى ضيوفكم",
+        "أصالة تامة وثبات معتمد لجميع التوزيعات",
       ],
     },
     {
-      icon: <Cpu className="h-8 w-8 text-brand-green-700" />,
-      title: "الدعم الفني المباشر والاستفسارات",
+      icon: <ShieldCheck className="h-8 w-8 text-brand-gold-600" />,
+      title: "ضمان النقاء والأصالة 100% والمعاينة",
       description:
-        "فريقنا الفني متواجد لمساعدتكم في تشخيص الأعطال الشائعة، وتقديم التوصيات الصحيحة للتشغيل الدوري وتغيير الزيوت وصيانة المحركات للحفاظ على كفاءتها لسنوات طويلة.",
+        "نضع ثقتكم وراحتكم على رأس أولوياتنا؛ حيث نوفر خدمة المعاينة المباشرة للشحنة قبل سداد القيمة مع سياسة استبدال مرنة تضمن رضاكم التام.",
       points: [
-        "متابعة هاتفية واستشارات عبر واتساب",
-        "خدمة مباشرة في مقرنا بالزقازيق",
-        "نصائح إطالة العمر الافتراضي للمحركات",
+        "أدهان عود طبيعية صافية غير مخلوطة",
+        "فحص شامل لكل زجاجة عطر قبل التغليف والشحن",
+        "دعم ومتابعة مستمرة بعد الاستلام لضمان رضاكم",
       ],
     },
   ];
@@ -64,15 +64,15 @@ export default function ServicesPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 text-start">
       {/* Page Header */}
       <div className="space-y-4 max-w-3xl">
-        <span className="text-xs font-bold text-brand-green-700 tracking-wider uppercase">
-          خدماتنا المتخصصة
+        <span className="text-xs font-bold text-brand-green-800 tracking-wider uppercase">
+          خدمات أمير ستور VIP
         </span>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-brand-neutral-900 tracking-tight leading-tight">
-          خدمات متكاملة لدعم <br />
-          <span className="text-brand-green-700">الإنتاج والميكنة الزراعية</span>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-brand-green-950 tracking-tight leading-tight">
+          خدمات عطرية استثنائية <br />
+          <span className="text-brand-gold-600">تليق بذوقكم الرفيع</span>
         </h1>
-        <p className="text-base sm:text-lg text-brand-neutral-600 leading-relaxed">
-          نحرص في شركة لبيب كمال لبيب على مرافقة عملائنا في كل مرحلة، بدءاً من اختيار المعدّة الملائمة وحتى توفير قطع الغيار والمشورة الفنية اللازمة لاستقرار واستدامة التشغيل.
+        <p className="text-base sm:text-lg text-brand-neutral-500 leading-relaxed">
+          نحرص في أمير ستور على تقديم تجربة تسوق استثنائية تتجاوز مجرد بيع العطور، من الاستشارة واختيار النوتة وحتى وصول الهدية مغلفة بأبهى حلة لأحبائكم.
         </p>
       </div>
 
@@ -81,19 +81,19 @@ export default function ServicesPage() {
         {services.map((srv, idx) => (
           <div
             key={idx}
-            className="rounded-2xl border border-brand-neutral-200 bg-white p-8 space-y-6 shadow-sm hover:shadow-md transition-shadow"
+            className="rounded-3xl border border-brand-neutral-200 bg-white p-8 space-y-6 shadow-oud-sm hover:shadow-md transition-shadow"
           >
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green-50">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green-50 text-brand-green-800">
               {srv.icon}
             </div>
             <div>
-              <h3 className="text-xl font-bold text-brand-neutral-900 mb-2">{srv.title}</h3>
-              <p className="text-sm text-brand-neutral-600 leading-relaxed">{srv.description}</p>
+              <h3 className="text-xl font-bold text-brand-green-950 mb-2">{srv.title}</h3>
+              <p className="text-sm text-brand-neutral-500 leading-relaxed">{srv.description}</p>
             </div>
-            <ul className="space-y-2.5 pt-2 border-t border-brand-neutral-100 text-xs sm:text-sm text-brand-neutral-700">
+            <ul className="space-y-2.5 pt-2 border-t border-brand-neutral-100 text-xs sm:text-sm text-brand-neutral-600">
               {srv.points.map((pt, pIdx) => (
                 <li key={pIdx} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-brand-green-700 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-brand-gold-600 shrink-0" />
                   <span>{pt}</span>
                 </li>
               ))}
@@ -102,23 +102,23 @@ export default function ServicesPage() {
         ))}
       </div>
 
-      {/* FAQ & Farmer Guidance */}
+      {/* FAQ */}
       <FAQSection />
 
       {/* Direct Contact CTA Box */}
-      <div className="rounded-3xl bg-gradient-to-r from-[#022c22] to-[#064e3b] text-white p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-md border border-emerald-800/40">
+      <div className="rounded-3xl bg-gradient-to-r from-[#2E3A24] via-[#242e1d] to-[#1a2215] text-white p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-md border border-brand-green-900/40">
         <div>
           <h3 className="text-xl sm:text-2xl font-bold text-white">
-            هل تحتاج إلى مساعدة فنية لاختيار معدتك؟
+            هل ترغب في طلب باقة إهداء مخصصة أو استشارة عطرية؟
           </h3>
-          <p className="text-sm text-emerald-100/90 mt-1 max-w-xl">
-            تواصل معنا مباشرة عبر الهاتف أو تفضل بزيارتنا في مقر الشركة بالزقازيق (طريق مصر الزراعي).
+          <p className="text-sm text-oud-surfaceLight mt-1 max-w-xl">
+            تواصل معنا مباشرة عبر واتساب وسيقوم مستشارنا العطري بتنسيق طلبك فوراً.
           </p>
         </div>
         <Link href="/contact" className="shrink-0">
-          <Button variant="secondary" size="lg" className="font-bold text-white bg-brand-gold-600 hover:bg-brand-gold-500 active:scale-95 transition-all">
+          <Button variant="secondary" size="lg" className="rounded-full font-bold text-brand-green-950 bg-brand-gold-400 hover:bg-brand-gold-500 active:scale-95 transition-all">
             <Phone className="h-4 w-4 ms-2" />
-            تواصل معنا الآن
+            تواصل مع مستشار العطور
           </Button>
         </Link>
       </div>

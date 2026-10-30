@@ -7,9 +7,9 @@ import { getCustomSettings } from "@/lib/settings-store";
 import { MapPin, Phone, MessageCircle, Clock, ShieldCheck, ExternalLink, Sparkles } from "lucide-react";
 
 export const metadata = constructMetadata({
-  title: "تواصل معنا | شركة لبيب كمال للأدوات والآلات الزراعية",
+  title: "تواصل معنا | متجر أمير ستور للعطور والعود",
   description:
-    "تواصل مع شركة لبيب كمال في الزقازيق بالشرقية للاستفسار عن أسعار ومواصفات الآلات الزراعية، محركات الرش، وطلمبات المياه وتوافر قطع الغيار.",
+    "تواصل مع متجر أمير ستور للاستفسار عن تشكيلة العطور الشرقية والفرنسية وأدهان العود وطلبات الإهداء الملكية والتوصيل لكافة المحافظات.",
   canonicalUrl: "/contact",
 });
 
@@ -30,25 +30,25 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const rawWhatsApp = settings.whatsapp || env.business.whatsapp || "01220792948";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
-    "السلام عليكم ورحمة الله، أود الاستفسار عن تفاصيل ومواصفات المعدات الزراعية المتوفرة لدى شركة لبيب كمال لبيب."
+    "السلام عليكم ورحمة الله، أود الاستفسار عن تفاصيل العطور والعود المتوفرة لدى متجر أمير ستور."
   )}`;
-  const mapsUrl = settings.googleMapsUrl || env.business.googleMapsUrl || "https://maps.app.goo.gl/87VQjF6s9bEyF9yz7";
-  const addressPhrase = settings.addressPhrase || env.business.addressPhrase || "طريق بنها - الزقازيق (طريق مصر الزراعي)، قرية الجديدة، مركز منيا القمح";
-  const workingHours = settings.workingHours || "يومياً من 8:00 صباحاً حتى 9:00 مساءً";
+  const mapsUrl = settings.googleMapsUrl || env.business.googleMapsUrl || "";
+  const addressPhrase = settings.addressPhrase || env.business.addressPhrase || "شحن وتوصيل فوري لكافة محافظات ومدن مصر";
+  const workingHours = settings.workingHours || "خدمة العملاء متاحة يومياً من 10:00 صباحاً حتى 11:00 مساءً";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 text-start">
       {/* Page Title */}
       <div className="space-y-3 max-w-3xl">
         <div className="inline-flex items-center gap-2 rounded-full bg-brand-green-50 text-brand-green-800 border border-brand-green-200 px-3.5 py-1 text-xs font-bold uppercase tracking-wider">
-          <Sparkles className="h-3.5 w-3.5 text-brand-green-700" />
-          <span>قنوات التواصل والاستفسار المباشر</span>
+          <Sparkles className="h-3.5 w-3.5 text-brand-gold-600" />
+          <span>خدمة عملاء وطلبات خاصة VIP</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-brand-neutral-900 tracking-tight">
-          يسعدنا تواصلكم وخدمتكم
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-brand-green-950 tracking-tight">
+          يسعدنا تواصلكم واختيار عطركم المفضل
         </h1>
-        <p className="text-base sm:text-lg text-brand-neutral-600 leading-relaxed">
-          سواء كنت تبحث عن استشارة فنية لاختيار الموتور المناسب لأرضك، أو ترغب في الاستفسار عن توفر قطع غيار معينة، فريق شركة لبيب كمال لبيب في خدمتكم دائماً هاتفياً، عبر واتساب، أو بزيارة مقرنا بالجديدة (مركز منيا القمح).
+        <p className="text-base sm:text-lg text-brand-neutral-500 leading-relaxed">
+          سواء كنت تبحث عن استشارة فنية لاختيار العطر المناسب لشخصيتك ومناسبتك، أو ترغب في تجهيز صناديق إهداء ملكية خاصة، فريق أمير ستور في خدمتكم دائماً هاتفياً أو عبر واتساب مع شحن فوري لباب منزلك.
         </p>
       </div>
 
@@ -125,15 +125,17 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   <p className="text-brand-neutral-600 mt-0.5 leading-relaxed">
                     {addressPhrase}
                   </p>
-                  <a
-                    href={mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green-700 hover:text-brand-green-900 hover:underline mt-2"
-                  >
-                    <span>فتح الموقع على خرائط Google</span>
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
+                  {mapsUrl ? (
+                    <a
+                      href={mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green-700 hover:text-brand-green-900 hover:underline mt-2"
+                    >
+                      <span>فتح الموقع على خرائط Google</span>
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  ) : null}
                 </div>
               </div>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import { Sparkles } from "lucide-react";
 
 interface BrandLogoProps {
   className?: string;
@@ -10,45 +10,36 @@ interface BrandLogoProps {
 export function BrandLogo({ className = "", size = "md", showText = true }: BrandLogoProps) {
   const sizeMap = {
     sm: "h-8 w-8 sm:h-9 sm:w-9",
-    md: "h-9 w-9 sm:h-12 sm:w-12",
-    lg: "h-12 w-12 sm:h-16 sm:w-16",
-    xl: "h-16 w-16 sm:h-24 sm:w-24",
+    md: "h-9 w-9 sm:h-11 sm:w-11",
+    lg: "h-12 w-12 sm:h-14 sm:w-14",
+    xl: "h-16 w-16 sm:h-20 sm:w-20",
   };
 
   const textSizes = {
     sm: { title: "text-xs sm:text-sm", sub: "text-[9px] sm:text-[10px]" },
-    md: { title: "text-sm sm:text-lg", sub: "text-[10px] sm:text-xs" },
-    lg: { title: "text-base sm:text-xl", sub: "text-xs" },
-    xl: { title: "text-xl sm:text-2xl", sub: "text-sm" },
+    md: { title: "text-sm sm:text-base font-extrabold", sub: "text-[10px] sm:text-xs" },
+    lg: { title: "text-base sm:text-xl font-extrabold", sub: "text-xs" },
+    xl: { title: "text-xl sm:text-2xl font-black", sub: "text-sm" },
   };
 
   return (
     <div className={`flex items-center gap-2 sm:gap-3 ${className}`}>
-      {/* Official Golden Wheat Wreath Emblem */}
+      {/* Luxury Oud Emblem */}
       <div
-        className={`relative ${sizeMap[size]} shrink-0 rounded-full p-0.5 bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 shadow-md ring-1 ring-amber-400/40 overflow-hidden bg-brand-green-950`}
+        className={`relative ${sizeMap[size]} shrink-0 rounded-full flex items-center justify-center bg-brand-green-800 text-brand-gold-400 shadow-sm border border-brand-green-900/30`}
       >
-        <Image
-          src="/images/logo.png"
-          alt="شعار شركة لبيب كمال لبيب"
-          fill
-          className="object-cover scale-110"
-          sizes="96px"
-          priority
-        />
+        <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
       </div>
 
       {showText && (
         <div className="flex flex-col text-start min-w-0">
           <span
-            className={`font-black tracking-tight text-brand-neutral-900 leading-none truncate ${textSizes[size].title}`}
+            className={`font-black tracking-tight text-brand-green-950 leading-tight truncate ${textSizes[size].title}`}
           >
-            شركة لبيب كمال لبيب
+            أمير ستور
           </span>
-          <span className={`font-bold text-brand-gold-600 mt-1 leading-none truncate ${textSizes[size].sub}`}>
-            <span className="hidden sm:inline">للأدوات والآلات الزراعية • </span>
-            <span className="sm:hidden">آلات زراعية • </span>
-            <span>LKL</span>
+          <span className={`font-semibold text-brand-neutral-500 leading-none truncate ${textSizes[size].sub}`}>
+            <span>للعطور والعود الفاخر • AMEER</span>
           </span>
         </div>
       )}

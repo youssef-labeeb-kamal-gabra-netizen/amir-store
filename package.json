@@ -1,8 +1,8 @@
 {
-  "name": "lkl-website",
+  "name": "ameer-store",
   "version": "1.0.0",
   "private": true,
-  "description": "شركة لبيب كمال للأدوات والآلات الزراعية - LKL Official Web Platform",
+  "description": "أمير ستور - متجر العطور والبخور الفاخرة | Ameer Store Official Platform",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

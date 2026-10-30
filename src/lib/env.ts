@@ -41,17 +41,17 @@ export const env = {
   appUrl: process.env.NEXT_PUBLIC_APP_URL || (isProduction ? "https://lkl-store.vercel.app" : "http://localhost:3000"),
   
   business: {
-    name: process.env.NEXT_PUBLIC_BUSINESS_NAME || "شركة لبيب كمال لبيب للأدوات والآلات الزراعية",
-    brand: process.env.NEXT_PUBLIC_BRAND_NAME || "LKL",
-    slogan: process.env.NEXT_PUBLIC_BUSINESS_SLOGAN || "الجودة • الثقة • الخدمة المتميزة",
-    location: process.env.NEXT_PUBLIC_BUSINESS_LOCATION || "الجديدة — منيا القمح — الشرقية — مصر",
-    addressPhrase: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_PHRASE || "طريق بنها - الزقازيق (طريق مصر الزراعي)، قرية الجديدة، مركز منيا القمح",
+    name: process.env.NEXT_PUBLIC_BUSINESS_NAME || "أمير ستور للعطور والعود الفاخر",
+    brand: process.env.NEXT_PUBLIC_BRAND_NAME || "AMEER STORE",
+    slogan: process.env.NEXT_PUBLIC_BUSINESS_SLOGAN || "عطور فاخرة • ثبات وأناقة لا تُنسى",
+    location: process.env.NEXT_PUBLIC_BUSINESS_LOCATION || "القاهرة — مصر",
+    addressPhrase: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_PHRASE || "توصيل سريع لكافة المحافظات مع ضمان الأصالة",
     phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || "01220792948",
     secondaryPhone: process.env.NEXT_PUBLIC_BUSINESS_SECONDARY_PHONE || "01114587917",
     whatsapp: process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || "01220792948",
-    googleMapsUrl: process.env.NEXT_PUBLIC_BUSINESS_MAPS_URL || "https://maps.app.goo.gl/87VQjF6s9bEyF9yz7", // https://www.google.com/maps/place/شركة-لبيب-كمال-للآلات-الزراعية
-    establishedYear: "2005",
-    experienceYears: "20+",
+    googleMapsUrl: process.env.NEXT_PUBLIC_BUSINESS_MAPS_URL || "",
+    establishedYear: "2024",
+    experienceYears: "الأصالة والثقة",
   },
 
   databaseUrl: process.env.DATABASE_URL || "",

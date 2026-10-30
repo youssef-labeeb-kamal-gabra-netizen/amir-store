@@ -59,16 +59,16 @@ export function ProductCatalogView({
     <div className="space-y-8 text-start">
       {/* Title & Description Header */}
       <div className="space-y-3 border-b border-brand-neutral-200 pb-6">
-        <span className="text-xs font-bold text-brand-green-700 tracking-wider uppercase">
-          دليل المعروضات
+        <span className="text-xs font-bold text-brand-green-800 tracking-wider uppercase">
+          دار العطور الملكية
         </span>
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-brand-neutral-900 tracking-tight">
-          {activeCategory ? activeCategory.name : "كتالوج الآلات والمعدات الزراعية"}
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-brand-green-950 tracking-tight">
+          {activeCategory ? activeCategory.name : "مجموعة العطور والعود الفاخر"}
         </h1>
-        <p className="text-sm sm:text-base text-brand-neutral-600 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-brand-neutral-500 max-w-3xl leading-relaxed">
           {activeCategory
             ? activeCategory.description
-            : "تصفح أحدث محركات الرش، طلمبات مياه الري، محركات الديزل، ومستلزمات الإنتاج الزراعي. جميع المعدات مجهزة للخدمة الشاقة مع توفر قطع الغيار الأصلية."}
+            : "تصفح أندر أدهان العود الطبيعية، العطور الشرقية والفرنسية الملكية، والمسك والبخور الفاخر لدى متجر أمير ستور. نضمن لك ثباتاً استثنائياً ونقاءً أصلياً 100%."}
         </p>
       </div>
 
@@ -77,34 +77,35 @@ export function ProductCatalogView({
         <button
           type="button"
           onClick={() => setSelectedCategory("")}
-          className={`rounded-2xl px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-95 cursor-pointer btn-touch flex items-center gap-1.5 shrink-0 ${
+          className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-95 cursor-pointer btn-touch flex items-center gap-1.5 shrink-0 ${
             !selectedCategory
-              ? "bg-brand-green-800 text-white shadow-md ring-2 ring-brand-green-500/40"
-              : "bg-white border-2 border-brand-neutral-200 text-brand-neutral-700 hover:border-brand-green-500/50 hover:bg-brand-green-50/40"
+              ? "bg-brand-green-800 text-white shadow-md ring-2 ring-brand-gold-400/40"
+              : "bg-white border border-brand-neutral-200 text-brand-neutral-700 hover:border-brand-green-800 hover:bg-brand-green-50/40"
           }`}
         >
-          <span>🚜</span>
-          <span>كافة المعدات ({products.filter((p) => p.published).length})</span>
+          <span>✨</span>
+          <span>كافة العطور ({products.filter((p) => p.published).length})</span>
         </button>
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat.slug || selectedCategory === cat.id;
           const count = products.filter((p) => p.categoryId === cat.id && p.published).length;
-          
-          const icon = cat.slug === "spray-motors" ? "💨" :
-                       cat.slug === "water-pumps" ? "💧" :
-                       cat.slug === "diesel-motors" ? "⚙️" :
-                       cat.slug === "irrigation-equipment" ? "🌱" :
-                       cat.slug === "agricultural-tools" ? "🌾" : "🔧";
+
+          const icon =
+            cat.slug === "pure-oud-oils" ? "🪵" :
+            cat.slug === "oriental-perfumes" ? "👑" :
+            cat.slug === "french-perfumes" ? "🌹" :
+            cat.slug === "musk-and-amber" ? "🌸" :
+            cat.slug === "bakhoor-and-incense" ? "💨" : "🎁";
 
           return (
             <button
               key={cat.id}
               type="button"
               onClick={() => setSelectedCategory(cat.slug)}
-              className={`rounded-2xl px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-95 cursor-pointer btn-touch flex items-center gap-1.5 shrink-0 ${
+              className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-95 cursor-pointer btn-touch flex items-center gap-1.5 shrink-0 ${
                 isSelected
-                  ? "bg-brand-green-800 text-white shadow-md ring-2 ring-brand-green-500/40"
-                  : "bg-white border-2 border-brand-neutral-200 text-brand-neutral-700 hover:border-brand-green-500/50 hover:bg-brand-green-50/40"
+                  ? "bg-brand-green-800 text-white shadow-md ring-2 ring-brand-gold-400/40"
+                  : "bg-white border border-brand-neutral-200 text-brand-neutral-700 hover:border-brand-green-800 hover:bg-brand-green-50/40"
               }`}
             >
               <span>{icon}</span>
@@ -120,10 +121,10 @@ export function ProductCatalogView({
           <Search className="absolute start-3.5 top-3.5 h-4 w-4 text-brand-neutral-400" />
           <input
             type="text"
-            placeholder="اكتب هنا اسم الموتور أو الطلمبة أو قطعة الغيار..."
+            placeholder="ابحث باسم العطر، المكونات، أو الحجم..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-2xl border-2 border-brand-neutral-200 bg-white ps-10 pe-10 py-3 text-sm text-brand-neutral-900 placeholder:text-brand-neutral-400 focus:outline-none focus:border-brand-green-600 focus:ring-4 focus:ring-brand-green-500/10 shadow-xs transition-all"
+            className="w-full rounded-full border border-brand-neutral-200 bg-white ps-10 pe-10 py-3 text-sm text-brand-neutral-900 placeholder:text-brand-neutral-400 focus:outline-none focus:border-brand-green-800 focus:ring-4 focus:ring-brand-green-500/10 shadow-xs transition-all"
           />
           {searchQuery && (
             <button

@@ -3,8 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --background: #EEEBE7;
-  --foreground: #2E3A24;
+  /* OUD SHOP Exact Color Tokens */
+  --color-1: #2E3A24;
+  --color-2: #696969;
+  --color-3: #56CFE1;
+  --color-4: #DFDDD4;
+  --color-5: #DDDDDD;
+  --color-6: #EEEBE7;
+  --color-7: #FFFFFF;
+
+  /* OUD SHOP Shape Tokens */
+  --radius-sm: 3px;
+  --radius-md: 50px;
+  --radius-lg: 80px;
+  --radius-xl: 100%;
+  --radius-full: 9999px;
+
+  /* OUD SHOP Elevation Tokens */
+  --shadow-sm: 1px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0px 0px 6px 0px rgb(46, 58, 36);
+
+  --background: var(--color-6);
+  --foreground: var(--color-1);
 }
 
 html {

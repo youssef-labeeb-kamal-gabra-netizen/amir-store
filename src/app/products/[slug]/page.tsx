@@ -24,13 +24,13 @@ export async function generateMetadata({ params }: ProductDetailsPageProps) {
 
   if (!product || !product.published) {
     return constructMetadata({
-      title: "المنتج غير موجود",
+      title: "العطر غير موجود",
       noIndex: true,
     });
   }
 
   return constructMetadata({
-    title: `${product.name} | شركة لبيب كمال`,
+    title: `${product.name} | أمير ستور للعطور`,
     description: product.shortDescription,
     canonicalUrl: `/products/${product.slug}`,
   });
@@ -41,7 +41,6 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   const products = getProductsStore();
   const product = products.find((p) => p.slug === slug);
 
-  // Strictly reject draft/unpublished products from direct access (Phase 5, Item 1)
   if (!product || !product.published) {
     notFound();
   }
@@ -54,7 +53,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const formattedWhatsApp = cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp;
   const defaultWhatsAppMsg = encodeURIComponent(
-    `السلام عليكم ورحمة الله، أود الاستفسار عن توفر وسعر ومواصفات المعدة: ${product.name} (طراز: ${product.model || "غير محدد"}) لدى شركة لبيب كمال.`
+    `السلام عليكم ورحمة الله، أود طلب وشراء عطر: ${product.name} (${product.model || "الحجم القياسي"}) من متجر أمير ستور.`
   );
   const whatsappHref = `https://wa.me/${formattedWhatsApp}?text=${defaultWhatsAppMsg}`;
 
@@ -67,7 +66,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         </Link>
         <span>/</span>
         <Link href="/products" className="hover:text-brand-green-800 transition-colors">
-          المنتجات
+          العطور
         </Link>
         <span>/</span>
         <Link
@@ -90,15 +89,15 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         {/* Right Column: Identity, Specs, Inquiries */}
         <div className="lg:col-span-6 space-y-6">
           <div className="space-y-2">
-            <span className="inline-block rounded-md bg-brand-green-100 text-brand-green-800 px-3 py-1 text-xs font-bold">
+            <span className="inline-block rounded-full bg-brand-green-50 text-brand-green-800 border border-brand-green-200 px-3.5 py-1 text-xs font-bold">
               {product.categoryName}
             </span>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-neutral-900 tracking-tight leading-snug">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-green-950 tracking-tight leading-snug">
               {product.name}
             </h1>
             {product.model && (
-              <p className="text-sm font-semibold text-brand-gold-700">
-                طراز / كود الموديل: {product.model} {product.brand && `(${product.brand})`}
+              <p className="text-sm font-semibold text-brand-gold-600">
+                الحجم والتركيز: {product.model}
               </p>
             )}
           </div>
@@ -107,16 +106,16 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
             <p>{product.description}</p>
           </div>
 
-          {/* Genuine Inquiry & Trust Box (No fake prices) */}
-          <div className="rounded-2xl border border-brand-neutral-200 bg-brand-neutral-50 p-6 space-y-4">
+          {/* Genuine Inquiry & Trust Box */}
+          <div className="rounded-3xl border border-brand-neutral-200 bg-white p-6 space-y-4 shadow-oud-sm">
             <div className="flex items-start gap-3 text-start">
-              <ShieldCheck className="h-6 w-6 text-brand-green-700 shrink-0 mt-0.5" />
+              <ShieldCheck className="h-6 w-6 text-brand-green-800 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-sm font-bold text-brand-neutral-900">
-                  استفسر مباشرة عن الأسعار والمواصفات
+                <h4 className="text-sm font-bold text-brand-green-950">
+                  طلب العطر والشحن السريع
                 </h4>
-                <p className="text-xs text-brand-neutral-600 mt-1 leading-relaxed">
-                  نظراً لتنوع القدرات الفنية وملحقات التشغيل، يسعدنا تزويدكم بعرض سعر فني مخصص واختيار أفضل تهيئة مناسبة لأرضكم ومصدر المياه لديكم.
+                <p className="text-xs text-brand-neutral-500 mt-1 leading-relaxed">
+                  تواصل معنا مباشرة عبر واتساب لتأكيد طلبك وتحديد خيارات التغليف الملكي المجاني وكارت الإهداء المخصص.
                 </p>
               </div>
             </div>
@@ -128,15 +127,15 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
                 rel="noopener noreferrer"
                 className="w-full sm:flex-1"
               >
-                <Button variant="primary" size="lg" className="w-full justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-black shadow-md btn-touch rounded-2xl py-4 text-sm sm:text-base cursor-pointer">
+                <Button variant="primary" size="lg" className="w-full justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-black shadow-md btn-touch rounded-full py-4 text-sm sm:text-base cursor-pointer">
                   <MessageCircle className="h-5 w-5" />
-                  <span>اسأل عن السعر والمواصفات بالواتساب</span>
+                  <span>اطلب العطر عبر واتساب الآن</span>
                 </Button>
               </a>
               <Link href={`/contact?product=${encodeURIComponent(product.slug)}`} className="w-full sm:flex-1">
-                <Button variant="outline" size="lg" className="w-full justify-center gap-2 font-black border-2 border-emerald-600 bg-emerald-50 text-emerald-950 hover:bg-emerald-100 hover:border-emerald-700 rounded-2xl py-4 text-sm sm:text-base btn-touch cursor-pointer">
-                  <Phone className="h-4 w-4 text-emerald-700" />
-                  <span>طلب اتصال تليفوني بالمحل</span>
+                <Button variant="outline" size="lg" className="w-full justify-center gap-2 font-bold border border-brand-green-800 text-brand-green-800 hover:bg-brand-green-800 hover:text-white rounded-full py-4 text-sm sm:text-base btn-touch cursor-pointer">
+                  <Phone className="h-4 w-4" />
+                  <span>استفسار أو طلب خاص</span>
                 </Button>
               </Link>
             </div>
@@ -145,40 +144,40 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
           {/* Verification check points */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-brand-neutral-600 pt-2">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-brand-green-700 shrink-0" />
-              <span>قطع غيار ومستلزمات متوفرة</span>
+              <CheckCircle2 className="h-4 w-4 text-brand-gold-600 shrink-0" />
+              <span>عطر أصلي 100% ونقي</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-brand-green-700 shrink-0" />
-              <span>فحص واختبار قبل التسليم</span>
+              <CheckCircle2 className="h-4 w-4 text-brand-gold-600 shrink-0" />
+              <span>ثبات وفوحان فائق</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-brand-green-700 shrink-0" />
-              <span>دعم فني واستشارات متخصصة</span>
+              <CheckCircle2 className="h-4 w-4 text-brand-gold-600 shrink-0" />
+              <span>تغليف هدايا ملكي مجاني</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-brand-green-700 shrink-0" />
-              <span>الاستلام في الزقازيق أو الشحن</span>
+              <CheckCircle2 className="h-4 w-4 text-brand-gold-600 shrink-0" />
+              <span>معاينة العطر قبل الاستلام</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Specifications Section (TASK 061) */}
+      {/* Specifications Section */}
       <div className="pt-6">
         <ProductSpecifications specifications={product.specifications} />
       </div>
 
-      {/* Related Products Section (TASK 067) */}
+      {/* Related Products Section */}
       {relatedProducts.length > 0 && (
         <section className="pt-10 border-t border-brand-neutral-200 space-y-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl sm:text-2xl font-bold text-brand-neutral-900">
-              معدات ذات صلة في قسم {product.categoryName}
+            <h3 className="text-xl sm:text-2xl font-bold text-brand-green-950">
+              عطور أخرى في قسم {product.categoryName}
             </h3>
             <Link
               href={`/products?category=${CATEGORIES.find((c) => c.id === product.categoryId)?.slug || ""}`}
-              className="text-xs sm:text-sm font-bold text-brand-green-700 hover:text-brand-green-800 flex items-center gap-1 active:scale-95 transition-all"
+              className="text-xs sm:text-sm font-bold text-brand-green-800 hover:text-brand-green-900 flex items-center gap-1 active:scale-95 transition-all"
             >
               <span>عرض الكل</span>
               <ArrowLeft className="h-4 w-4" />
