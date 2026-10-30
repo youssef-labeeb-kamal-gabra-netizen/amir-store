@@ -83,28 +83,54 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
 
     setIsSubmitting(true);
 
-    const orderId = `AMR-${Date.now().toString().slice(-6)}`;
-    const itemsSummary = items
-      .map((i) => `• ${i.name} (${i.model || "الحجم القياسي"}) × ${i.quantity} = ${(i.price * i.quantity).toLocaleString("ar-EG")} ج.م`)
-      .join("\n");
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: fullName,
+          phone,
+          governorate,
+          address,
+          notes,
+          items: items.map((i) => ({
+            id: i.id,
+            name: i.name,
+            model: i.model,
+            price: i.price,
+            quantity: i.quantity,
+            image: i.image,
+          })),
+          paymentMethod: "COD",
+        }),
+      });
 
-    const orderData = {
-      orderId,
-      itemsSummary,
-      total: subtotal,
-      governorate,
-      address,
-      phone,
-      name: fullName,
-      notes,
-    };
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.message || "فشل تسجيل الطلب");
+      }
 
-    // Simulate short network delay for pleasant feedback
-    setTimeout(() => {
-      setOrderSuccess(orderData);
+      const itemsSummary = items
+        .map((i) => `• ${i.name} (${i.model || "الحجم القياسي"}) × ${i.quantity} = ${(i.price * i.quantity).toLocaleString("ar-EG")} ج.م`)
+        .join("\n");
+
+      setOrderSuccess({
+        orderId: data.order.id,
+        itemsSummary,
+        total: data.order.total,
+        governorate,
+        address,
+        phone,
+        name: fullName,
+      });
+
       clearCart();
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "حدث خطأ غير متوقع أثناء إرسال الطلب";
+      alert(msg);
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
   const getWhatsAppConfirmationUrl = () => {

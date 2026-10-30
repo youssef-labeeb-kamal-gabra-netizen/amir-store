@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGradBox" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#1E2B1F" />
+      <stop offset="65%" stop-color="#121C13" />
+      <stop offset="100%" stop-color="#070C08" />
+    </radialGradient>
+    <linearGradient id="velvetEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D4D32" />
+      <stop offset="50%" stop-color="#1A331E" />
+      <stop offset="100%" stop-color="#0E1E11" />
+    </linearGradient>
+    <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5DBA2" />
+      <stop offset="50%" stop-color="#C5A059" />
+      <stop offset="100%" stop-color="#845D1C" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bgGradBox)" />
+  <ellipse cx="300" cy="510" rx="160" ry="20" fill="#000000" opacity="0.6" filter="blur(8px)" />
+
+  <g transform="translate(0, 20)">
+    <!-- Main Velvet Gift Box -->
+    <rect x="160" y="230" width="280" height="230" rx="16" fill="url(#velvetEmerald)" stroke="#C5A059" stroke-width="2" />
+    
+    <!-- Box Lid Layer -->
+    <rect x="150" y="210" width="300" height="55" rx="12" fill="#243F28" stroke="#ECC880" stroke-width="1.5" />
+
+    <!-- Satin Gold Cross Ribbons -->
+    <rect x="282" y="210" width="36" height="250" fill="url(#goldRibbon)" stroke="#845D1C" stroke-width="0.5" />
+    <rect x="150" y="325" width="300" height="36" fill="url(#goldRibbon)" stroke="#845D1C" stroke-width="0.5" />
+
+    <!-- Gold Center Bow Knot & Crest -->
+    <circle cx="300" cy="343" r="28" fill="url(#goldRibbon)" stroke="#ECC880" stroke-width="2" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.4))" />
+    <circle cx="300" cy="343" r="22" fill="#141B10" />
+    <!-- Monogram Crown -->
+    <path d="M 292 348 L 300 336 L 308 348 Z" fill="#ECC880" />
+    <circle cx="300" cy="334" r="2" fill="#FFFFFF" />
+
+    <!-- Gift Tag -->
+    <rect x="335" y="360" width="80" height="40" rx="6" fill="#FDFCF7" stroke="#C5A059" stroke-width="1" />
+    <text x="375" y="380" font-family="serif" font-size="9" font-weight="bold" fill="#141B10" text-anchor="middle">AMIR VIP</text>
+    <text x="375" y="393" font-family="sans-serif" font-size="8" fill="#845D1C" text-anchor="middle">إهداء ملكي فاخر</text>
+  </g>
+
+  <!-- Tag -->
+  <g transform="translate(300, 65)">
+    <rect x="-85" y="-16" width="170" height="32" rx="16" fill="#121C13" stroke="#ECC880" stroke-width="1" />
+    <text x="0" y="5" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ECC880" text-anchor="middle">🎁 صندوق الإهداء الملكي</text>
+  </g>
+</svg>

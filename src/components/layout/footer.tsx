@@ -11,9 +11,9 @@ interface FooterProps {
 
 export function Footer({ settings }: FooterProps = {}) {
   const currentYear = new Date().getFullYear();
-  const phone1 = settings?.phone || env.business.phone || "01220792948";
-  const phone2 = settings?.secondaryPhone || env.business.secondaryPhone || "01114587917";
-  const rawWhatsApp = settings?.whatsapp || env.business.whatsapp || "01220792948";
+  const phone1 = settings?.phone || env.business.phone || "01220086002";
+  const phone2 = settings?.secondaryPhone || env.business.secondaryPhone || "01220086002";
+  const rawWhatsApp = settings?.whatsapp || env.business.whatsapp || "01220086002";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
     "السلام عليكم، أود الاستفسار عن تشكيلة العطور والعود المتاحة لدى متجر أمير ستور."
@@ -60,6 +60,11 @@ export function Footer({ settings }: FooterProps = {}) {
               <li>
                 <Link href="/about" className="hover:text-brand-gold-400 active:scale-95 transition-all inline-block">
                   عن أمير ستور وقصتنا
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-brand-gold-400 active:scale-95 transition-all inline-block text-amber-300">
+                  🛡️ سياسة الضمان والمعاينة
                 </Link>
               </li>
               <li>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGradTobacco" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#211C18" />
+      <stop offset="65%" stop-color="#14110E" />
+      <stop offset="100%" stop-color="#080705" />
+    </radialGradient>
+    <linearGradient id="matteBlack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D2925" />
+      <stop offset="50%" stop-color="#1B1714" />
+      <stop offset="100%" stop-color="#0F0C0A" />
+    </linearGradient>
+    <linearGradient id="warmGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ECC880" />
+      <stop offset="50%" stop-color="#C5A059" />
+      <stop offset="100%" stop-color="#8C6527" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bgGradTobacco)" />
+  <ellipse cx="300" cy="515" rx="140" ry="18" fill="#000000" opacity="0.6" filter="blur(8px)" />
+
+  <g transform="translate(0, 10)">
+    <!-- Sleek Matte Dark Glass Bottle -->
+    <rect x="210" y="210" width="180" height="265" rx="12" fill="url(#matteBlack)" stroke="#C5A059" stroke-width="1.5" />
+    
+    <!-- Vertical Gold Foil Stripe & Label -->
+    <rect x="240" y="260" width="120" height="150" rx="8" fill="#0F0C0A" stroke="url(#warmGold)" stroke-width="1.5" />
+    <text x="300" y="295" font-family="serif" font-size="12" font-weight="bold" fill="#ECC880" text-anchor="middle" letter-spacing="2">VELVET TOBACCO</text>
+    <text x="300" y="318" font-family="sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">توباكو فانيلا الفرنسي</text>
+    <line x1="265" y1="335" x2="335" y2="335" stroke="#C5A059" stroke-width="1" />
+    <text x="300" y="360" font-family="serif" font-size="9" fill="#DFDDD4" text-anchor="middle">PARFUM INTENSE</text>
+    <text x="300" y="380" font-family="serif" font-size="9" fill="#ECC880" text-anchor="middle">100 ML</text>
+
+    <!-- Cylindrical Gold Cap -->
+    <rect x="260" y="140" width="80" height="70" rx="4" fill="url(#warmGold)" stroke="#ECC880" stroke-width="1" />
+  </g>
+
+  <!-- Tag -->
+  <g transform="translate(300, 65)">
+    <rect x="-85" y="-16" width="170" height="32" rx="16" fill="#0F0C0A" stroke="#ECC880" stroke-width="1" />
+    <text x="0" y="5" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ECC880" text-anchor="middle">⚜️ توباكو وفانيليا ملكية</text>
+  </g>
+</svg>

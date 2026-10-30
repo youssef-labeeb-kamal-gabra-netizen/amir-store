@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGradBakhoor" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#261E14" />
+      <stop offset="65%" stop-color="#17120C" />
+      <stop offset="100%" stop-color="#0A0805" />
+    </radialGradient>
+    <linearGradient id="antiqueGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C378" />
+      <stop offset="50%" stop-color="#AA7C11" />
+      <stop offset="100%" stop-color="#5B4109" />
+    </linearGradient>
+    <linearGradient id="smoke" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#DFDDD4" stop-opacity="0.6" />
+      <stop offset="60%" stop-color="#DFDDD4" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bgGradBakhoor)" />
+  <ellipse cx="300" cy="515" rx="145" ry="18" fill="#000000" opacity="0.6" filter="blur(8px)" />
+
+  <g transform="translate(0, 15)">
+    <!-- Whisps of Scented Smoke -->
+    <path d="M 285 220 Q 260 170 300 130 T 290 80" fill="none" stroke="url(#smoke)" stroke-width="12" stroke-linecap="round" filter="blur(3px)" />
+    <path d="M 315 220 Q 340 180 310 140 T 325 90" fill="none" stroke="url(#smoke)" stroke-width="8" stroke-linecap="round" filter="blur(2px)" />
+
+    <!-- Ornate Incense Burner (Mabkhara) Top Bowl -->
+    <polygon points="210,250 390,250 350,330 250,330" fill="url(#antiqueGold)" stroke="#ECC880" stroke-width="1.5" />
+    <ellipse cx="300" cy="250" rx="90" ry="15" fill="#3D2908" stroke="#ECC880" stroke-width="1" />
+
+    <!-- Burning Natural Wood Charcoal & Oud Chips -->
+    <ellipse cx="300" cy="248" rx="65" ry="10" fill="#E65100" opacity="0.8" filter="blur(2px)" />
+    <!-- Oud wood chips -->
+    <polygon points="275,242 295,236 310,245 285,250" fill="#21150B" stroke="#8C6527" stroke-width="1" />
+    <polygon points="305,240 330,238 325,248 300,246" fill="#1A1007" stroke="#C5A059" stroke-width="1" />
+
+    <!-- Stem & Pedestal Base -->
+    <rect x="280" y="330" width="40" height="65" fill="url(#antiqueGold)" stroke="#ECC880" stroke-width="1" />
+    <polygon points="240,460 360,460 340,395 260,395" fill="url(#antiqueGold)" stroke="#ECC880" stroke-width="1.5" />
+    <rect x="220" y="460" width="160" height="18" rx="6" fill="#422E0B" stroke="#ECC880" stroke-width="1" />
+  </g>
+
+  <!-- Tag -->
+  <g transform="translate(300, 65)">
+    <rect x="-85" y="-16" width="170" height="32" rx="16" fill="#17120C" stroke="#ECC880" stroke-width="1" />
+    <text x="0" y="5" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ECC880" text-anchor="middle">🪵 بخور مروكي سوبر طبيعي</text>
+  </g>
+</svg>

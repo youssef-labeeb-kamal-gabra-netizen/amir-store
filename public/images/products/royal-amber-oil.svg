@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGradAmber" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2B2117" />
+      <stop offset="65%" stop-color="#19130D" />
+      <stop offset="100%" stop-color="#0B0805" />
+    </radialGradient>
+    <linearGradient id="amberGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E89B38" />
+      <stop offset="50%" stop-color="#AD5911" />
+      <stop offset="100%" stop-color="#5E2C04" />
+    </linearGradient>
+    <linearGradient id="facetGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D79E" />
+      <stop offset="50%" stop-color="#C5A059" />
+      <stop offset="100%" stop-color="#7A5212" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bgGradAmber)" />
+  <ellipse cx="300" cy="515" rx="130" ry="18" fill="#000000" opacity="0.6" filter="blur(8px)" />
+
+  <g transform="translate(0, 15)">
+    <!-- Hexagonal Crystal Base & Oil Chamber -->
+    <polygon points="250,230 350,230 380,360 360,470 240,470 220,360" fill="url(#amberGold)" stroke="#F2D79E" stroke-width="1.5" />
+    
+    <!-- Cut Glass Inner Chamber Reflections -->
+    <polygon points="265,245 335,245 355,355 340,455 260,455 245,355" fill="#FFFFFF" opacity="0.1" />
+
+    <!-- Center Label -->
+    <rect x="250" y="320" width="100" height="90" rx="10" fill="#141B10" stroke="#C5A059" stroke-width="1.5" />
+    <text x="300" y="350" font-family="serif" font-size="11" font-weight="bold" fill="#F2D79E" text-anchor="middle" letter-spacing="1">ROYAL AMBER</text>
+    <text x="300" y="375" font-family="sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">عنبر أشهب ملكي</text>
+    <text x="300" y="392" font-family="serif" font-size="8" fill="#D4C8B8" text-anchor="middle">PURE ESSENCE</text>
+
+    <!-- Ornate Carved Crystal Stopper -->
+    <rect x="275" y="175" width="50" height="55" rx="4" fill="url(#facetGold)" stroke="#ECC880" stroke-width="1" />
+    <polygon points="270,175 330,175 345,120 300,90 255,120" fill="url(#facetGold)" stroke="#ECC880" stroke-width="1.5" />
+  </g>
+
+  <!-- Tag -->
+  <g transform="translate(300, 65)">
+    <rect x="-85" y="-16" width="170" height="32" rx="16" fill="#19130D" stroke="#ECC880" stroke-width="1" />
+    <text x="0" y="5" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ECC880" text-anchor="middle">✨ عنبر ملكي أشهب</text>
+  </g>
+</svg>

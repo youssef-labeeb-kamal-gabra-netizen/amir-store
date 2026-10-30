@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad2" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#242C1D" />
+      <stop offset="60%" stop-color="#141B10" />
+      <stop offset="100%" stop-color="#080C06" />
+    </radialGradient>
+    <linearGradient id="goldPlate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D79E" />
+      <stop offset="40%" stop-color="#C5A059" />
+      <stop offset="80%" stop-color="#8C6527" />
+      <stop offset="100%" stop-color="#D8B774" />
+    </linearGradient>
+    <linearGradient id="perfumeLiquid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B87333" />
+      <stop offset="50%" stop-color="#844516" />
+      <stop offset="100%" stop-color="#4E2308" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bgGrad2)" />
+  <ellipse cx="300" cy="520" rx="150" ry="20" fill="#000000" opacity="0.6" filter="blur(8px)" />
+
+  <g transform="translate(0, 5)">
+    <!-- Heavy Glass Base Foot -->
+    <rect x="190" y="460" width="220" height="35" rx="8" fill="#DFDDD4" opacity="0.3" stroke="#ECC880" stroke-width="1" stroke-opacity="0.3" />
+
+    <!-- Cubic Glass Flacon Body -->
+    <rect x="190" y="220" width="220" height="250" rx="14" fill="url(#perfumeLiquid)" stroke="#DFDDD4" stroke-width="2" stroke-opacity="0.4" />
+    
+    <!-- Glass Thickness Internal Bevel -->
+    <rect x="208" y="238" width="184" height="214" rx="8" fill="#ffffff" opacity="0.06" />
+
+    <!-- Pure Gold Metallic Front Plaque -->
+    <rect x="225" y="275" width="150" height="135" rx="10" fill="url(#goldPlate)" stroke="#ffffff" stroke-width="1" stroke-opacity="0.5" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.5))" />
+    <rect x="232" y="282" width="136" height="121" rx="7" fill="#141B10" stroke="#C5A059" stroke-width="1" />
+    
+    <!-- Plaque Inscription -->
+    <text x="300" y="315" font-family="serif" font-size="14" font-weight="bold" fill="#F2D79E" text-anchor="middle" letter-spacing="2">AMEER AL OUD</text>
+    <text x="300" y="335" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">أمير العود الملكي</text>
+    <line x1="260" y1="350" x2="340" y2="350" stroke="#C5A059" stroke-width="1" />
+    <text x="300" y="375" font-family="serif" font-size="9" fill="#D4C8B8" text-anchor="middle" letter-spacing="1">EXTRAIT DE PARFUM</text>
+    <text x="300" y="390" font-family="serif" font-size="9" fill="#F2D79E" text-anchor="middle">100 ML • 3.4 FL.OZ</text>
+
+    <!-- Heavy Square Gold Cap -->
+    <rect x="240" y="130" width="120" height="90" rx="6" fill="url(#goldPlate)" stroke="#ECC880" stroke-width="1.5" />
+    <rect x="250" y="140" width="100" height="70" rx="4" fill="#0E130B" opacity="0.15" />
+    <!-- Crown on Cap -->
+    <polygon points="280,185 300,165 320,185 315,190 285,190" fill="#ffffff" opacity="0.8" />
+  </g>
+
+  <!-- Tag -->
+  <g transform="translate(300, 70)">
+    <rect x="-85" y="-16" width="170" height="32" rx="16" fill="#141B10" stroke="#ECC880" stroke-width="1" />
+    <text x="0" y="5" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ECC880" text-anchor="middle">✨ عطر أمير العود الملكي</text>
+  </g>
+</svg>

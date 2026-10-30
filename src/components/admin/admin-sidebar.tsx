@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
-  Tractor,
+  ShoppingBag,
+  Sparkles,
   Layers,
   Inbox,
   Image,
@@ -22,14 +23,15 @@ import {
 
 const adminNav = [
   { href: "/admin", label: "نظرة عامة والتقارير", icon: LayoutDashboard },
-  { href: "/admin/products", label: "إدارة المنتجات والمعدات", icon: Tractor },
-  { href: "/admin/categories", label: "الأقسام والكتالوج", icon: Layers },
-  { href: "/admin/contact-requests", label: "طلبات الاستفسار والعملاء", icon: Inbox },
-  { href: "/admin/reviews", label: "مراجعة تقييمات العملاء", icon: Star },
-  { href: "/admin/media", label: "وسائط وصور المعدات", icon: Image },
+  { href: "/admin/orders", label: "طلبات العطور والشحن", icon: ShoppingBag },
+  { href: "/admin/products", label: "مجموعة العطور والمنتجات", icon: Sparkles },
+  { href: "/admin/categories", label: "أقسام وتصنيفات المتجر", icon: Layers },
+  { href: "/admin/contact-requests", label: "استفسارات العملاء", icon: Inbox },
+  { href: "/admin/reviews", label: "تقييمات العملاء", icon: Star },
+  { href: "/admin/media", label: "مكتبة الصور والوسائط", icon: Image },
   { href: "/admin/users", label: "المستخدمين والصلاحيات", icon: Users },
   { href: "/admin/content", label: "إدارة محتوى النصوص", icon: FileText },
-  { href: "/admin/settings", label: "بيانات الشركة والإعدادات", icon: Settings },
+  { href: "/admin/settings", label: "إعدادات المتجر والتواصل", icon: Settings },
   { href: "/admin/audit", label: "سجل العمليات (Audit)", icon: ShieldAlert },
 ];
 
@@ -46,14 +48,14 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
       {/* Brand Top */}
       <div className="p-5 sm:p-6 border-b border-brand-neutral-200 flex items-center justify-between">
         <Link href="/admin" onClick={onClose} className="flex items-center gap-2.5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green-700 text-white shadow-sm shrink-0">
-            <Tractor className="h-5 w-5 text-brand-gold-300" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green-800 text-white shadow-sm shrink-0">
+            <Sparkles className="h-5 w-5 text-brand-gold-400" />
           </div>
           <div>
             <span className="text-base font-black text-brand-neutral-900 leading-none">
-              إدارة LKL
+              إدارة أمير ستور
             </span>
-            <p className="text-[10px] text-brand-gold-700 font-bold mt-0.5">لوحة التحكم المركزية</p>
+            <p className="text-[10px] text-brand-gold-600 font-bold mt-0.5">لوحة التحكم المركزية</p>
           </div>
         </Link>
         {onClose && (
