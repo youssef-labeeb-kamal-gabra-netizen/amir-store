@@ -14,6 +14,7 @@ import {
   MapPin,
   Calendar,
   ChevronDown,
+  Mail,
 } from "lucide-react";
 
 interface OrdersManagerProps {
@@ -84,6 +85,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
       order.id.toLowerCase().includes(q) ||
       order.customerName.toLowerCase().includes(q) ||
       order.phone.includes(q) ||
+      (order.customerEmail && order.customerEmail.toLowerCase().includes(q)) ||
       order.governorate.toLowerCase().includes(q);
     return matchesFilter && matchesSearch;
   });
@@ -261,6 +263,18 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
                         {order.phone}
                       </a>
                     </div>
+                    {order.customerEmail && (
+                      <div className="flex items-center gap-2 text-brand-neutral-700">
+                        <Mail className="h-3.5 w-3.5 text-brand-gold-600 shrink-0" />
+                        <a
+                          href={`mailto:${order.customerEmail}`}
+                          className="hover:underline font-mono text-[11px]"
+                          dir="ltr"
+                        >
+                          {order.customerEmail}
+                        </a>
+                      </div>
+                    )}
                     <div className="flex items-start gap-2 text-brand-neutral-700">
                       <MapPin className="h-3.5 w-3.5 text-amber-600 shrink-0 mt-0.5" />
                       <span>

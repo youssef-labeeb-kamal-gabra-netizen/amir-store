@@ -52,7 +52,8 @@ export function normalizeOrderStatus(status: string): OrderStatus {
 
 async function getOrdersFromPostgres(): Promise<Order[]> {
   try {
-    await ensurePostgresTables();
+    const ok = await ensurePostgresTables();
+    if (!ok) throw new Error("PostgreSQL tables not initialized");
     const rows = await executeQuery<OrderDbRow>("SELECT * FROM orders ORDER BY created_at DESC");
     return rows.map(rowToOrder);
   } catch (err) {
@@ -79,7 +80,8 @@ export function getOrderById(id: string): Promise<Order | null> | Order | null {
   if (isPostgresConfigured()) {
     return (async () => {
       try {
-        await ensurePostgresTables();
+        const ok = await ensurePostgresTables();
+        if (!ok) throw new Error("PostgreSQL tables not initialized");
         const rows = await executeQuery<OrderDbRow>("SELECT * FROM orders WHERE id = $1", [id]);
         if (rows.length === 0) return null;
         return rowToOrder(rows[0]);
@@ -154,7 +156,8 @@ export async function createOrder(input: CreateOrderInput): Promise<Order> {
   // 2. PostgreSQL Storage Branch (with graceful fallback on connection issue)
   if (isPostgresConfigured()) {
     try {
-      await ensurePostgresTables();
+      const ok = await ensurePostgresTables();
+      if (!ok) throw new Error("PostgreSQL tables not initialized");
       let id = "";
       let attempts = 0;
       let exists = true;
@@ -176,6 +179,7 @@ export async function createOrder(input: CreateOrderInput): Promise<Order> {
       const newOrder: Order = {
         id,
         customerName: input.customerName.trim(),
+        customerEmail: input.customerEmail ? input.customerEmail.trim().toLowerCase() : undefined,
         phone: input.phone.trim(),
         governorate: input.governorate.trim(),
         address: input.address.trim(),
@@ -192,13 +196,14 @@ export async function createOrder(input: CreateOrderInput): Promise<Order> {
 
       await executeQuery(
         `INSERT INTO orders (
-           id, customer_name, phone, governorate, address, notes,
+           id, customer_name, customer_email, phone, governorate, address, notes,
            items, subtotal, shipping_cost, total, payment_method, status,
            created_at, updated_at
-         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
+         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
         [
           newOrder.id,
           newOrder.customerName,
+          newOrder.customerEmail || null,
           newOrder.phone,
           newOrder.governorate,
           newOrder.address,
@@ -234,6 +239,7 @@ export async function createOrder(input: CreateOrderInput): Promise<Order> {
     const newOrder: Order = {
       id,
       customerName: input.customerName.trim(),
+      customerEmail: input.customerEmail ? input.customerEmail.trim().toLowerCase() : undefined,
       phone: input.phone.trim(),
       governorate: input.governorate.trim(),
       address: input.address.trim(),
@@ -267,7 +273,8 @@ export async function updateOrderStatus(id: string, rawStatus: string): Promise<
 
   if (isPostgresConfigured()) {
     try {
-      await ensurePostgresTables();
+      const ok = await ensurePostgresTables();
+      if (!ok) throw new Error("PostgreSQL tables not initialized");
       const now = new Date().toISOString();
       const rows = await executeQuery<OrderDbRow>(
         "UPDATE orders SET status = $1, updated_at = $2 WHERE id = $3 RETURNING *",

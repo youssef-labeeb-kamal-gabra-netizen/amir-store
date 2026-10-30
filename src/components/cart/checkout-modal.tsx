@@ -13,6 +13,7 @@ import {
   Truck,
   ShieldCheck,
   MessageCircle,
+  Mail,
 } from "lucide-react";
 
 interface CheckoutModalProps {
@@ -53,6 +54,7 @@ const EGYPT_GOVERNORATES = [
 export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
   const { items, subtotal, clearCart } = useCart();
   const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [governorate, setGovernorate] = useState(EGYPT_GOVERNORATES[0]);
   const [address, setAddress] = useState("");
@@ -66,6 +68,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
     address: string;
     phone: string;
     name: string;
+    email?: string;
   }>(null);
 
   if (!isOpen) return null;
@@ -107,6 +110,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customerName: fullName,
+          customerEmail: email.trim() || undefined,
           phone: normalizedPhone,
           governorate,
           address,
@@ -136,6 +140,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
         address,
         phone: normalizedPhone,
         name: fullName,
+        email: email.trim() || undefined,
       });
 
       clearCart();
@@ -220,6 +225,12 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                   <span>المبلغ المطلوب عند الاستلام:</span>
                   <span className="text-brand-gold-600 text-sm">{orderSuccess.total.toLocaleString("ar-EG")} ج.م</span>
                 </div>
+                {orderSuccess.email && (
+                  <div className="flex items-center gap-1.5 pt-1 text-[11px] text-brand-green-800 font-semibold border-t border-brand-neutral-200/70">
+                    <Mail className="h-3.5 w-3.5 text-brand-gold-600" />
+                    <span>تم إرسال نسخة من الفاتورة إلى: {orderSuccess.email}</span>
+                  </div>
+                )}
               </div>
 
               {/* Action Buttons */}
@@ -297,6 +308,24 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="010XXXXXXXX / 012XXXXXXXX"
+                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white text-start"
+                  />
+                </div>
+              </div>
+
+              {/* Email Address (Optional for Invoice) */}
+              <div>
+                <label className="block text-xs font-bold text-brand-green-950 mb-1">
+                  البريد الإلكتروني (اختياري — لاستلام فاتورة الشراء)
+                </label>
+                <div className="relative">
+                  <Mail className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-neutral-400" />
+                  <input
+                    type="email"
+                    dir="ltr"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="example@domain.com"
                     className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white text-start"
                   />
                 </div>

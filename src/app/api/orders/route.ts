@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getOrders, createOrder, updateOrderStatus, isValidOrderStatus } from "@/lib/orders-store";
 import { requireAdmin } from "@/lib/auth";
 import { getClientIp, checkEndpointRateLimit } from "@/lib/rate-limiter";
+import { sendOrderEmails } from "@/lib/email";
 
 const EGYPT_GOVERNORATES = [
   "القاهرة",
@@ -74,10 +75,14 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const { items } = body;
-    let { customerName, phone, governorate, address, notes, paymentMethod } = body;
+    let { customerName, customerEmail, phone, governorate, address, notes, paymentMethod } = body;
 
     // Sanitize text inputs
     customerName = sanitizeText(customerName);
+    customerEmail = typeof customerEmail === "string" ? sanitizeText(customerEmail).toLowerCase() : undefined;
+    if (customerEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
+      customerEmail = undefined;
+    }
     phone = typeof phone === "string" ? normalizeEgyptianPhone(phone) : "";
     governorate = sanitizeText(governorate);
     address = sanitizeText(address);
@@ -167,6 +172,7 @@ export async function POST(request: Request) {
     // 8. Authoritative Creation (Calculates prices and shipping strictly on the server)
     const order = await createOrder({
       customerName,
+      customerEmail,
       phone,
       governorate,
       address,
@@ -174,6 +180,13 @@ export async function POST(request: Request) {
       items,
       paymentMethod,
     });
+
+    // 9. Send Transactional Invoices & Notifications via Resend
+    try {
+      await sendOrderEmails(order);
+    } catch (emailErr) {
+      console.warn("[Orders API] Transactional email delivery error:", emailErr);
+    }
 
     return NextResponse.json({
       ok: true,

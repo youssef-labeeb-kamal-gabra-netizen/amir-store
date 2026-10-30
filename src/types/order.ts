@@ -17,6 +17,7 @@ export interface OrderItem {
 export interface Order {
   id: string;
   customerName: string;
+  customerEmail?: string;
   phone: string;
   governorate: string;
   address: string;
@@ -33,6 +34,7 @@ export interface Order {
 
 export interface CreateOrderInput {
   customerName: string;
+  customerEmail?: string;
   phone: string;
   governorate: string;
   address: string;
@@ -40,3 +42,4 @@ export interface CreateOrderInput {
   items: OrderItem[];
   paymentMethod?: "COD" | "WHATSAPP";
 }
+

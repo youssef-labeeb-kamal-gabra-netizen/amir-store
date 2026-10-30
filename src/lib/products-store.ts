@@ -18,7 +18,8 @@ const STORAGE_FILE = "products.json";
  */
 async function getProductsFromPostgres(): Promise<Product[]> {
   try {
-    await ensurePostgresTables();
+    const ok = await ensurePostgresTables();
+    if (!ok) throw new Error("PostgreSQL tables not initialized");
     const rows = await executeQuery<ProductDbRow>("SELECT * FROM products ORDER BY created_at DESC");
     return rows.map(rowToProduct);
   } catch (err) {
@@ -65,7 +66,8 @@ export function addProduct(
   if (isPostgresConfigured()) {
     return (async () => {
       try {
-        await ensurePostgresTables();
+        const ok = await ensurePostgresTables();
+        if (!ok) throw new Error("PostgreSQL tables not initialized");
         await executeQuery(
           `INSERT INTO products (
              id, name, slug, category_id, category_name, model, brand,
@@ -116,7 +118,8 @@ export function updateProduct(
   if (isPostgresConfigured()) {
     return (async () => {
       try {
-        await ensurePostgresTables();
+        const ok = await ensurePostgresTables();
+        if (!ok) throw new Error("PostgreSQL tables not initialized");
         const existingRows = await executeQuery<ProductDbRow>(
           "SELECT * FROM products WHERE id = $1",
           [id]
@@ -193,7 +196,8 @@ export function deleteProduct(id: string): Promise<boolean> | boolean {
   if (isPostgresConfigured()) {
     return (async () => {
       try {
-        await ensurePostgresTables();
+        const ok = await ensurePostgresTables();
+        if (!ok) throw new Error("PostgreSQL tables not initialized");
         const res = await executeQuery<{ id: string }>(
           "DELETE FROM products WHERE id = $1 RETURNING id",
           [id]
@@ -223,7 +227,8 @@ export function toggleProductPublished(id: string): Promise<Product | null> | Pr
   if (isPostgresConfigured()) {
     return (async () => {
       try {
-        await ensurePostgresTables();
+        const ok = await ensurePostgresTables();
+        if (!ok) throw new Error("PostgreSQL tables not initialized");
         const existingRows = await executeQuery<ProductDbRow>(
           "SELECT * FROM products WHERE id = $1",
           [id]

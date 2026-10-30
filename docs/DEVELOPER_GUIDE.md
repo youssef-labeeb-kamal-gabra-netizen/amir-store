@@ -222,4 +222,54 @@ deploy.bat
 - `AUTH_SECRET`: مفتاح سري عشوائي لا يقل عن 32 حرفاً لتوقيع الجلسات.
 - `ADMIN_EMAILS`: البريد الإلكتروني للمشرف (مثل: `yousseflabeeb256@gmail.com`).
 - `NEXT_PUBLIC_APP_URL`: رابط الدومين بعد الرفع (مثل: `https://ameer-store.vercel.app`).
-- `POSTGRES_URL` (اختياري/موصى به): يتم تفعيله بنقرة واحدة عبر ربط Vercel Postgres من تبويب Storage.
+- `POSTGRES_URL` (موصى به للإنتاج): يتم تفعيله بنقرة واحدة عبر ربط Vercel Postgres من تبويب Storage، أو وضع رابط Neon المجاني.
+- `CLOUDINARY_URL` (موصى به لرفع الصور): تخزين سحابي مجاني 25GB للصور.
+- `RESEND_API_KEY` (موصى به للفواتير): إرسال 3,000 إيميل وفاتورة مجاناً شهرياً.
+
+---
+
+## 10. تفعيل الخدمات السحابية المجانية في دقيقتين (Free Cloud Services Setup in 2 Minutes)
+
+جميع الخدمات المعتمدة في متجر أمير ستور تتبع مبدأ **"مجانية 100% ومصممة للاستخدام الإنتاجي الاحترافي"** مع هبوط آمن وتلقائي (Graceful Fallback) في حال عدم توفر المفاتيح:
+
+### 1. قاعدة البيانات السحابية (PostgreSQL on Neon / Vercel Postgres)
+- **الباقة المجانية:** 0.5 GiB تخزين مجاني دائم مع معالجة سحابية فورية ونسخ احتياطي تلقائي.
+- **خطوات التفعيل في دقيقتين:**
+  1. أنشئ حساباً مجانياً على [Neon.tech](https://neon.tech) أو توجه لتبويب **Storage** داخل مشروعك على Vercel واختر **Create Database -> Postgres**.
+  2. انسخ رابط الاتصال المجمع (Pooled Connection String) الذي يبدأ بـ `postgres://...` أو `postgresql://...`.
+  3. أضف الرابط في ملف `.env.local` محلياً أو في إعدادات **Environment Variables** على Vercel تحت اسم:
+     ```env
+     POSTGRES_URL="postgres://default:your-password@ep-cool-fog-123456.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+     ```
+  4. بمجرد إعادة تشغيل السيرفر، يتولى محرك `src/lib/db.ts` إنشاء الجداول (`products`, `orders`, `contact_requests`) وفهارس البحث وزرع العطور الملكية الثمانية تلقائياً دون كتابة أي أوامر يدوية.
+
+---
+
+### 2. التخزين السحابي لصور المنتجات (Cloudinary Free Tier)
+- **الباقة المجانية:** 25 جيجابايت شهرياً مجاناً (25 Monthly Credits) مع شبكة توزيع محتوى عالمية فائقة السرعة (Global CDN) وضغط تلقائي بصيغة WebP.
+- **خطوات التفعيل في دقيقتين:**
+  1. أنشئ حساباً مجانياً على [Cloudinary.com](https://cloudinary.com).
+  2. من لوحة التحكم الرئيسية (Dashboard)، انسخ رابط `API Environment variable` (الذي يبدأ بـ `cloudinary://...`).
+  3. أضف المفتاح في ملف `.env.local` أو في إعدادات Vercel:
+     ```env
+     CLOUDINARY_URL="cloudinary://API_KEY:API_SECRET@CLOUD_NAME"
+     ```
+     *(أو يمكنك إدخال `CLOUDINARY_CLOUD_NAME` و `CLOUDINARY_API_KEY` و `CLOUDINARY_API_SECRET` منفصلين)*.
+  4. الآن عند قيام المشرف برفع صور جديدة للعطور من لوحة التحكم `/admin/media`، سيتم رفعها مباشرة لسحابة Cloudinary وتوليد روابط CDN السريعة وحفظها مع المنتجات. وفي حال عدم إدخال المفتاح، يهبط النظام تلقائياً للتخزين المحلي في `public/uploads/`.
+
+---
+
+### 3. خدمة فواتير البريد الإلكتروني التلقائية (Resend Free Tier)
+- **الباقة المجانية:** 3,000 رسالة بريد إلكتروني شهرياً مجاناً (100 رسالة يومياً) تصل مباشرة لصندوق الوارد (Inbox).
+- **خطوات التفعيل في دقيقتين:**
+  1. أنشئ حساباً مجانياً على [Resend.com](https://resend.com).
+  2. انتقل إلى تبويب **API Keys** واضغط على **Create API Key**، ثم انسخ المفتاح الذي يبدأ بـ `re_...`.
+  3. أضف المفتاح في ملف `.env.local` أو في إعدادات Vercel:
+     ```env
+     RESEND_API_KEY="re_123456789_abcdefghijklmnopqrstuv"
+     ```
+  4. عند قيام أي عميل بطلب شراء، سيقوم النظام تلقائياً بـ:
+     - إرسال فاتورة ملكية باللغة العربية بتنسيق HTML فاخر للعميل (إذا كتب بريده الإلكتروني).
+     - إرسال إشعار فوري لبريد المشرف (`ADMIN_EMAILS`) بتفاصيل العميل والعطور وإجمالي الفاتورة.
+     - في حال عدم إدخال المفتاح، يعمل النظام بنمط المحاكاة (Simulation Mode) ويسجل الفاتورة في كونسول السيرفر دون أي تعطل للطلب.
+

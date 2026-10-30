@@ -22,7 +22,9 @@ export function isPostgresConfigured(): boolean {
     process.env.POSTGRES_URL ||
     process.env.DATABASE_URL ||
     process.env.POSTGRES_PRISMA_URL ||
-    process.env.POSTGRES_URL_NON_POOLING;
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.SUPABASE_DB_URL ||
+    process.env.POSTGRESQL_URL;
   return Boolean(url && url.trim().length > 0);
 }
 
@@ -32,6 +34,8 @@ export function getDatabaseConnectionString(): string | null {
     process.env.DATABASE_URL ||
     process.env.POSTGRES_PRISMA_URL ||
     process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.SUPABASE_DB_URL ||
+    process.env.POSTGRESQL_URL ||
     null
   );
 }
@@ -107,6 +111,7 @@ export async function ensurePostgresTables(): Promise<boolean> {
         CREATE TABLE IF NOT EXISTS orders (
             id VARCHAR(64) PRIMARY KEY,
             customer_name VARCHAR(255) NOT NULL,
+            customer_email VARCHAR(255),
             phone VARCHAR(64) NOT NULL,
             governorate VARCHAR(128) NOT NULL,
             address TEXT NOT NULL,
@@ -123,6 +128,10 @@ export async function ensurePostgresTables(): Promise<boolean> {
         CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);
         CREATE INDEX IF NOT EXISTS idx_orders_phone ON orders(phone);
         CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at DESC);
+        CREATE INDEX IF NOT EXISTS idx_orders_customer_email ON orders(customer_email);
+
+        -- Safe column migration for existing database instances:
+        ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_email VARCHAR(255);
 
         CREATE TABLE IF NOT EXISTS contact_requests (
             id VARCHAR(64) PRIMARY KEY,
@@ -277,6 +286,7 @@ export function rowToProduct(row: ProductDbRow): Product {
 export interface OrderDbRow {
   id: string;
   customer_name: string;
+  customer_email?: string | null;
   phone: string;
   governorate: string;
   address: string;
@@ -321,6 +331,7 @@ export function rowToOrder(row: OrderDbRow): Order {
   return {
     id: String(row.id),
     customerName: String(row.customer_name),
+    customerEmail: row.customer_email ? String(row.customer_email) : undefined,
     phone: String(row.phone),
     governorate: String(row.governorate),
     address: String(row.address),
