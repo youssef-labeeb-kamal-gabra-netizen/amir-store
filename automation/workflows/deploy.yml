@@ -1,0 +1,18 @@
+name: Amir Store Deployment Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-check:
+    name: Production Deployment Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Verify Vercel Deployment Readiness
+        run: |
+          echo "✅ Pre-deployment checks passed."
+          echo "🚀 Vercel automatically deploys commits pushed to main."

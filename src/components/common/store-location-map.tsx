@@ -42,17 +42,17 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
   };
 
   return (
-    <div className={`overflow-hidden rounded-3xl border border-brand-neutral-200 bg-white shadow-lg ${className}`}>
+    <div className={`overflow-hidden rounded-3xl border border-amber-400/20 bg-[#0D0F14] shadow-2xl ${className}`}>
       {/* Header Info Banner */}
-      <div className="bg-gradient-to-r from-[#1c1917] via-[#292524] to-[#1c1917] p-4 sm:p-6 text-white text-start">
+      <div className="bg-gradient-to-r from-[#0D0F14] via-[#13161F] to-[#0D0F14] p-5 sm:p-6 text-white text-start border-b border-white/10">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-1.5 min-w-0">
-            <div className="inline-flex items-center gap-2 rounded-full bg-amber-950/70 px-3 py-1 text-[11px] sm:text-xs font-semibold text-amber-200 border border-amber-500/30 backdrop-blur-sm">
-              <MapPin className="h-3.5 w-3.5 text-brand-gold-400 shrink-0" />
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/10 px-3 py-1 text-[11px] sm:text-xs font-semibold text-amber-300 border border-amber-400/30 backdrop-blur-sm">
+              <MapPin className="h-3.5 w-3.5 text-amber-400 shrink-0" />
               <span>معرضنا ونقاط الانطلاق المعتمدة</span>
             </div>
-            <h3 className="text-lg sm:text-2xl font-black text-white">{placeName}</h3>
-            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            <h3 className="text-lg sm:text-2xl font-black text-white font-arabic">{placeName}</h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               <span>{addressArabic}</span>
             </p>
           </div>
@@ -62,7 +62,7 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
               href={directMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-gold-600 hover:bg-brand-gold-500 active:bg-brand-gold-700 px-4 py-2.5 text-xs sm:text-sm font-bold text-white transition-all shadow-sm active:scale-95 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:brightness-110 active:brightness-95 px-4 py-2.5 text-xs sm:text-sm font-black text-black transition-all shadow-md active:scale-95 w-full sm:w-auto"
             >
               <ExternalLink className="h-4 w-4" />
               <span>فتح تطبيق الخرائط</span>
@@ -71,7 +71,7 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
               href={directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/25 border border-white/20 px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-white transition-all active:scale-95 w-full sm:w-auto backdrop-blur-sm"
+              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white/5 hover:bg-white/10 active:bg-white/15 border border-amber-400/30 px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-amber-300 transition-all active:scale-95 w-full sm:w-auto backdrop-blur-sm"
             >
               <Navigation className="h-4 w-4 text-amber-300" />
               <span>الاتجاهات والمسار</span>
@@ -81,59 +81,59 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
       </div>
 
       {/* Interactive Map Iframe */}
-      <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-brand-neutral-100 min-h-[320px]">
+      <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-[#08090C] min-h-[320px]">
         <iframe
           title="موقع معرض أمير ستور على خرائط جوجل"
           src={embedUrl}
-          className="absolute inset-0 h-full w-full border-0"
+          className="absolute inset-0 h-full w-full border-0 opacity-90 hover:opacity-100 transition-opacity"
           loading="lazy"
           allowFullScreen
           referrerPolicy="no-referrer-when-downgrade"
         />
 
         {/* Floating Quick Action Overlay */}
-        <div className="absolute top-4 start-4 z-10 hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-brand-neutral-200 text-xs font-semibold text-brand-neutral-800">
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="absolute top-4 start-4 z-10 hidden sm:flex items-center gap-2 bg-[#0D0F14]/90 backdrop-blur-md px-3.5 py-1.5 rounded-2xl shadow-lg border border-amber-400/30 text-xs font-semibold text-amber-300">
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
           <span>المعرض مفتوح وجاهز لاستقبالكم وخدمتكم</span>
         </div>
       </div>
 
       {/* Details & Actions Footer */}
       {showDetails && (
-        <div className="p-6 bg-brand-neutral-50/70 border-t border-brand-neutral-200">
+        <div className="p-6 bg-[#08090C] border-t border-white/10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-start text-xs sm:text-sm">
-            <div className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-brand-neutral-200">
-              <div className="h-8 w-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+            <div className="flex items-start gap-3 p-4 rounded-2xl bg-[#0D0F14] border border-amber-400/20">
+              <div className="h-8 w-8 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-300 flex items-center justify-center shrink-0">
                 <MapPin className="h-4 w-4" />
               </div>
               <div>
-                <p className="font-bold text-brand-neutral-900">العنوان بالتفصيل:</p>
-                <p className="text-brand-neutral-600 mt-0.5 leading-relaxed">
+                <p className="font-bold text-white">العنوان بالتفصيل:</p>
+                <p className="text-slate-300 mt-0.5 leading-relaxed">
                   الزقازيق، محافظة الشرقية، مصر — شحن ومعاينة لكافة محافظات جمهورية مصر العربية
                 </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-brand-neutral-200">
-              <div className="h-8 w-8 rounded-xl bg-brand-gold-100 text-brand-gold-800 flex items-center justify-center shrink-0">
+            <div className="flex items-start gap-3 p-4 rounded-2xl bg-[#0D0F14] border border-amber-400/20">
+              <div className="h-8 w-8 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-300 flex items-center justify-center shrink-0">
                 <Phone className="h-4 w-4" />
               </div>
               <div>
-                <p className="font-bold text-brand-neutral-900">أرقام التواصل:</p>
-                <p className="text-brand-neutral-700 mt-0.5" dir="ltr">
+                <p className="font-bold text-white">أرقام التواصل:</p>
+                <p className="text-amber-300 font-mono font-bold mt-0.5" dir="ltr">
                   01220086002
                 </p>
-                <p className="text-[11px] text-brand-neutral-500 mt-0.5">متاحون للرد والاستفسار وتحديد الطلبات</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">متاحون للرد والاستفسار وتحديد الطلبات</p>
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-white border border-brand-neutral-200">
+            <div className="flex items-center justify-between p-4 rounded-2xl bg-[#0D0F14] border border-amber-400/20">
               <div className="space-y-0.5">
-                <p className="font-bold text-brand-neutral-900">الإحداثيات ورمز الخريطة:</p>
-                <p className="text-brand-neutral-500 text-xs font-mono" dir="ltr">
+                <p className="font-bold text-white">الإحداثيات ورمز الخريطة:</p>
+                <p className="text-amber-300 text-xs font-mono" dir="ltr">
                   {latitude.toFixed(5)}, {longitude.toFixed(5)}
                 </p>
-                <p className="text-[11px] text-amber-700 font-semibold" dir="ltr">
+                <p className="text-[11px] text-slate-400 font-semibold" dir="ltr">
                   Plus Code: HGP2+3X الزقازيق
                 </p>
               </div>
@@ -141,18 +141,16 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
                 <button
                   type="button"
                   onClick={copyCoordinates}
-                  className="p-2 rounded-xl border border-brand-neutral-200 hover:bg-brand-neutral-100 text-brand-neutral-700 transition-all active:scale-95 cursor-pointer"
+                  className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-amber-400/20 hover:text-amber-300 text-slate-300 transition-colors"
                   title="نسخ الإحداثيات"
-                  aria-label="نسخ الإحداثيات"
                 >
-                  {copied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+                  {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
                 </button>
                 <button
                   type="button"
                   onClick={shareLocation}
-                  className="p-2 rounded-xl border border-brand-neutral-200 hover:bg-brand-neutral-100 text-brand-neutral-700 transition-all active:scale-95 cursor-pointer"
+                  className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-amber-400/20 hover:text-amber-300 text-slate-300 transition-colors"
                   title="مشاركة الموقع"
-                  aria-label="مشاركة الموقع"
                 >
                   <Share2 className="h-4 w-4" />
                 </button>

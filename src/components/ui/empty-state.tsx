@@ -17,21 +17,21 @@ export function EmptyState({
   description,
   actionLabel,
   onAction,
-  icon = <PackageOpen className="h-12 w-12 text-brand-neutral-400 stroke-1" />,
+  icon = <PackageOpen className="h-10 w-10 text-amber-400 stroke-1" />,
   className,
 }: EmptyStateProps) {
   return (
     <div
       className={cn(
-        "flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-dashed border-brand-neutral-300 p-8 text-center bg-brand-neutral-50/50",
+        "flex min-h-[300px] flex-col items-center justify-center rounded-3xl border border-dashed border-amber-400/30 p-8 text-center bg-white/[0.02] backdrop-blur-md text-white",
         className
       )}
     >
-      <div className="mb-4 rounded-full bg-white p-4 shadow-sm border border-brand-neutral-200">
+      <div className="mb-4 rounded-full bg-amber-400/10 p-4 shadow-sm border border-amber-400/20">
         {icon}
       </div>
-      <h3 className="text-lg font-bold text-brand-neutral-900 mb-1">{title}</h3>
-      <p className="text-sm text-brand-neutral-500 max-w-sm mb-6">{description}</p>
+      <h3 className="text-lg font-bold text-white font-arabic mb-1">{title}</h3>
+      <p className="text-sm text-slate-400 max-w-sm mb-6 leading-relaxed">{description}</p>
       {actionLabel && onAction && (
         <Button onClick={onAction} variant="outline" size="sm">
           {actionLabel}

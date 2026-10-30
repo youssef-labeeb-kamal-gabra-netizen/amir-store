@@ -23,23 +23,23 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oud-accent focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none rounded-full active:scale-[0.98] cursor-pointer";
+      "inline-flex items-center justify-center font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08090C] disabled:pointer-events-none disabled:opacity-50 select-none rounded-full active:scale-[0.98] cursor-pointer";
 
     const variantStyles = {
       primary:
-        "bg-brand-green-800 text-white hover:bg-brand-green-900 active:bg-brand-green-950 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0",
+        "bg-gradient-to-r from-[#D4AF37] via-[#F5E296] to-[#D4AF37] text-black font-black hover:brightness-110 active:brightness-95 shadow-[0_0_22px_rgba(212,175,55,0.35)] border border-amber-300/40 hover:-translate-y-0.5 active:translate-y-0",
       secondary:
-        "bg-oud-accent text-brand-neutral-900 hover:bg-oud-accent-hover active:bg-oud-accent shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0",
+        "bg-[#13161F] text-amber-300 border border-amber-400/30 hover:border-amber-400 hover:bg-[#1A1F2C] hover:text-amber-200 shadow-sm hover:-translate-y-0.5 active:translate-y-0",
       outline:
-        "border border-oud-border-dark bg-transparent text-brand-green-800 hover:bg-brand-green-800 hover:text-white active:bg-brand-green-900 shadow-2xs hover:shadow-xs",
+        "border border-amber-400/40 bg-transparent text-amber-300 hover:bg-amber-400/10 hover:border-amber-400 active:bg-amber-400/20 shadow-2xs hover:shadow-xs",
       ghost:
-        "text-brand-neutral-700 hover:bg-brand-neutral-100 active:bg-brand-neutral-200",
+        "text-slate-300 hover:text-white hover:bg-white/5 active:bg-white/10",
       destructive:
-        "bg-red-600 text-white hover:bg-red-700 active:bg-red-800 shadow-sm",
+        "bg-red-500/20 text-red-300 border border-red-500/40 hover:bg-red-500/30 active:bg-red-500/40 shadow-sm",
     };
 
     const sizeStyles = {
-      sm: "h-9 px-3 text-xs gap-1.5",
+      sm: "h-9 px-3.5 text-xs gap-1.5",
       md: "h-11 px-5 text-sm gap-2",
       lg: "h-12 px-7 text-base gap-2.5",
     };

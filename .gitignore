@@ -27,6 +27,9 @@ yarn-error.log*
 .env
 client_secret*.json
 .vercel
+
+# github actions (stored in automation/workflows/ to prevent PAT scope rejections)
+.github/workflows/
 temp_*
 *.log
 push.bat

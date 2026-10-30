@@ -14,16 +14,16 @@ function LoginContent() {
   const loggedOutParam = searchParams.get("logged_out");
 
   return (
-    <div className="max-w-md mx-auto px-4 py-16 sm:py-24 text-center">
+    <div className="max-w-md mx-auto px-4 py-16 sm:py-24 text-center text-white">
       {/* Brand & Title */}
       <div className="mb-8 flex flex-col items-center">
         <div className="mb-4">
           <BrandLogo size="lg" showText={false} />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-neutral-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-white font-arabic tracking-tight">
           تسجيل الدخول إلى أمير ستور
         </h1>
-        <p className="text-sm text-brand-neutral-600 mt-1.5 font-bold">
+        <p className="text-sm text-amber-300 mt-2 font-bold font-serif tracking-wider">
           دار العطور الشرقية والفرنسية الفاخرة ودهن العود
         </p>
       </div>
@@ -44,12 +44,12 @@ function LoginContent() {
       )}
 
       {/* Main Single Official Google Login Card */}
-      <div className="rounded-3xl border border-brand-neutral-200 bg-white p-8 sm:p-10 shadow-sm space-y-6 text-start">
+      <div className="rounded-3xl border border-amber-400/20 bg-white/[0.03] backdrop-blur-2xl p-8 sm:p-10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] space-y-6 text-start">
         <a href="/api/auth/google" className="block">
           <Button
             variant="outline"
             size="lg"
-            className="w-full justify-center gap-3 border-brand-neutral-300 hover:bg-brand-neutral-50 font-bold text-brand-neutral-900 h-13 text-base shadow-sm"
+            className="w-full justify-center gap-3 border-amber-400/40 bg-[#13161F] hover:bg-[#1A1F2C] text-white hover:text-amber-200 font-bold h-13 text-base shadow-md transition-all active:scale-95"
           >
             <svg className="h-6 w-6 shrink-0" viewBox="0 0 24 24">
               <path
@@ -69,18 +69,18 @@ function LoginContent() {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
               />
             </svg>
-            <span>تسجيل الدخول عبر Google</span>
+            <span className="text-white">تسجيل الدخول عبر Google</span>
           </Button>
         </a>
 
-        <div className="pt-2 border-t border-brand-neutral-100 flex items-center justify-center gap-2 text-xs text-brand-neutral-500">
-          <ShieldCheck className="h-4 w-4 text-brand-green-700" />
+        <div className="pt-2 border-t border-white/10 flex items-center justify-center gap-2 text-xs text-slate-400">
+          <ShieldCheck className="h-4 w-4 text-amber-400" />
           <span>تسجيل دخول رسمي ومؤمن عبر خوادم Google الرسمية</span>
         </div>
       </div>
 
       <div className="mt-8">
-        <Link href="/" className="text-xs font-semibold text-brand-neutral-500 hover:text-brand-green-800 transition-colors">
+        <Link href="/" className="text-xs font-semibold text-slate-400 hover:text-amber-300 transition-colors">
           ← العودة إلى الصفحة الرئيسية
         </Link>
       </div>
@@ -93,8 +93,8 @@ export default function LoginPage() {
     <Suspense
       fallback={
         <div className="max-w-md mx-auto px-4 py-16 sm:py-24 text-center">
-          <div className="h-10 w-48 bg-neutral-200 animate-pulse rounded-full mx-auto mb-4" />
-          <div className="h-64 bg-white rounded-3xl border border-neutral-200 shadow-sm animate-pulse" />
+          <div className="h-10 w-48 bg-white/10 animate-pulse rounded-full mx-auto mb-4" />
+          <div className="h-64 bg-white/[0.03] rounded-3xl border border-amber-400/20 shadow-sm animate-pulse" />
         </div>
       }
     >

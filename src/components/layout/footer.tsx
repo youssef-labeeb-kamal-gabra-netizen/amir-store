@@ -67,7 +67,12 @@ export function Footer({ settings }: FooterProps = {}) {
                 </Link>
               </li>
               <li>
-                <Link href="/policy" className="hover:text-amber-300 active:scale-95 transition-all inline-block text-amber-300 font-semibold">
+                <Link href="/templates" className="hover:text-amber-300 active:scale-95 transition-all inline-block text-amber-300 font-semibold">
+                  ✨ قوالب وتجارب الاستكشاف الملكية
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-amber-300 active:scale-95 transition-all inline-block text-slate-300 font-semibold">
                   🛡️ سياسة الضمان والمعاينة (72 ساعة)
                 </Link>
               </li>

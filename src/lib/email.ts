@@ -61,20 +61,20 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
   const itemsRows = order.items
     .map(
       (item) => `
-      <tr style="border-bottom: 1px solid #EFEAE2;">
-        <td style="padding: 12px 14px; text-align: right; font-size: 13px; color: #1F241C; font-weight: bold;">
+      <tr style="border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+        <td style="padding: 14px 16px; text-align: right; font-size: 13px; color: #F8F9FA; font-weight: bold;">
           ${escapeHtml(item.name)}
-          <div style="font-size: 11px; color: #7A8074; font-weight: normal; margin-top: 3px;">
+          <div style="font-size: 11px; color: #D4AF37; font-weight: normal; margin-top: 3px;">
             ${escapeHtml(item.model || "الحجم القياسي")}
           </div>
         </td>
-        <td style="padding: 12px 14px; text-align: center; font-size: 13px; color: #1F241C;">
+        <td style="padding: 14px 16px; text-align: center; font-size: 13px; color: #E2E8F0;">
           ${item.quantity}
         </td>
-        <td style="padding: 12px 14px; text-align: left; font-size: 13px; color: #1F241C; font-family: monospace;">
+        <td style="padding: 14px 16px; text-align: left; font-size: 13px; color: #E2E8F0; font-family: monospace;">
           ${item.price.toLocaleString("ar-EG")} ج.م
         </td>
-        <td style="padding: 12px 14px; text-align: left; font-size: 13px; color: #9A7B1C; font-weight: bold; font-family: monospace;">
+        <td style="padding: 14px 16px; text-align: left; font-size: 13px; color: #F5E296; font-weight: bold; font-family: monospace;">
           ${(item.price * item.quantity).toLocaleString("ar-EG")} ج.م
         </td>
       </tr>
@@ -84,7 +84,7 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
 
   const shippingPhrase =
     order.shippingCost === 0
-      ? '<span style="color: #15803d; font-weight: bold;">شحن مجاني 🎁</span>'
+      ? '<span style="color: #4ade80; font-weight: bold;">شحن مجاني ملكي 🎁</span>'
       : `${order.shippingCost.toLocaleString("ar-EG")} ج.م`;
 
   const dateFormatted = new Date(order.createdAt).toLocaleDateString("ar-EG", {
@@ -103,24 +103,24 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${isAdmin ? "إشعار طلب جديد للإدارة" : "فاتورة شراء رسمية — أمير ستور"}</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #F4F1EA; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Cairo', Tahoma, Arial, sans-serif; direction: rtl; text-align: right; color: #1C2117;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F4F1EA; padding: 25px 10px;">
+<body style="margin: 0; padding: 0; background-color: #08090C; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Cairo', Tahoma, Arial, sans-serif; direction: rtl; text-align: right; color: #F8F9FA;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #08090C; padding: 30px 10px;">
     <tr>
       <td align="center">
         <!-- Main Container Card -->
-        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background-color: #FFFFFF; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #E5DFD3;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background-color: #0D0F14; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.8); border: 1px solid rgba(212, 175, 55, 0.35);">
           
           <!-- Header Banner -->
           <tr>
-            <td style="background-color: #1A2215; padding: 35px 25px 30px; text-align: center; border-bottom: 3px solid #D4AF37;">
-              <div style="display: inline-block; padding: 6px 14px; background-color: rgba(212, 175, 55, 0.15); border: 1px solid #D4AF37; border-radius: 30px; color: #F3E5AB; font-size: 11px; letter-spacing: 2px; margin-bottom: 12px; font-weight: bold;">
-                AMIR STORE • LUXURY PERFUMES
+            <td style="background-color: #13161F; padding: 35px 25px 30px; text-align: center; border-bottom: 2px solid #D4AF37;">
+              <div style="display: inline-block; padding: 6px 16px; background-color: rgba(212, 175, 55, 0.15); border: 1px solid #D4AF37; border-radius: 30px; color: #F5E296; font-size: 11px; letter-spacing: 2px; margin-bottom: 12px; font-weight: bold;">
+                👑 AMIR STORE • ROYAL PERFUMES
               </div>
-              <h1 style="margin: 0; color: #FFFFFF; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">
+              <h1 style="margin: 0; color: #F8F9FA; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">
                 أمير ستور للعطور والعود الفاخر
               </h1>
-              <p style="margin: 6px 0 0; color: #D4AF37; font-size: 13px;">
-                ${isAdmin ? "🔔 إشعار تسجيل طلب شراء جديد عبر المنصة" : "فاتورة شراء رسمية وتأكيد استلام الطلب"}
+              <p style="margin: 8px 0 0; color: #D4AF37; font-size: 13px; font-weight: 600;">
+                ${isAdmin ? "🔔 إشعار تسجيل طلب شراء جديد عبر المنصة" : "فاتورة شراء رسمية وتأكيد حجز الطلب"}
               </p>
             </td>
           </tr>
@@ -128,17 +128,17 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
           <!-- Order Identity Badge -->
           <tr>
             <td style="padding: 24px 28px 10px;">
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #FAF8F5; border: 1px solid #EBE4D8; border-radius: 14px; padding: 16px 20px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #10131A; border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 14px; padding: 16px 20px;">
                 <tr>
                   <td style="text-align: right;">
-                    <div style="font-size: 11px; color: #7B8275; margin-bottom: 3px;">رقم الطلب الرسمي:</div>
-                    <div style="font-size: 20px; font-weight: 900; color: #1A2215; letter-spacing: 1px; font-family: monospace;">
+                    <div style="font-size: 11px; color: #94A3B8; margin-bottom: 3px;">رقم الطلب الرسمي:</div>
+                    <div style="font-size: 20px; font-weight: 900; color: #F5E296; letter-spacing: 1px; font-family: monospace;">
                       ${escapeHtml(order.id)}
                     </div>
                   </td>
                   <td style="text-align: left;">
-                    <div style="font-size: 11px; color: #7B8275; margin-bottom: 3px;">تاريخ التسجيل:</div>
-                    <div style="font-size: 12px; font-weight: 600; color: #394232;">
+                    <div style="font-size: 11px; color: #94A3B8; margin-bottom: 3px;">تاريخ التسجيل:</div>
+                    <div style="font-size: 12px; font-weight: 600; color: #E2E8F0;">
                       ${dateFormatted}
                     </div>
                   </td>
@@ -150,40 +150,40 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
           <!-- Customer & Delivery Information -->
           <tr>
             <td style="padding: 10px 28px 15px;">
-              <h2 style="font-size: 14px; font-weight: 800; color: #1A2215; margin: 15px 0 10px; border-bottom: 1px solid #EBE4D8; padding-bottom: 6px;">
-                بيانات العميل والتوصيل
+              <h2 style="font-size: 14px; font-weight: 800; color: #D4AF37; margin: 15px 0 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 6px;">
+                بيانات العميل والشحن
               </h2>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="font-size: 13px; line-height: 1.8;">
                 <tr>
-                  <td width="30%" style="color: #7B8275;">اسم العميل:</td>
-                  <td style="color: #1A2215; font-weight: bold;">${escapeHtml(order.customerName)}</td>
+                  <td width="30%" style="color: #94A3B8;">اسم العميل:</td>
+                  <td style="color: #F8F9FA; font-weight: bold;">${escapeHtml(order.customerName)}</td>
                 </tr>
                 <tr>
-                  <td style="color: #7B8275;">رقم الهاتف:</td>
-                  <td style="color: #1A2215; font-family: monospace; font-weight: bold;">${escapeHtml(order.phone)}</td>
+                  <td style="color: #94A3B8;">رقم الهاتف:</td>
+                  <td style="color: #F8F9FA; font-family: monospace; font-weight: bold;">${escapeHtml(order.phone)}</td>
                 </tr>
                 ${
                   order.customerEmail
-                    ? `<tr><td style="color: #7B8275;">البريد الإلكتروني:</td><td style="color: #1A2215; font-family: monospace;">${escapeHtml(order.customerEmail)}</td></tr>`
+                    ? `<tr><td style="color: #94A3B8;">البريد الإلكتروني:</td><td style="color: #F8F9FA; font-family: monospace;">${escapeHtml(order.customerEmail)}</td></tr>`
                     : ""
                 }
                 <tr>
-                  <td style="color: #7B8275;">المحافظة:</td>
-                  <td style="color: #1A2215;">${escapeHtml(order.governorate)}</td>
+                  <td style="color: #94A3B8;">المحافظة:</td>
+                  <td style="color: #F8F9FA;">${escapeHtml(order.governorate)}</td>
                 </tr>
                 <tr>
-                  <td style="color: #7B8275;">العنوان بالتفصيل:</td>
-                  <td style="color: #1A2215;">${escapeHtml(order.address)}</td>
+                  <td style="color: #94A3B8;">العنوان بالتفصيل:</td>
+                  <td style="color: #F8F9FA;">${escapeHtml(order.address)}</td>
                 </tr>
                 <tr>
-                  <td style="color: #7B8275;">طريقة الدفع:</td>
-                  <td style="color: #1A2215; font-weight: bold;">
+                  <td style="color: #94A3B8;">طريقة الدفع:</td>
+                  <td style="color: #F5E296; font-weight: bold;">
                     ${order.paymentMethod === "WHATSAPP" ? "طلب مباشر وموثق عبر واتساب" : "الدفع عند الاستلام (COD) مع حق المعاينة"}
                   </td>
                 </tr>
                 ${
                   order.notes
-                    ? `<tr><td style="color: #7B8275;">ملاحظات / إهداء:</td><td style="color: #856404; background-color: #FFF9E6; padding: 4px 8px; border-radius: 6px;">${escapeHtml(order.notes)}</td></tr>`
+                    ? `<tr><td style="color: #94A3B8;">ملاحظات / إهداء:</td><td style="color: #FDE68A; background-color: rgba(212, 175, 55, 0.1); padding: 4px 8px; border-radius: 6px;">${escapeHtml(order.notes)}</td></tr>`
                     : ""
                 }
               </table>
@@ -193,19 +193,19 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
           <!-- Items Breakdown Table -->
           <tr>
             <td style="padding: 10px 28px 15px;">
-              <h2 style="font-size: 14px; font-weight: 800; color: #1A2215; margin: 15px 0 10px; border-bottom: 1px solid #EBE4D8; padding-bottom: 6px;">
+              <h2 style="font-size: 14px; font-weight: 800; color: #D4AF37; margin: 15px 0 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 6px;">
                 تفاصيل العطور المختارة
               </h2>
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse; width: 100%; border: 1px solid #EBE4D8; border-radius: 10px; overflow: hidden;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse; width: 100%; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 10px; overflow: hidden;">
                 <thead>
-                  <tr style="background-color: #FAF8F5; border-bottom: 1px solid #EBE4D8;">
-                    <th style="padding: 10px 14px; text-align: right; font-size: 12px; color: #5B6355;">المنتج</th>
-                    <th style="padding: 10px 14px; text-align: center; font-size: 12px; color: #5B6355;">الكمية</th>
-                    <th style="padding: 10px 14px; text-align: left; font-size: 12px; color: #5B6355;">السعر</th>
-                    <th style="padding: 10px 14px; text-align: left; font-size: 12px; color: #5B6355;">الإجمالي</th>
+                  <tr style="background-color: #13161F; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
+                    <th style="padding: 10px 14px; text-align: right; font-size: 12px; color: #D4AF37;">المنتج</th>
+                    <th style="padding: 10px 14px; text-align: center; font-size: 12px; color: #D4AF37;">الكمية</th>
+                    <th style="padding: 10px 14px; text-align: left; font-size: 12px; color: #D4AF37;">السعر</th>
+                    <th style="padding: 10px 14px; text-align: left; font-size: 12px; color: #D4AF37;">الإجمالي</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: #0D0F14;">
                   ${itemsRows}
                 </tbody>
               </table>
@@ -215,24 +215,24 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
           <!-- Financial Totals Box -->
           <tr>
             <td style="padding: 10px 28px 25px;">
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #FAF8F5; border: 1px solid #D4AF37; border-radius: 14px; padding: 18px 22px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #13161F; border: 1px solid #D4AF37; border-radius: 14px; padding: 18px 22px;">
                 <tr>
-                  <td style="padding: 4px 0; font-size: 13px; color: #5B6355;">المجموع الفرعي:</td>
-                  <td style="padding: 4px 0; text-align: left; font-size: 14px; color: #1A2215; font-family: monospace;">
+                  <td style="padding: 4px 0; font-size: 13px; color: #94A3B8;">المجموع الفرعي:</td>
+                  <td style="padding: 4px 0; text-align: left; font-size: 14px; color: #F8F9FA; font-family: monospace;">
                     ${order.subtotal.toLocaleString("ar-EG")} ج.م
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 4px 0; font-size: 13px; color: #5B6355;">تكلفة الشحن والتوصيل:</td>
+                  <td style="padding: 4px 0; font-size: 13px; color: #94A3B8;">تكلفة الشحن والتوصيل:</td>
                   <td style="padding: 4px 0; text-align: left; font-size: 13px;">
                     ${shippingPhrase}
                   </td>
                 </tr>
-                <tr style="border-top: 1px dashed #D4AF37;">
-                  <td style="padding: 12px 0 0; font-size: 15px; font-weight: 800; color: #1A2215;">
+                <tr style="border-top: 1px dashed rgba(212, 175, 55, 0.4);">
+                  <td style="padding: 12px 0 0; font-size: 15px; font-weight: 800; color: #F8F9FA;">
                     الإجمالي النهائي المستحق:
                   </td>
-                  <td style="padding: 12px 0 0; text-align: left; font-size: 20px; font-weight: 900; color: #9A7B1C; font-family: monospace;">
+                  <td style="padding: 12px 0 0; text-align: left; font-size: 20px; font-weight: 900; color: #F5E296; font-family: monospace;">
                     ${order.total.toLocaleString("ar-EG")} ج.م
                   </td>
                 </tr>
@@ -243,10 +243,10 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
           <!-- Luxury Assurances Banner -->
           <tr>
             <td style="padding: 0 28px 25px;">
-              <div style="background-color: #1A2215; border-radius: 12px; padding: 14px 18px; text-align: center; color: #FFFFFF;">
-                <p style="margin: 0; font-size: 12px; color: #E8E2D6; line-height: 1.6;">
-                  👑 <strong>مميزات حصرية لعملاء أمير ستور:</strong>
-                  تغليف هدايا ملكي فاخر مجاني، مع إمكانية فحص ومعاينة العطر والتأكد من نقائه وثباته قبل السداد لمندوب الشحن.
+              <div style="background-color: #08090C; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; padding: 14px 18px; text-align: center; color: #FFFFFF;">
+                <p style="margin: 0; font-size: 12px; color: #E2E8F0; line-height: 1.6;">
+                  👑 <strong>مزايا استثنائية لعملاء أمير ستور:</strong>
+                  تغليف هدايا ملكي فاخر مجاني، مع عينة تجربة مرفقة وحق المعاينة الكاملة للعطر والتأكد من نقائه وثباته (72 ساعة) قبل السداد لمندوب الشحن.
                 </p>
               </div>
             </td>
@@ -254,15 +254,15 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
 
           <!-- Footer Information -->
           <tr>
-            <td style="background-color: #FAF8F5; padding: 22px 28px; text-align: center; border-top: 1px solid #EBE4D8;">
-              <p style="margin: 0 0 6px; font-size: 12px; color: #1A2215; font-weight: bold;">
-                خدمة العملاء ومتابعة الشحن والتوصيل:
+            <td style="background-color: #10131A; padding: 22px 28px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+              <p style="margin: 0 0 6px; font-size: 12px; color: #F8F9FA; font-weight: bold;">
+                خدمة العملاء ومتابعة الشحن والتوصيل (24/7):
               </p>
-              <p style="margin: 0 0 10px; font-size: 13px; color: #9A7B1C; font-weight: bold; font-family: monospace;">
-                هاتف / واتساب: <a href="https://wa.me/201220086002" style="color: #9A7B1C; text-decoration: none;">01220086002</a>
+              <p style="margin: 0 0 10px; font-size: 13px; color: #D4AF37; font-weight: bold; font-family: monospace;">
+                هاتف / واتساب: <a href="https://wa.me/201220086002" style="color: #D4AF37; text-decoration: none;">01220086002</a>
               </p>
-              <p style="margin: 0; font-size: 11px; color: #8F968A;">
-                أمير ستور — فخامة تدوم مع كل قطرة • أصالة التراث العربي • جمهورية مصر العربية
+              <p style="margin: 0; font-size: 11px; color: #94A3B8;">
+                أمير ستور — فخامة تدوم مع كل قطرة • أصالة العود النقي • جمهورية مصر العربية
               </p>
             </td>
           </tr>
@@ -272,7 +272,6 @@ export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: bo
     </tr>
   </table>
 </body>
-</html>
   `.trim();
 }
 

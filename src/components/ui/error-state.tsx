@@ -20,17 +20,17 @@ export function ErrorState({
     <div
       role="alert"
       className={cn(
-        "flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-red-200 bg-red-50/50 p-8 text-center",
+        "flex min-h-[300px] flex-col items-center justify-center rounded-3xl border border-red-500/30 bg-red-950/20 backdrop-blur-md p-8 text-center text-white",
         className
       )}
     >
-      <div className="mb-4 rounded-full bg-red-100 p-4 text-red-600 shadow-sm">
+      <div className="mb-4 rounded-full bg-red-500/20 p-4 text-red-400 border border-red-500/30 shadow-sm">
         <AlertTriangle className="h-8 w-8" />
       </div>
-      <h3 className="text-lg font-bold text-red-950 mb-1">{title}</h3>
-      <p className="text-sm text-red-700 max-w-sm mb-6">{description}</p>
+      <h3 className="text-lg font-bold text-red-200 font-arabic mb-1">{title}</h3>
+      <p className="text-sm text-slate-300 max-w-sm mb-6 leading-relaxed">{description}</p>
       {onRetry && (
-        <Button onClick={onRetry} variant="outline" size="sm" className="bg-white border-red-300 text-red-700 hover:bg-red-50">
+        <Button onClick={onRetry} variant="outline" size="sm" className="border-red-500/40 text-red-300 hover:bg-red-500/20">
           <RefreshCcw className="h-4 w-4 ms-2" />
           إعادة المحاولة
         </Button>

@@ -15,6 +15,7 @@ import {
   LogOut,
   ChevronLeft,
   Compass,
+  Gift,
 } from "lucide-react";
 import { BrandLogo } from "@/components/common/brand-logo";
 import { env } from "@/lib/env";
@@ -34,6 +35,7 @@ interface SideNavDrawerProps {
 const mainNav = [
   { href: "/", label: "الرئيسية", icon: Compass },
   { href: "/products", label: "مجموعة العطور الفاخرة", icon: Sparkles },
+  { href: "/templates", label: "قوالب وتجارب الاستكشاف", icon: Gift },
   { href: "/about", label: "عن أمير ستور والتميز", icon: Award },
   { href: "/services", label: "خدمات الإهداء والتغليف الملكي", icon: Heart },
   { href: "/contact", label: "تواصل معنا وخدمة العملاء", icon: Phone },

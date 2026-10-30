@@ -37,12 +37,12 @@ export default async function AccountPage() {
   const dbInfo = getDatabaseInfo();
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8 text-start">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8 text-start text-white">
       {/* 1. Header & Quick Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-neutral-200 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
         <div className="flex items-center gap-4">
           {session.image ? (
-            <div className="relative h-16 w-16 rounded-full overflow-hidden border-2 border-brand-green-600 shadow-sm shrink-0">
+            <div className="relative h-16 w-16 rounded-full overflow-hidden border-2 border-amber-400 shadow-[0_0_15px_rgba(212,175,55,0.3)] shrink-0">
               <Image
                 src={session.image}
                 alt={session.name}
@@ -52,25 +52,25 @@ export default async function AccountPage() {
               />
             </div>
           ) : (
-            <div className="h-16 w-16 rounded-2xl bg-brand-green-700 text-white flex items-center justify-center font-black text-2xl shadow-sm shrink-0">
+            <div className="h-16 w-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 text-amber-300 flex items-center justify-center font-black text-2xl shadow-sm shrink-0">
               {session.name.charAt(0) || "ع"}
             </div>
           )}
 
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-brand-green-800 bg-brand-green-50 px-2.5 py-0.5 rounded-full border border-brand-green-200">
+              <span className="text-xs font-bold text-amber-300 bg-amber-400/10 px-3 py-0.5 rounded-full border border-amber-400/30">
                 منطقة العميل المؤمنة
               </span>
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-500/30">
                 <Lock className="h-3 w-3" />
                 مشفر
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-brand-neutral-900 tracking-tight mt-1">
+            <h1 className="text-2xl sm:text-3xl font-black text-white font-arabic tracking-tight mt-1">
               أهلاً بك، {session.name}
             </h1>
-            <p className="text-xs sm:text-sm text-brand-neutral-500 font-mono mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-400 font-mono mt-0.5">
               {session.email}
             </p>
           </div>
@@ -82,9 +82,9 @@ export default async function AccountPage() {
               <Button
                 variant="primary"
                 size="sm"
-                className="gap-2 bg-brand-neutral-900 hover:bg-black font-bold shadow-sm"
+                className="gap-2 font-bold shadow-md"
               >
-                <ShieldCheck className="h-4 w-4 text-brand-gold-400" />
+                <ShieldCheck className="h-4 w-4" />
                 لوحة تحكم المدير
               </Button>
             </Link>
@@ -95,7 +95,7 @@ export default async function AccountPage() {
               type="submit"
               variant="outline"
               size="sm"
-              className="gap-2 text-red-600 border-red-200 hover:bg-red-50 font-bold"
+              className="gap-2 text-red-400 border-red-500/40 hover:bg-red-500/20 font-bold"
             >
               <LogOut className="h-4 w-4" />
               تسجيل الخروج
@@ -105,61 +105,61 @@ export default async function AccountPage() {
       </div>
 
       {/* 2. Security & Privacy Guarantee Banner */}
-      <div className="rounded-2xl border border-brand-green-200 bg-gradient-to-r from-brand-green-50/80 via-emerald-50/50 to-white p-5 sm:p-6 shadow-sm">
+      <div className="rounded-3xl border border-amber-400/20 bg-white/[0.03] backdrop-blur-2xl p-6 sm:p-7 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-start gap-3.5">
-            <div className="p-2.5 rounded-xl bg-brand-green-600 text-white shadow-sm shrink-0 mt-0.5 sm:mt-0">
+            <div className="p-3 rounded-2xl bg-amber-400/10 border border-amber-400/30 text-amber-300 shadow-sm shrink-0 mt-0.5 sm:mt-0">
               <ShieldCheck className="h-6 w-6" />
             </div>
             <div className="space-y-1">
-              <h2 className="text-base font-bold text-brand-green-950 flex items-center gap-2">
+              <h2 className="text-base font-bold text-white font-arabic flex items-center gap-2">
                 خزنة البيانات الشخصية وحماية الخصوصية (Data Isolation)
               </h2>
-              <p className="text-xs sm:text-sm text-brand-green-800 leading-relaxed max-w-2xl">
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
                 كل استفسار أو طلب تسجله في الموقع يرتبط بحسابك فقط، ومحمي بتشفير صارم من جهة الخادم
                 (HMAC-SHA256). لا يمكن لأي عميل أو زائر آخر الاطلاع على طلباتك أو بيانات تواصلك.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-brand-green-200 text-xs font-semibold text-brand-neutral-700 shadow-2xs shrink-0 self-start sm:self-center">
-            <Database className="h-4 w-4 text-brand-green-700" />
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0D0F14] border border-amber-400/20 text-xs font-semibold text-slate-300 shrink-0 self-start sm:self-center">
+            <Database className="h-4 w-4 text-amber-400" />
             <span>نظام التخزين:</span>
-            <span className="font-bold text-brand-green-800">{dbInfo.provider}</span>
+            <span className="font-bold text-amber-300">{dbInfo.provider}</span>
           </div>
         </div>
       </div>
 
       {/* 3. Customer Identity Details Card */}
-      <div className="rounded-2xl border border-brand-neutral-200 bg-white p-6 shadow-sm space-y-4">
-        <div className="flex items-center justify-between border-b border-brand-neutral-100 pb-3">
-          <div className="flex items-center gap-2 text-sm font-bold text-brand-neutral-900">
-            <UserCheck className="h-4 w-4 text-brand-green-700" />
+      <div className="rounded-3xl border border-amber-400/20 bg-white/[0.03] backdrop-blur-2xl p-6 sm:p-7 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] space-y-5">
+        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="flex items-center gap-2 text-sm font-bold text-white font-arabic">
+            <UserCheck className="h-4 w-4 text-amber-400" />
             <span>بيانات المصادقة الرسمية</span>
           </div>
-          <span className="text-xs font-mono text-brand-neutral-400">
+          <span className="text-xs font-mono text-slate-400">
             معرف الحساب: {session.id.slice(0, 16)}...
           </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-          <div className="bg-brand-neutral-50 p-3.5 rounded-xl border border-brand-neutral-100">
-            <span className="text-xs text-brand-neutral-500 font-semibold block mb-1">الاسم بالكامل</span>
-            <span className="text-base font-bold text-brand-neutral-900">{session.name}</span>
+          <div className="bg-[#0D0F14] p-4 rounded-2xl border border-amber-400/10">
+            <span className="text-xs text-slate-400 font-semibold block mb-1">الاسم بالكامل</span>
+            <span className="text-base font-bold text-white">{session.name}</span>
           </div>
 
-          <div className="bg-brand-neutral-50 p-3.5 rounded-xl border border-brand-neutral-100">
-            <span className="text-xs text-brand-neutral-500 font-semibold block mb-1">البريد الإلكتروني الموثق</span>
-            <span className="text-sm font-bold text-brand-neutral-900 font-mono break-all">{session.email}</span>
+          <div className="bg-[#0D0F14] p-4 rounded-2xl border border-amber-400/10">
+            <span className="text-xs text-slate-400 font-semibold block mb-1">البريد الإلكتروني الموثق</span>
+            <span className="text-sm font-bold text-white font-mono break-all">{session.email}</span>
           </div>
 
-          <div className="bg-brand-neutral-50 p-3.5 rounded-xl border border-brand-neutral-100">
-            <span className="text-xs text-brand-neutral-500 font-semibold block mb-1">نوع العضوية</span>
+          <div className="bg-[#0D0F14] p-4 rounded-2xl border border-amber-400/10">
+            <span className="text-xs text-slate-400 font-semibold block mb-1">نوع العضوية</span>
             <span
               className={`inline-flex items-center gap-1.5 rounded-full px-3 py-0.5 text-xs font-bold ${
                 session.role === "ADMIN"
-                  ? "bg-purple-100 text-purple-800 border border-purple-200"
-                  : "bg-brand-green-100 text-brand-green-800 border border-brand-green-200"
+                  ? "bg-purple-950/60 text-purple-300 border border-purple-500/40"
+                  : "bg-amber-400/10 text-amber-300 border border-amber-400/30"
               }`}
             >
               {session.role === "ADMIN" ? "مدير النظام (ADMIN)" : "عميل مسجل (USER)"}
@@ -176,19 +176,19 @@ export default async function AccountPage() {
       />
 
       {/* 5. Customer Quick Assistance Banner */}
-      <div className="rounded-2xl border border-brand-neutral-200 bg-brand-neutral-50 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="rounded-3xl border border-amber-400/20 bg-[#0D0F14] p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-brand-neutral-900 flex items-center gap-2">
-            <PhoneCall className="h-4 w-4 text-brand-green-700" />
+          <h3 className="text-base font-bold text-white font-arabic flex items-center gap-2">
+            <PhoneCall className="h-4 w-4 text-amber-400" />
             هل تريد استشارة سريعة بخصوص العطور أو الهدايا الخاصة؟
           </h3>
-          <p className="text-xs sm:text-sm text-brand-neutral-600">
+          <p className="text-xs sm:text-sm text-slate-400">
             فريق خبراء العطور في أمير ستور جاهز لمساعدتك في اختيار أنسب تركيبة عطرية تناسب ذوقك ومناسباتك.
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
           <Link href="/products">
-            <Button variant="outline" size="sm" className="bg-white font-bold text-xs gap-1.5">
+            <Button variant="outline" size="sm" className="font-bold text-xs gap-1.5">
               <FileText className="h-4 w-4" />
               تصفح الكتالوج
             </Button>
@@ -198,7 +198,7 @@ export default async function AccountPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button variant="primary" size="sm" className="bg-emerald-600 hover:bg-emerald-700 font-bold text-xs gap-1.5">
+            <Button variant="primary" size="sm" className="font-bold text-xs gap-1.5">
               تواصل واتساب مباشر
               <ArrowLeft className="h-4 w-4" />
             </Button>

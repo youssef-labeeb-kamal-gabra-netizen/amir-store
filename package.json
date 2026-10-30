@@ -12,8 +12,10 @@
     "test": "node scripts/run-tests.js",
     "test:db": "npx tsx scripts/test-hybrid-db.js",
     "test:cloud": "npx tsx scripts/test-cloud-services.js",
+    "test:automation": "npx tsx scripts/test-automation.js",
     "test:adv": "node scripts/adversarial-challenge-2.js",
-    "test:all": "node scripts/run-tests.js && node scripts/adversarial-challenge-2.js && npx tsx scripts/test-hybrid-db.js && npx tsx scripts/test-cloud-services.js && node scripts/verify-all.js",
+    "test:all": "node scripts/run-tests.js && node scripts/adversarial-challenge-2.js && npx tsx scripts/test-hybrid-db.js && npx tsx scripts/test-cloud-services.js && npx tsx scripts/test-automation.js && node scripts/verify-all.js",
+    "test:e2e": "playwright test",
     "verify": "node scripts/verify-all.js"
   },
   "dependencies": {
@@ -32,6 +34,7 @@
     "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/node": "^22.13.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

@@ -14,9 +14,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full space-y-1.5 text-start">
         {label && (
-          <label htmlFor={inputId} className="block text-sm font-medium text-brand-neutral-800">
+          <label htmlFor={inputId} className="block text-sm font-medium text-amber-200/90">
             {label}
-            {props.required && <span className="text-red-500 ms-1">*</span>}
+            {props.required && <span className="text-amber-400 ms-1">*</span>}
           </label>
         )}
         <input
@@ -24,14 +24,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           ref={ref}
           className={cn(
-            "flex h-11 w-full rounded-lg border border-brand-neutral-300 bg-white px-3.5 py-2 text-sm text-brand-neutral-900 transition-colors placeholder:text-brand-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green-600 focus-visible:border-transparent disabled:cursor-not-allowed disabled:bg-brand-neutral-100 disabled:opacity-75",
+            "flex h-11 w-full rounded-xl border border-amber-400/30 bg-[#0D0F14] px-4 py-2 text-sm text-white transition-colors placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:border-transparent disabled:cursor-not-allowed disabled:bg-[#13161F] disabled:text-slate-600 disabled:opacity-75 shadow-inner",
             error && "border-red-500 focus-visible:ring-red-500",
             className
           )}
           {...props}
         />
-        {error && <p className="text-xs text-red-600 mt-1">{error}</p>}
-        {helperText && !error && <p className="text-xs text-brand-neutral-500 mt-1">{helperText}</p>}
+        {error && <p className="text-xs text-red-400 mt-1">{error}</p>}
+        {helperText && !error && <p className="text-xs text-slate-400 mt-1">{helperText}</p>}
       </div>
     );
   }
@@ -51,23 +51,23 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full space-y-1.5 text-start">
         {label && (
-          <label htmlFor={textareaId} className="block text-sm font-medium text-brand-neutral-800">
+          <label htmlFor={textareaId} className="block text-sm font-medium text-amber-200/90">
             {label}
-            {props.required && <span className="text-red-500 ms-1">*</span>}
+            {props.required && <span className="text-amber-400 ms-1">*</span>}
           </label>
         )}
         <textarea
           id={textareaId}
           ref={ref}
           className={cn(
-            "flex min-h-[100px] w-full rounded-lg border border-brand-neutral-300 bg-white p-3 text-sm text-brand-neutral-900 transition-colors placeholder:text-brand-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green-600 focus-visible:border-transparent disabled:cursor-not-allowed disabled:bg-brand-neutral-100 disabled:opacity-75",
+            "flex min-h-[100px] w-full rounded-xl border border-amber-400/30 bg-[#0D0F14] p-3.5 text-sm text-white transition-colors placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:border-transparent disabled:cursor-not-allowed disabled:bg-[#13161F] disabled:text-slate-600 disabled:opacity-75 shadow-inner",
             error && "border-red-500 focus-visible:ring-red-500",
             className
           )}
           {...props}
         />
-        {error && <p className="text-xs text-red-600 mt-1">{error}</p>}
-        {helperText && !error && <p className="text-xs text-brand-neutral-500 mt-1">{helperText}</p>}
+        {error && <p className="text-xs text-red-400 mt-1">{error}</p>}
+        {helperText && !error && <p className="text-xs text-slate-400 mt-1">{helperText}</p>}
       </div>
     );
   }
