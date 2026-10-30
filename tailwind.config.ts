@@ -132,6 +132,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-cairo)", "Jost", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["var(--font-cinzel)", "Cinzel", "Playfair Display", "serif"],
+        arabic: ["var(--font-amiri)", "Amiri", "Traditional Arabic", "serif"],
       },
       screens: {
         xs: "360px",

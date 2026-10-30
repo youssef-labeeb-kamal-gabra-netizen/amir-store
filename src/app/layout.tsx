@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cairo } from "next/font/google";
+import { Cairo, Amiri, Cinzel } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -16,6 +16,20 @@ const cairo = Cairo({
   variable: "--font-cairo",
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const amiri = Amiri({
+  subsets: ["arabic", "latin"],
+  variable: "--font-amiri",
+  display: "swap",
+  weight: ["400", "700"],
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  display: "swap",
+  weight: ["400", "600", "700", "800", "900"],
 });
 
 export const viewport: Viewport = {
@@ -36,7 +50,7 @@ export default async function RootLayout({
   const settings = getCustomSettings();
 
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} overflow-x-clip`}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${amiri.variable} ${cinzel.variable} overflow-x-clip`}>
       <body className="font-sans antialiased bg-brand-neutral-50 text-brand-neutral-900 flex flex-col min-h-screen overflow-x-clip">
         <CartProvider>
           <Header user={session} settings={settings} />

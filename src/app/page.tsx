@@ -6,6 +6,9 @@ import { ProductCard } from "@/components/products/product-card";
 import { ContactCTA } from "@/components/common/contact-cta";
 import { ReviewsSection } from "@/components/common/reviews-section";
 import { FAQSection } from "@/components/common/faq-section";
+import { GsapHeroShowcase } from "@/components/motion/gsap-hero-showcase";
+import { GsapTextReveal } from "@/components/motion/gsap-text-reveal";
+import { GsapReveal } from "@/components/motion/gsap-reveal";
 import {
   ShieldCheck,
   CheckCircle2,
@@ -25,8 +28,8 @@ export default function HomePage() {
   const featuredProducts = products.filter((p) => p.published && p.featured).slice(0, 4);
   const approvedReviews = getApprovedReviews();
 
-  const phone1 = env.business.phone || "01220792948";
-  const rawWhatsApp = env.business.whatsapp || "01220792948";
+  const phone1 = env.business.phone || "01220086002";
+  const rawWhatsApp = env.business.whatsapp || "01220086002";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
     "السلام عليكم، أود الاستفسار عن تشكيلة العطور ودهن العود المتاحة لدى متجر أمير ستور."
@@ -58,20 +61,24 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Title & Tagline */}
-              <div className="space-y-2">
-                <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white">
-                  أمير ستور <br className="hidden sm:inline" />
-                  <span className="text-brand-gold-400">للعطور والعود الفاخر</span>
-                </h1>
-                <p className="text-base xs:text-lg sm:text-2xl text-oud-surfaceLight font-extrabold">
-                  ✨ دهن عود نقي • عطور شرقية وفرنسية • بخور ومسك ملكي
-                </p>
-              </div>
+              {/* Title & Tagline with GSAP Text Reveal */}
+              <GsapTextReveal>
+                <div className="space-y-3">
+                  <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white font-arabic">
+                    أمير ستور <br className="hidden sm:inline" />
+                    <span className="text-amber-300 drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)]">
+                      للعطور والعود الفاخر
+                    </span>
+                  </h1>
+                  <p className="text-base xs:text-lg sm:text-2xl text-oud-surfaceLight font-extrabold font-serif">
+                    ✨ دهن عود نقي • عطور شرقية وفرنسية • بخور ومسك ملكي
+                  </p>
+                </div>
 
-              <p className="text-sm sm:text-base text-oud-surfaceLight/90 leading-relaxed max-w-xl">
-                ننتقي لك أرقى أدهان العود الطبيعية والعطور الحصرية التي تجمع بين عبق التراث الشرقي الأصيل وأناقة الابتكار الفرنسي، مع ضمان الفوحان والثبات الطويل.
-              </p>
+                <p className="text-sm sm:text-base text-oud-surfaceLight/90 leading-relaxed max-w-xl mt-4">
+                  ننتقي لك أرقى أدهان العود الطبيعية والعطور الحصرية التي تجمع بين عبق التراث الشرقي الأصيل وأناقة الابتكار الفرنسي، مع ضمان الفوحان والثبات الطويل.
+                </p>
+              </GsapTextReveal>
 
               {/* Action Buttons (Pills) */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
@@ -122,76 +129,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Visual Card / Brand Showcase */}
+            {/* Hero Visual Card / Brand Showcase with GSAP Motion */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl bg-white/[0.08] border border-white/15 p-5 sm:p-6 backdrop-blur-xl shadow-2xl text-center space-y-5 overflow-hidden">
-                {/* Brand Showcase Container */}
-                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-xl border border-white/20 bg-brand-green-950 flex flex-col items-center justify-center p-6 text-center group">
-                  <div className="relative z-10 flex flex-col items-center gap-3">
-                    <div className="h-16 w-16 rounded-full bg-brand-gold-400/20 border border-brand-gold-400/50 flex items-center justify-center text-brand-gold-400 group-hover:scale-110 transition-transform duration-300">
-                      <Sparkles className="h-8 w-8" />
-                    </div>
-                    <div>
-                      <h4 className="text-2xl font-black text-white tracking-wide">AMEER STORE</h4>
-                      <p className="text-xs text-brand-gold-400 font-bold mt-1">دار العطور والعود الفاخر</p>
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
-                  <div className="absolute bottom-2.5 start-3 end-3 flex items-center justify-between text-white text-xs font-bold z-10">
-                    <span className="flex items-center gap-1.5 text-brand-gold-300 drop-shadow">
-                      <Sparkles className="h-3.5 w-3.5" />
-                      <span>تشكيلة الموسم الحصرية</span>
-                    </span>
-                    <span className="bg-brand-green-900/90 border border-brand-gold-400/40 px-2 py-0.5 rounded-full text-[10px] text-brand-gold-300 font-mono">
-                      ORIGINAL 100%
-                    </span>
-                  </div>
-                </div>
-
-                {/* The 3 Featured Fragrances */}
-                <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] text-oud-surfaceLight text-center pt-1">
-                  <Link href="/products?category=pure-oud-oils" className="p-1.5 sm:p-2.5 rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 hover:border-brand-gold-400/40 transition-all duration-200 active:scale-95 flex flex-col items-center justify-center gap-1 sm:gap-1.5 group cursor-pointer">
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-brand-green-900 text-brand-gold-400 shadow-sm border border-brand-gold-400/30 group-hover:scale-110 transition-transform">
-                      <Sparkles className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="text-white font-bold block text-[11px] sm:text-xs">دهن عود</span>
-                      <span className="text-[9px] sm:text-[10px] text-brand-gold-400">طبيعي 100%</span>
-                    </div>
-                  </Link>
-                  <Link href="/products?category=oriental-perfumes" className="p-1.5 sm:p-2.5 rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 hover:border-brand-gold-400/40 transition-all duration-200 active:scale-95 flex flex-col items-center justify-center gap-1 sm:gap-1.5 group cursor-pointer">
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-brand-green-900 text-brand-gold-400 shadow-sm border border-brand-gold-400/30 group-hover:scale-110 transition-transform">
-                      <Flame className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="text-white font-bold block text-[11px] sm:text-xs">عطور شرقية</span>
-                      <span className="text-[9px] sm:text-[10px] text-brand-gold-400">ملكية فاخرة</span>
-                    </div>
-                  </Link>
-                  <Link href="/products?category=musk-and-amber" className="p-1.5 sm:p-2.5 rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 hover:border-brand-gold-400/40 transition-all duration-200 active:scale-95 flex flex-col items-center justify-center gap-1 sm:gap-1.5 group cursor-pointer">
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-brand-green-900 text-brand-gold-400 shadow-sm border border-brand-gold-400/30 group-hover:scale-110 transition-transform">
-                      <Wind className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="text-white font-bold block text-[11px] sm:text-xs">مسك أبيض</span>
-                      <span className="text-[9px] sm:text-[10px] text-brand-gold-400">حرير ونظافة</span>
-                    </div>
-                  </Link>
-                </div>
-
-                {/* Direct quick call / whatsapp banner inside card */}
-                <div className="pt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs font-bold text-white border-t border-white/15">
-                  <a href={`tel:${phone1}`} className="flex items-center gap-1 hover:text-brand-gold-300 active:scale-95 transition-all">
-                    <Phone className="h-3.5 w-3.5 text-brand-gold-400" />
-                    <span dir="ltr">{phone1}</span>
-                  </a>
-                  <span className="text-white/30 hidden xs:inline">•</span>
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#25D366] hover:text-emerald-300 active:scale-95 transition-all">
-                    <MessageCircle className="h-3.5 w-3.5" />
-                    <span>واتساب فوري</span>
-                  </a>
-                </div>
-              </div>
+              <GsapHeroShowcase />
             </div>
           </div>
         </div>
@@ -368,11 +308,13 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <GsapReveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </GsapReveal>
         </section>
 
         {/* 4. WHY AMEER STORE (Trust Signals) */}

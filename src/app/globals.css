@@ -87,3 +87,22 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #696969;
 }
+
+/* Luxury Typography & Metallic Foils */
+.font-arabic {
+  font-family: var(--font-amiri), "Traditional Arabic", serif;
+}
+
+.font-serif {
+  font-family: var(--font-cinzel), "Playfair Display", Georgia, serif;
+}
+
+.gold-foil-text {
+  background: linear-gradient(135deg, #ECC880 0%, #C5A059 50%, #8C6527 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-foil-border {
+  border-image: linear-gradient(135deg, #ECC880 0%, #C5A059 50%, #8C6527 100%) 1;
+}
