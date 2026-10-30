@@ -13,8 +13,10 @@ import {
   MessageCircle,
   MapPin,
   Sparkles,
+  ShoppingBag,
 } from "lucide-react";
 import { env } from "@/lib/env";
+import { useCart } from "@/lib/cart-context";
 
 interface HeaderProps {
   user?: {
@@ -39,12 +41,13 @@ const quickNavLinks = [
 ];
 
 export function Header({ user, settings }: HeaderProps) {
+  const { totalCount, setIsCartOpen } = useCart();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
 
-  const phone1 = settings?.phone || env.business.phone || "01220792948";
-  const phone2 = settings?.secondaryPhone || env.business.secondaryPhone || "01114587917";
-  const rawWhatsApp = settings?.whatsapp || env.business.whatsapp || "01220792948";
+  const phone1 = settings?.phone || env.business.phone || "01220086002";
+  const phone2 = settings?.secondaryPhone || env.business.secondaryPhone || "01220086002";
+  const rawWhatsApp = settings?.whatsapp || env.business.whatsapp || "01220086002";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
     "السلام عليكم، أود الاستفسار عن تشكيلة العطور والعود المتاحة لدى متجر أمير ستور."
@@ -153,8 +156,32 @@ export function Header({ user, settings }: HeaderProps) {
               })}
             </nav>
 
-            {/* End side: Direct WhatsApp Messaging & User Account */}
+            {/* End side: Cart Drawer, Direct WhatsApp Messaging & User Account */}
             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              {/* Cart Drawer Trigger Button */}
+              <button
+                type="button"
+                onClick={() => setIsCartOpen(true)}
+                className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl border border-brand-green-800/30 bg-brand-green-50/70 hover:bg-brand-green-100 text-brand-green-950 font-bold text-xs sm:text-sm active:scale-95 transition-all shadow-2xs group cursor-pointer"
+                title="سلة المشتريات"
+                aria-label="فتح سلة المشتريات"
+              >
+                <div className="relative">
+                  <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5 text-brand-green-800" />
+                  {totalCount > 0 && (
+                    <span className="absolute -top-2 -end-2 flex h-4 w-4 items-center justify-center rounded-full bg-brand-green-800 text-[10px] font-black text-white shadow-xs">
+                      {totalCount}
+                    </span>
+                  )}
+                </div>
+                <span className="hidden sm:inline">السلة</span>
+                {totalCount > 0 && (
+                  <span className="hidden md:inline-block text-[11px] font-bold text-brand-gold-600 bg-brand-green-950/10 px-1.5 py-0.5 rounded-md">
+                    ({totalCount})
+                  </span>
+                )}
+              </button>
+
               {/* Direct WhatsApp Messaging Button */}
               <a
                 href={whatsappUrl}

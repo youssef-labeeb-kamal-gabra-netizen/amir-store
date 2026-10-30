@@ -23,6 +23,8 @@ export interface Product {
   images: string[];
   brand?: string;
   model?: string;
+  price?: number;
+  compareAtPrice?: number;
   specifications: ProductSpecification[];
   featured?: boolean;
   published: boolean;

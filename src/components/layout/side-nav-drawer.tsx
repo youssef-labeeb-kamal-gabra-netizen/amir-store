@@ -5,21 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   X,
-  Tractor,
-  SprayCan,
-  Waves,
-  Cpu,
-  Pipette,
-  Wrench,
+  Sparkles,
+  Heart,
+  Award,
   Phone,
   MessageCircle,
   MapPin,
-  ExternalLink,
   ShieldCheck,
   User,
   LogOut,
   ChevronLeft,
-  Sparkles,
   Compass,
 } from "lucide-react";
 import { BrandLogo } from "@/components/common/brand-logo";
@@ -39,20 +34,11 @@ interface SideNavDrawerProps {
 
 const mainNav = [
   { href: "/", label: "الرئيسية", icon: Compass },
-  { href: "/products", label: "كتالوج الآلات والمعدات", icon: Tractor },
-  { href: "/about", label: "عن الشركة (مسيرة 20 عاماً)", icon: Sparkles },
-  { href: "/services", label: "خدمات الصيانة والدعم الفني", icon: Wrench },
-  { href: "/contact", label: "تواصل معنا وموقعنا", icon: MapPin },
+  { href: "/products", label: "مجموعة العطور الفاخرة", icon: Sparkles },
+  { href: "/about", label: "عن أمير ستور والتميز", icon: Award },
+  { href: "/services", label: "خدمات الإهداء والتغليف الملكي", icon: Heart },
+  { href: "/contact", label: "تواصل معنا وخدمة العملاء", icon: Phone },
 ];
-
-const categoryIcons: Record<string, React.ElementType> = {
-  "cat-1": SprayCan,
-  "cat-2": Waves,
-  "cat-3": Cpu,
-  "cat-4": Pipette,
-  "cat-5": Tractor,
-  "cat-6": Wrench,
-};
 
 export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
   const pathname = usePathname();
@@ -93,14 +79,12 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
 
   if (!mounted || !isOpen) return null;
 
-  const phone1 = env.business.phone || "01220792948";
-  const phone2 = env.business.secondaryPhone || "01114587917";
-  const rawWhatsApp = env.business.whatsapp || "01220792948";
+  const phone1 = env.business.phone || "01220086002";
+  const rawWhatsApp = env.business.whatsapp || "01220086002";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
-    "السلام عليكم، أود الاستفسار عن الآلات والمعدات الزراعية لدى شركة لبيب كمال لبيب."
+    "السلام عليكم، أود الاستفسار عن تشكيلة العطور والعود الفاخر لدى متجر أمير ستور."
   )}`;
-  const mapsUrl = env.business.googleMapsUrl || "https://maps.app.goo.gl/87VQjF6s9bEyF9yz7";
 
   return (
     <div className="fixed inset-0 z-50 flex animate-in fade-in duration-200">
@@ -122,7 +106,7 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-xl text-brand-neutral-600 hover:text-brand-neutral-900 hover:bg-brand-neutral-200 transition-colors"
+            className="p-2 rounded-xl text-brand-neutral-600 hover:text-brand-neutral-900 hover:bg-brand-neutral-200 transition-colors cursor-pointer"
             aria-label="إغلاق القائمة"
           >
             <X className="h-6 w-6" />
@@ -131,25 +115,27 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
 
         {/* Scrollable Drawer Content */}
         <div className="flex-1 overflow-y-auto p-5 space-y-6">
-          {/* Equipment Advisor Banner CTA */}
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-[#022c22] to-[#064e3b] text-white shadow-md relative overflow-hidden">
+          {/* Fragrance Advisor Banner CTA */}
+          <div className="p-4 rounded-2xl bg-gradient-to-br from-brand-green-950 to-brand-green-800 text-white shadow-md relative overflow-hidden">
             <div className="relative z-10 space-y-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-200 text-[11px] font-bold border border-emerald-500/30">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-gold-500/20 text-brand-gold-300 text-[11px] font-bold border border-brand-gold-400/30">
                 <Sparkles className="h-3 w-3 text-brand-gold-400" />
-                <span>مستشارك الزراعي التفاعلي</span>
+                <span>مستشارك العطري الخاص</span>
               </span>
-              <h4 className="text-base font-extrabold text-white">محتار تختار أنهي معدة لأرضك؟</h4>
-              <p className="text-xs text-emerald-100/80 leading-relaxed">
-                حدد نوع المحصول ومساحة الأرض واحصل على ترشيح فوري للمعدة المناسبة.
+              <h4 className="text-base font-extrabold text-white">محتار تختار العطر المناسب لذوقك؟</h4>
+              <p className="text-xs text-brand-neutral-300 leading-relaxed">
+                تواصل مع خبرائنا لاختيار النوتة العطرية المناسبة لشخصيتك أو كهدية فاخرة تدوم طويلاً.
               </p>
-              <Link
-                href="/#advisor"
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={onClose}
                 className="mt-1 w-full py-2.5 px-3 rounded-xl bg-brand-gold-600 hover:bg-brand-gold-500 active:bg-brand-gold-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-sm cursor-pointer"
               >
-                <span>ابدأ المساعد التفاعلي الآن</span>
+                <span>استشر خبير العطور عبر واتساب</span>
                 <ChevronLeft className="h-4 w-4" />
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -190,61 +176,48 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
           <div className="space-y-1.5">
             <div className="flex items-center justify-between px-2">
               <h5 className="text-xs font-bold text-brand-neutral-400 uppercase tracking-wider">
-                أقسام المعدات والآلات
+                أقسام العطور والعود
               </h5>
               <Link
                 href="/products"
                 className="text-xs font-bold text-brand-green-800 hover:underline active:scale-95 transition-all"
               >
-                عرض الكتالوج كامل
+                عرض الكل
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-1">
-              {CATEGORIES.map((cat) => {
-                const Icon = categoryIcons[cat.id] || Tractor;
-                return (
-                  <Link
-                    key={cat.id}
-                    href={`/products?category=${cat.slug}`}
-                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-brand-neutral-100 text-brand-neutral-800 active:scale-[0.98] transition-all text-xs font-semibold cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-1 rounded-lg bg-brand-green-50 text-brand-green-800">
-                        <Icon className="h-3.5 w-3.5" />
-                      </div>
-                      <span>{cat.name}</span>
+              {CATEGORIES.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/products?category=${cat.slug}`}
+                  className="flex items-center justify-between p-2.5 rounded-xl hover:bg-brand-neutral-100 text-brand-neutral-800 active:scale-[0.98] transition-all text-xs font-semibold cursor-pointer"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-1 rounded-lg bg-brand-green-50 text-brand-green-800">
+                      <Sparkles className="h-3.5 w-3.5" />
                     </div>
-                    <ChevronLeft className="h-3.5 w-3.5 text-brand-neutral-400" />
-                  </Link>
-                );
-              })}
+                    <span>{cat.name}</span>
+                  </div>
+                  <ChevronLeft className="h-3.5 w-3.5 text-brand-neutral-400" />
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Quick Contact & Map Actions */}
+          {/* Quick Contact Actions */}
           <div className="space-y-2 pt-2 border-t border-brand-neutral-200">
             <h5 className="text-xs font-bold text-brand-neutral-400 uppercase tracking-wider px-2">
-              الاتصال السريع والتواجد
+              التواصل السريع والشحن
             </h5>
 
-            <div className="grid grid-cols-2 gap-2">
-              <a
-                href={`tel:${phone1}`}
-                className="flex items-center justify-center gap-1.5 p-2.5 rounded-xl bg-brand-neutral-100 hover:bg-brand-neutral-200 text-brand-neutral-900 text-xs font-bold active:scale-95 transition-all shadow-2xs"
-                dir="ltr"
-              >
-                <Phone className="h-3.5 w-3.5 text-brand-green-700" />
-                <span>{phone1}</span>
-              </a>
-              <a
-                href={`tel:${phone2}`}
-                className="flex items-center justify-center gap-1.5 p-2.5 rounded-xl bg-brand-neutral-100 hover:bg-brand-neutral-200 text-brand-neutral-900 text-xs font-bold active:scale-95 transition-all shadow-2xs"
-                dir="ltr"
-              >
-                <Phone className="h-3.5 w-3.5 text-brand-green-700" />
-                <span>{phone2}</span>
-              </a>
-            </div>
+            <a
+              href={`tel:${phone1}`}
+              className="flex items-center justify-center gap-1.5 p-2.5 rounded-xl bg-brand-neutral-100 hover:bg-brand-neutral-200 text-brand-neutral-900 text-xs font-bold active:scale-95 transition-all shadow-2xs"
+              dir="ltr"
+            >
+              <Phone className="h-3.5 w-3.5 text-brand-green-700" />
+              <span>{phone1}</span>
+            </a>
 
             <a
               href={whatsappUrl}
@@ -256,21 +229,13 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
               <span>محادثة واتساب فورية مباشرة</span>
             </a>
 
-            <a
-              href={mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 rounded-xl border border-brand-neutral-200 bg-white hover:bg-brand-neutral-50 text-brand-neutral-800 text-xs font-bold active:scale-95 transition-all shadow-2xs"
-            >
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-brand-gold-600" />
-                <div className="text-start">
-                  <p className="font-bold text-brand-neutral-900">موقعنا على الخريطة</p>
-                  <p className="text-[11px] text-brand-neutral-500">الشرقية، منيا القمح، طريق مصر الزراعي</p>
-                </div>
+            <div className="flex items-center gap-2 p-3 rounded-xl border border-brand-neutral-200 bg-white text-brand-neutral-800 text-xs font-bold">
+              <MapPin className="h-4 w-4 text-brand-gold-600 shrink-0" />
+              <div className="text-start">
+                <p className="font-bold text-brand-neutral-900">نطاق الشحن والتوصيل</p>
+                <p className="text-[11px] text-brand-neutral-500">شحن سريع مع المعاينة لجميع محافظات مصر</p>
               </div>
-              <ExternalLink className="h-4 w-4 text-brand-neutral-400" />
-            </a>
+            </div>
           </div>
         </div>
 

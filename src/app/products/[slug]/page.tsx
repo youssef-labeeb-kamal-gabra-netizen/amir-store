@@ -6,10 +6,9 @@ import { CATEGORIES } from "@/data/catalog";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductSpecifications } from "@/components/products/product-specifications";
 import { ProductCard } from "@/components/products/product-card";
-import { Button } from "@/components/ui/button";
+import { ProductPurchaseActions } from "@/components/products/product-purchase-actions";
 import { constructMetadata } from "@/lib/seo";
-import { env } from "@/lib/env";
-import { MessageCircle, Phone, ArrowLeft, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 interface ProductDetailsPageProps {
   params: Promise<{
@@ -48,14 +47,6 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   const relatedProducts = products.filter(
     (p) => p.published && p.categoryId === product.categoryId && p.id !== product.id
   ).slice(0, 3);
-
-  const rawWhatsApp = env.business.whatsapp || "01220792948";
-  const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
-  const formattedWhatsApp = cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp;
-  const defaultWhatsAppMsg = encodeURIComponent(
-    `السلام عليكم ورحمة الله، أود طلب وشراء عطر: ${product.name} (${product.model || "الحجم القياسي"}) من متجر أمير ستور.`
-  );
-  const whatsappHref = `https://wa.me/${formattedWhatsApp}?text=${defaultWhatsAppMsg}`;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12 text-start">
@@ -106,40 +97,8 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
             <p>{product.description}</p>
           </div>
 
-          {/* Genuine Inquiry & Trust Box */}
-          <div className="rounded-3xl border border-brand-neutral-200 bg-white p-6 space-y-4 shadow-oud-sm">
-            <div className="flex items-start gap-3 text-start">
-              <ShieldCheck className="h-6 w-6 text-brand-green-800 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="text-sm font-bold text-brand-green-950">
-                  طلب العطر والشحن السريع
-                </h4>
-                <p className="text-xs text-brand-neutral-500 mt-1 leading-relaxed">
-                  تواصل معنا مباشرة عبر واتساب لتأكيد طلبك وتحديد خيارات التغليف الملكي المجاني وكارت الإهداء المخصص.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:flex-1"
-              >
-                <Button variant="primary" size="lg" className="w-full justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-black shadow-md btn-touch rounded-full py-4 text-sm sm:text-base cursor-pointer">
-                  <MessageCircle className="h-5 w-5" />
-                  <span>اطلب العطر عبر واتساب الآن</span>
-                </Button>
-              </a>
-              <Link href={`/contact?product=${encodeURIComponent(product.slug)}`} className="w-full sm:flex-1">
-                <Button variant="outline" size="lg" className="w-full justify-center gap-2 font-bold border border-brand-green-800 text-brand-green-800 hover:bg-brand-green-800 hover:text-white rounded-full py-4 text-sm sm:text-base btn-touch cursor-pointer">
-                  <Phone className="h-4 w-4" />
-                  <span>استفسار أو طلب خاص</span>
-                </Button>
-              </Link>
-            </div>
-          </div>
+          {/* Purchase Actions & Cart Integration */}
+          <ProductPurchaseActions product={product} />
 
           {/* Verification check points */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-brand-neutral-600 pt-2">

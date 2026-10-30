@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles } from "lucide-react";
+import Image from "next/image";
 
 interface BrandLogoProps {
   className?: string;
@@ -10,9 +10,9 @@ interface BrandLogoProps {
 export function BrandLogo({ className = "", size = "md", showText = true }: BrandLogoProps) {
   const sizeMap = {
     sm: "h-8 w-8 sm:h-9 sm:w-9",
-    md: "h-9 w-9 sm:h-11 sm:w-11",
-    lg: "h-12 w-12 sm:h-14 sm:w-14",
-    xl: "h-16 w-16 sm:h-20 sm:w-20",
+    md: "h-10 w-10 sm:h-12 sm:w-12",
+    lg: "h-14 w-14 sm:h-16 sm:w-16",
+    xl: "h-20 w-20 sm:h-24 sm:w-24",
   };
 
   const textSizes = {
@@ -24,11 +24,17 @@ export function BrandLogo({ className = "", size = "md", showText = true }: Bran
 
   return (
     <div className={`flex items-center gap-2 sm:gap-3 ${className}`}>
-      {/* Luxury Oud Emblem */}
+      {/* Official Golden Royal Monogram Emblem */}
       <div
-        className={`relative ${sizeMap[size]} shrink-0 rounded-full flex items-center justify-center bg-brand-green-800 text-brand-gold-400 shadow-sm border border-brand-green-900/30`}
+        className={`relative ${sizeMap[size]} shrink-0 rounded-full overflow-hidden shadow-sm border border-brand-neutral-200/80 bg-[#f7f5f2]`}
       >
-        <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
+        <Image
+          src="/images/logo.png"
+          alt="شعار أمير ستور الرسمي للعطور"
+          fill
+          className="object-cover scale-105"
+          priority
+        />
       </div>
 
       {showText && (
@@ -39,7 +45,7 @@ export function BrandLogo({ className = "", size = "md", showText = true }: Bran
             أمير ستور
           </span>
           <span className={`font-semibold text-brand-neutral-500 leading-none truncate ${textSizes[size].sub}`}>
-            <span>للعطور والعود الفاخر • AMEER</span>
+            <span>AMIR STORE • عطور فاخرة</span>
           </span>
         </div>
       )}

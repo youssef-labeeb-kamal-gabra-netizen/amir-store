@@ -8,6 +8,8 @@ import { MobileActionBar } from "@/components/layout/mobile-action-bar";
 import { constructMetadata } from "@/lib/seo";
 import { getSession } from "@/lib/auth";
 import { getCustomSettings } from "@/lib/settings-store";
+import { CartProvider } from "@/lib/cart-context";
+import { CartDrawer } from "@/components/cart/cart-drawer";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -36,11 +38,14 @@ export default async function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} overflow-x-clip`}>
       <body className="font-sans antialiased bg-brand-neutral-50 text-brand-neutral-900 flex flex-col min-h-screen overflow-x-clip">
-        <Header user={session} settings={settings} />
-        <main className="flex-1 w-full pb-20 md:pb-0">{children}</main>
-        <Footer settings={settings} />
-        <WhatsAppFloatingButton settings={settings} />
-        <MobileActionBar settings={settings} />
+        <CartProvider>
+          <Header user={session} settings={settings} />
+          <main className="flex-1 w-full pb-20 md:pb-0">{children}</main>
+          <Footer settings={settings} />
+          <WhatsAppFloatingButton settings={settings} />
+          <MobileActionBar settings={settings} />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );
