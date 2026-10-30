@@ -23,8 +23,8 @@ import {
 } from "lucide-react";
 import { env } from "@/lib/env";
 
-export default function HomePage() {
-  const products = getProductsStore();
+export default async function HomePage() {
+  const products = await getProductsStore();
   const featuredProducts = products.filter((p) => p.published && p.featured).slice(0, 4);
   const approvedReviews = getApprovedReviews();
 

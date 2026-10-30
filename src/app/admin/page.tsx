@@ -10,11 +10,11 @@ export const metadata = {
   title: "لوحة المتابعة المركزية | أمير ستور",
 };
 
-export default function AdminDashboardPage() {
-  const products = getProductsStore();
+export default async function AdminDashboardPage() {
+  const products = await getProductsStore();
   const categories = CATEGORIES;
   const requests = getContactRequests();
-  const orders = getOrders();
+  const orders = await getOrders();
 
   const totalProducts = products.length;
   const publishedProducts = products.filter((p) => p.published).length;

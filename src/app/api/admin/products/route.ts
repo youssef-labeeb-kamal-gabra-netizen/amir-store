@@ -12,7 +12,7 @@ import { slugify } from "@/lib/utils";
 export async function GET() {
   try {
     await requireAdmin();
-    const products = getProductsStore();
+    const products = await getProductsStore();
     return NextResponse.json({ ok: true, products });
   } catch {
     return NextResponse.json({ ok: false, message: "غير مصرح لك بالوصول" }, { status: 403 });
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
     const slug = slugify(name) + "-" + Date.now().toString().slice(-4);
 
-    const product = addProduct({
+    const product = await addProduct({
       name: name.trim(),
       slug,
       categoryId,
@@ -104,7 +104,7 @@ export async function PUT(request: Request) {
       }
     }
 
-    const updated = updateProduct(id, payloadUpdates);
+    const updated = await updateProduct(id, payloadUpdates);
     if (!updated) {
       return NextResponse.json({ ok: false, message: "المنتج غير موجود" }, { status: 404 });
     }
@@ -125,7 +125,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ ok: false, message: "معرف المنتج مطلوب للحذف" }, { status: 400 });
     }
 
-    const success = deleteProduct(id);
+    const success = await deleteProduct(id);
     if (!success) {
       return NextResponse.json({ ok: false, message: "المنتج غير موجود أو تم حذفه مسبقاً" }, { status: 404 });
     }
@@ -145,7 +145,7 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ ok: false, message: "معرف المنتج مطلوب" }, { status: 400 });
     }
 
-    const updated = toggleProductPublished(id);
+    const updated = await toggleProductPublished(id);
     if (!updated) {
       return NextResponse.json({ ok: false, message: "المنتج غير موجود" }, { status: 404 });
     }

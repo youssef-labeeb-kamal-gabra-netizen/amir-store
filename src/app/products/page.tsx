@@ -20,7 +20,7 @@ interface ProductsPageProps {
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const params = await searchParams;
   const initialCategory = params.category || "";
-  const products = getProductsStore();
+  const products = await getProductsStore();
   const categories = getCategoriesStore();
 
   return (

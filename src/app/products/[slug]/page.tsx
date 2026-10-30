@@ -18,7 +18,7 @@ interface ProductDetailsPageProps {
 
 export async function generateMetadata({ params }: ProductDetailsPageProps) {
   const { slug } = await params;
-  const products = getProductsStore();
+  const products = await getProductsStore();
   const product = products.find((p) => p.slug === slug);
 
   if (!product || !product.published) {
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: ProductDetailsPageProps) {
 
 export default async function ProductDetailsPage({ params }: ProductDetailsPageProps) {
   const { slug } = await params;
-  const products = getProductsStore();
+  const products = await getProductsStore();
   const product = products.find((p) => p.slug === slug);
 
   if (!product || !product.published) {

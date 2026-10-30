@@ -6,7 +6,7 @@ export const metadata = {
   title: "إدارة طلبات العطور | لوحة الإدارة - أمير ستور",
 };
 
-export default function AdminOrdersPage() {
-  const orders = getOrders();
+export default async function AdminOrdersPage() {
+  const orders = await getOrders();
   return <OrdersManager initialOrders={orders} />;
 }

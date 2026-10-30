@@ -3,7 +3,7 @@ import { CATEGORIES } from "@/data/catalog";
 import { getPublishedProducts } from "@/lib/products-store";
 import { env } from "@/lib/env";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = env.appUrl;
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -46,7 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const productRoutes: MetadataRoute.Sitemap = getPublishedProducts().map((prod) => ({
+  const published = await getPublishedProducts();
+  const productRoutes: MetadataRoute.Sitemap = published.map((prod) => ({
     url: `${baseUrl}/products/${prod.slug}`,
     lastModified: new Date(prod.updatedAt),
     changeFrequency: "weekly",

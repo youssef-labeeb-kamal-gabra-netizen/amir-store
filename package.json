@@ -10,6 +10,9 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "node scripts/run-tests.js",
+    "test:db": "npx tsx scripts/test-hybrid-db.js",
+    "test:adv": "node scripts/adversarial-challenge-2.js",
+    "test:all": "node scripts/run-tests.js && node scripts/adversarial-challenge-2.js && npx tsx scripts/test-hybrid-db.js && node scripts/verify-all.js",
     "verify": "node scripts/verify-all.js"
   },
   "dependencies": {

@@ -190,7 +190,7 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     await requireAdmin();
-    const orders = getOrders();
+    const orders = await getOrders();
     return NextResponse.json({ ok: true, orders });
   } catch {
     return NextResponse.json(

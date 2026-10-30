@@ -8,9 +8,24 @@
 
 ---
 
+## ⚡ الرفع بنقرة واحدة على Vercel (1-Click Deployment)
+
+يمكنك رفع المنصة فوراً على استضافة Vercel السحابية فائقة الأمان بضغطة زر واحدة:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYourUsername%2Fameer-store&env=AUTH_SECRET,ADMIN_EMAILS,NEXT_PUBLIC_APP_URL,NEXT_PUBLIC_BUSINESS_PHONE,NEXT_PUBLIC_BUSINESS_WHATSAPP&envDescription=Configuring%20Ameer%20Store%20Luxury%20Perfume%20Platform)
+
+أو استخدم أداة الرفع المؤتمتة محلياً عبر سطر الأوامر:
+```bash
+deploy.bat
+```
+تقوم أداة `deploy.bat` تلقائياً بفحص الأنواع (Typecheck)، تدقيق الأمان (ESLint)، تشغيل حزمة الاختبارات الـ 86، بناء النسخة الإنتاجية، ثم رفع المتجر مباشرة إلى Vercel الإنتاجي بنجاح تام.
+
+---
+
 ## 🛠 التقنيات المستخدمة (Tech Stack)
 - **الإطار البرمجي (Framework):** [Next.js 15](https://nextjs.org/) (App Router & React 19)
 - **لغة البرمجة:** [TypeScript 5](https://www.typescriptlang.org/) (Strict Mode)
+- **قواعد البيانات:** محرك هجين يدعم Vercel Postgres / Neon مع الترحيل التلقائي للجداول (Auto-DDL) والزرع التلقائي للكتالوج الأولي، مع هبوط آمن للتخزين الذري المحلي المتزامن `withStorageMutex`
 - **الأنيميشن والحركة:** [GSAP 3](https://greensock.com/gsap/) و `@gsap/react` مع دعم الإحداثيات المنطقية لـ RTL
 - **التصميم وتنسيق الواجهات:** [Tailwind CSS](https://tailwindcss.com/) مع نظام رموز تصميم مخصص لعلامة أمير ستور (Cashmere, Deep Forest Olive, Royal Metallic Gold `#D4AF37`)
 - **الأيقونات:** [Lucide React](https://lucide.dev/)
@@ -51,3 +66,8 @@
 - **Tier 2:** صد محاولات الاختراق، التلاعب بالأسعار، والمدخلات الخبيثة.
 - **Tier 3:** التفاعل المركب بين السلة، الشحن، التزامن، والتدفق المزدوج.
 - **Tier 4:** محاكاة رحلات الشراء الواقعية من الاختيار حتى التسليم.
+
+---
+
+## 📚 التوثيق ودليل المطورين
+لمعرفة التفاصيل المعمارية الكاملة وتوزيع المسؤوليات وتكوين الجداول والأنيميشن، يرجى مراجعة [دليل المطور الشامل](docs/DEVELOPER_GUIDE.md).

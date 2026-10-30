@@ -3,9 +3,9 @@ import { getCategoriesStore } from "@/lib/categories-store";
 import { getProductsStore } from "@/lib/products-store";
 import { CategoriesManager } from "@/components/admin/categories-manager";
 
-export default function AdminCategoriesPage() {
+export default async function AdminCategoriesPage() {
   const categories = getCategoriesStore();
-  const products = getProductsStore();
+  const products = await getProductsStore();
 
   return <CategoriesManager initialCategories={categories} products={products} />;
 }

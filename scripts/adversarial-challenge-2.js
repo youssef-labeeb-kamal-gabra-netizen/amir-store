@@ -99,7 +99,7 @@ const OFFICIAL_WHATSAPP_PHONE = '201220086002';
   // ============================================================================
   setSuite('suite1');
 
-  const catalog = getProductsStore();
+  const catalog = await getProductsStore();
   const testProd = catalog[0];
   assert.ok(testProd, 'Catalog must contain products');
 
@@ -124,7 +124,7 @@ const OFFICIAL_WHATSAPP_PHONE = '201220086002';
     whatsappOrderId = order.id;
 
     // Verify disk retrieval
-    const retrieved = getOrderById(order.id);
+    const retrieved = await getOrderById(order.id);
     assert.ok(retrieved, 'Order must be retrievable from disk');
     assert.strictEqual(retrieved.paymentMethod, 'WHATSAPP');
   });
