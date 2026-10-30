@@ -1,14 +1,14 @@
 @echo off
 chcp 65001 > nul
 echo ========================================================
-echo   شركة لبيب كمال لبيب - رفع المشروع على GitHub
+echo   أمير ستور (Ameer Store) - رفع المشروع على GitHub
 echo ========================================================
 echo.
 
 set PATH=%PATH%;%LOCALAPPDATA%\MinGit\cmd
 
-echo يرجى لصق رابط مستودع GitHub الخاص بك (Repository URL):
-echo مثال: https://github.com/YourUsername/lkl-website.git
+echo يرجى لصق رابط مستودع GitHub الخاص بمتجر أمير ستور:
+echo مثال: https://github.com/YourUsername/ameer-store.git
 set /p REPO_URL="رابط المستودع: "
 
 if "%REPO_URL%"=="" (
@@ -26,6 +26,6 @@ git push -u origin main
 
 echo.
 echo ========================================================
-echo تم رفع الكود إلى GitHub بنجاح!
+echo تم رفع كود أمير ستور إلى GitHub بنجاح!
 echo ========================================================
 pause
