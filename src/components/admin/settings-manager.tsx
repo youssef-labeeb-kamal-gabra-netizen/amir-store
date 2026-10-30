@@ -51,7 +51,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
           بيانات المنصة المركزية
         </span>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-neutral-900 tracking-tight mt-0.5">
-          إعدادات وهوية شركة لبيب كمال
+          إعدادات وهوية متجر أمير ستور
         </h1>
         <p className="text-sm text-brand-neutral-500 mt-1">
           إدارة أرقام التواصل الفوري، واتساب، ومواعيد العمل، والعنوان المعتمد الذي ينعكس مباشرة في الترويسة، التذييل، وصفحة تواصل معنا.
@@ -68,14 +68,14 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
               label="رقم الهاتف الأساسي"
-              placeholder="01220792948"
+              placeholder="01220086002"
               value={settings.phone || ""}
               onChange={(e) => setSettings({ ...settings, phone: e.target.value })}
             />
 
             <Input
               label="رقم الهاتف الإضافي (الثاني)"
-              placeholder="01114587917"
+              placeholder="01220086002"
               value={settings.secondaryPhone || ""}
               onChange={(e) => setSettings({ ...settings, secondaryPhone: e.target.value })}
             />
@@ -84,14 +84,14 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
               label="رقم الواتساب (للاستفسارات المباشرة)"
-              placeholder="01220792948"
+              placeholder="01220086002"
               value={settings.whatsapp || ""}
               onChange={(e) => setSettings({ ...settings, whatsapp: e.target.value })}
             />
 
             <Input
               label="مواعيد العمل الرسمية"
-              placeholder="يومياً من 8:00 صباحاً حتى 9:00 مساءً"
+              placeholder="يومياً من 10:00 صباحاً حتى 11:00 مساءً"
               value={settings.workingHours || ""}
               onChange={(e) => setSettings({ ...settings, workingHours: e.target.value })}
             />
@@ -100,7 +100,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
           <div className="pt-2 border-t border-brand-neutral-100 space-y-4">
             <Input
               label="صيغة عنوان المقر (Address Phrase)"
-              placeholder="طريق بنها - الزقازيق (طريق مصر الزراعي)، قرية الجديدة، مركز منيا القمح"
+              placeholder="معرض أمير ستور للعطور الفاخرة، الزقازيق، محافظة الشرقية"
               value={settings.addressPhrase || ""}
               onChange={(e) => setSettings({ ...settings, addressPhrase: e.target.value })}
             />
@@ -114,7 +114,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
 
             <Input
               label="شعار المؤسسة (Slogan)"
-              placeholder="الجودة • الثقة • الخدمة المتميزة"
+              placeholder="فخامة تدوم • أصالة العود • عبير لا يُنسى"
               value={settings.slogan || ""}
               onChange={(e) => setSettings({ ...settings, slogan: e.target.value })}
             />

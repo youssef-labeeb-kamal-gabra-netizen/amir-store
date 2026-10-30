@@ -5,7 +5,7 @@ export default function AdminAuditPage() {
   const auditEvents = [
     {
       id: "aud-1",
-      userEmail: "admin@lkl-egypt.com",
+      userEmail: "admin@ameer-store.com",
       action: "ADMIN_LOGIN_SUCCESS",
       entity: "AUTH",
       details: "تسجيل دخول ناجح للوحة الإدارة عبر جلسة مشفرة",
@@ -16,7 +16,7 @@ export default function AdminAuditPage() {
       userEmail: "system",
       action: "CATALOG_INITIALIZED",
       entity: "PRODUCTS",
-      details: "تهيئة الكتالوج الأساسي لـ 6 منتجات زراعية معتمدة",
+      details: "تهيئة كتالوج العطور الفاخرة المعتمد لـ 6 منتجات رئيسية",
       time: "اليوم",
     },
     {
@@ -24,7 +24,7 @@ export default function AdminAuditPage() {
       userEmail: "client",
       action: "CONTACT_REQUEST_SUBMITTED",
       entity: "INQUIRY",
-      details: "استلام طلب استفسار جديد عن موتور رش زراعي عالي الضغط",
+      details: "استلام طلب استفسار جديد عن عطر ملكي فاخر",
       time: "اليوم",
     },
   ];

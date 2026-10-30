@@ -19,7 +19,7 @@ interface SubmittedData {
   requestId: string;
 }
 
-export function ContactForm({ initialProductSlug, whatsappNumber = "01220792948" }: ContactFormProps) {
+export function ContactForm({ initialProductSlug, whatsappNumber = "01220086002" }: ContactFormProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -96,7 +96,7 @@ export function ContactForm({ initialProductSlug, whatsappNumber = "01220792948"
         `السلام عليكم، قمت بإرسال طلب استفسار جديد عبر موقعكم:\n\n` +
           `• الاسم: ${submittedData.name}\n` +
           `• الهاتف: ${submittedData.phone}\n` +
-          (submittedData.product ? `• المعدة المطلوبة: ${submittedData.product}\n` : "") +
+          (submittedData.product ? `• العطر أو المنتج المطلوب: ${submittedData.product}\n` : "") +
           `• تفاصيل الاستفسار: ${submittedData.message}\n` +
           `• رقم المرجع: ${submittedData.requestId}`
       )}`
@@ -199,8 +199,8 @@ export function ContactForm({ initialProductSlug, whatsappNumber = "01220792948"
               disabled={isLoading}
             />
             <Input
-              label="المعدة أو الطراز المطلوب الاستفسار عنه"
-              placeholder="مثال: موتور رش / طلمبة مياه 3 بوصة"
+              label="العطر أو دهن العود المطلوب الاستفسار عنه"
+              placeholder="مثال: عطر أمير العود الملكي / دهن عود تراد"
               value={product}
               onChange={(e) => setProduct(e.target.value)}
               disabled={isLoading}
@@ -208,9 +208,9 @@ export function ContactForm({ initialProductSlug, whatsappNumber = "01220792948"
           </div>
 
           <Textarea
-            label="تفاصيل الاستفسار أو متطلبات المزرعة"
+            label="تفاصيل الاستفسار أو الطلب الخاص"
             required
-            placeholder="اذكر نوع المحصول، المساحة، مصدر المياه، أو نوع الطلمبة المطلوبة بالتحديد..."
+            placeholder="اكتب استفسارك، المناسبة، الحجم المطلوب، أو تفاصيل الإهداء والتوصيل..."
             rows={4}
             value={message}
             onChange={(e) => setMessage(e.target.value)}

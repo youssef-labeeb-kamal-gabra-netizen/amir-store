@@ -4,7 +4,7 @@ import { env } from "@/lib/env";
 export function constructMetadata({
   title,
   description,
-  image = "/images/og-lkl.png",
+  image = "/images/logo.png",
   canonicalUrl,
   noIndex = false,
 }: {

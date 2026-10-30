@@ -154,9 +154,9 @@ export function CustomerInquiriesClient({
 
   const buildWhatsAppFollowUpUrl = (req: ContactRequest) => {
     const text = encodeURIComponent(
-      `مرحباً شركة لبيب كمال، أود متابعة طلبي رقم (${req.id}) بخصوص ${req.product || "المعدات والآلات"}.`
+      `مرحباً متجر أمير ستور، أود متابعة استفساري رقم (${req.id}) بخصوص ${req.product || "العطور والعود"}.`
     );
-    return `https://wa.me/201006540307?text=${text}`;
+    return `https://wa.me/201220086002?text=${text}`;
   };
 
   return (
@@ -197,7 +197,7 @@ export function CustomerInquiriesClient({
               لا توجد استفسارات مسجلة حتى الآن
             </h3>
             <p className="text-sm text-brand-neutral-600">
-              عندما تسأل عن أي ماكينة أو قطعة غيار، سيظهر طلبك وحالته هنا مباشرة لمتابعته مع الإدارة.
+              عندما تسأل عن أي عطر أو تركيبة خاصة، سيظهر طلبك وحالته هنا مباشرة لمتابعته مع الإدارة.
             </p>
           </div>
           <Button
@@ -247,7 +247,7 @@ export function CustomerInquiriesClient({
                   {req.product && (
                     <div className="flex items-center gap-2 text-sm font-bold text-brand-green-800">
                       <Tag className="h-4 w-4 text-brand-green-600" />
-                      <span>المعدة المطلوبة: {req.product}</span>
+                      <span>العطر أو المنتج المطلوب: {req.product}</span>
                     </div>
                   )}
                   <p className="text-sm sm:text-base text-brand-neutral-800 whitespace-pre-line bg-brand-neutral-50 p-3.5 rounded-xl border border-brand-neutral-100">
@@ -342,13 +342,13 @@ export function CustomerInquiriesClient({
 
           <div>
             <label className="block text-xs font-bold text-brand-neutral-800 mb-1">
-              المعدة أو الصنف المطلوب (اختياري)
+              العطر أو المنتج المطلوب (اختياري)
             </label>
             <Input
               type="text"
               value={product}
               onChange={(e) => setProduct(e.target.value)}
-              placeholder="مثال: موتور رشاش، طلمبة مياه، قطع غيار بيتر..."
+              placeholder="مثال: عطر أمير العود، دهن عود كمبودي معتق، مسك الختام..."
             />
           </div>
 
@@ -361,7 +361,7 @@ export function CustomerInquiriesClient({
               rows={4}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="اكتب استفسارك هنا بكل سهولة، وسيتواصل معك الفني المختص فوراً..."
+              placeholder="اكتب استفسارك هنا بكل سهولة، وسيتواصل معك خبير العطور المختص فوراً..."
               className="w-full rounded-xl border border-brand-neutral-300 p-3 text-sm text-brand-neutral-900 focus:border-brand-green-600 focus:outline-none focus:ring-2 focus:ring-brand-green-600/20"
             />
           </div>

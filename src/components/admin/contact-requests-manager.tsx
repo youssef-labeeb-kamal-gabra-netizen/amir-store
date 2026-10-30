@@ -135,7 +135,7 @@ export function ContactRequestsManager({ initialRequests }: ContactRequestsManag
                 <p className="text-brand-neutral-800 leading-relaxed text-sm whitespace-pre-wrap">{req.message}</p>
                 {req.product && (
                   <div className="pt-2 text-xs font-semibold text-brand-green-800">
-                    الاستفسار بخصوص معدة: <span className="font-mono bg-emerald-50 px-2 py-0.5 rounded">{req.product}</span>
+                    العطر أو المنتج المطلوب: <span className="font-mono bg-emerald-50 px-2 py-0.5 rounded">{req.product}</span>
                   </div>
                 )}
               </div>
@@ -153,7 +153,7 @@ export function ContactRequestsManager({ initialRequests }: ContactRequestsManag
                   </a>
 
                   <a
-                    href={`https://wa.me/${req.phone.replace(/[^0-9]/g, "").startsWith("0") ? `2${req.phone.replace(/[^0-9]/g, "")}` : req.phone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`أهلاً بك أ/ ${req.name}، بخصوص استفسارك لدى شركة لبيب كمال للآلات الزراعية:`)}`}
+                    href={`https://wa.me/${req.phone.replace(/[^0-9]/g, "").startsWith("0") ? `2${req.phone.replace(/[^0-9]/g, "")}` : req.phone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`أهلاً بك أ/ ${req.name}، بخصوص استفسارك لدى متجر أمير ستور للعطور والعود:`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 active:scale-95 transition-all px-3.5 py-2 text-xs font-bold text-white shadow-xs"

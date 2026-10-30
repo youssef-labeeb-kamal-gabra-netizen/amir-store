@@ -8,7 +8,7 @@ import { Input, Textarea } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { Toast } from "@/components/ui/toast";
 import {
-  Tractor,
+  Sparkles,
   Plus,
   Eye,
   Edit,
@@ -37,14 +37,16 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
   // Form states
   const [formName, setFormName] = useState("");
   const [formCategory, setFormCategory] = useState(categories[0]?.id || "");
+  const [formPrice, setFormPrice] = useState("");
+  const [formCompareAtPrice, setFormCompareAtPrice] = useState("");
   const [formModel, setFormModel] = useState("");
-  const [formBrand, setFormBrand] = useState("LKL Equipment");
+  const [formBrand, setFormBrand] = useState("Ameer Store");
   const [formShortDesc, setFormShortDesc] = useState("");
   const [formDesc, setFormDesc] = useState("");
   const [formFeatured, setFormFeatured] = useState(false);
   const [formSpecs, setFormSpecs] = useState<ProductSpecification[]>([
-    { label: "نوع الوقود", value: "" },
-    { label: "معدل التدفق / الضغط", value: "" },
+    { label: "الحجم والتركيز", value: "" },
+    { label: "الهرم العطري", value: "" },
   ]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -65,14 +67,16 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
   const resetForm = () => {
     setFormName("");
     setFormCategory(categories[0]?.id || "");
+    setFormPrice("");
+    setFormCompareAtPrice("");
     setFormModel("");
-    setFormBrand("LKL Equipment");
+    setFormBrand("Ameer Store");
     setFormShortDesc("");
     setFormDesc("");
     setFormFeatured(false);
     setFormSpecs([
-      { label: "نوع الوقود", value: "" },
-      { label: "معدل التدفق / الضغط", value: "" },
+      { label: "الحجم والتركيز", value: "" },
+      { label: "الهرم العطري", value: "" },
     ]);
   };
 
@@ -85,8 +89,10 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
     setEditingProduct(product);
     setFormName(product.name);
     setFormCategory(product.categoryId);
+    setFormPrice(product.price !== undefined ? String(product.price) : "");
+    setFormCompareAtPrice(product.compareAtPrice !== undefined ? String(product.compareAtPrice) : "");
     setFormModel(product.model || "");
-    setFormBrand(product.brand || "LKL Equipment");
+    setFormBrand(product.brand || "Ameer Store");
     setFormShortDesc(product.shortDescription);
     setFormDesc(product.description);
     setFormFeatured(Boolean(product.featured));
@@ -111,7 +117,19 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
   const handleSubmitAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formName.trim()) {
-      setToastMessage({ type: "error", text: "يرجى كتابة اسم المعدة" });
+      setToastMessage({ type: "error", text: "يرجى كتابة اسم العطر" });
+      return;
+    }
+
+    const numPrice = Number(formPrice);
+    if (!formPrice || isNaN(numPrice) || numPrice < 0) {
+      setToastMessage({ type: "error", text: "يرجى تحديد سعر البيع ج.م بشكل صحيح" });
+      return;
+    }
+
+    const numCompareAtPrice = formCompareAtPrice ? Number(formCompareAtPrice) : undefined;
+    if (numCompareAtPrice !== undefined && (isNaN(numCompareAtPrice) || numCompareAtPrice < 0)) {
+      setToastMessage({ type: "error", text: "السعر قبل الخصم غير صالح" });
       return;
     }
 
@@ -127,6 +145,8 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
           name: formName.trim(),
           categoryId: catObj.id,
           categoryName: catObj.name,
+          price: numPrice,
+          compareAtPrice: numCompareAtPrice,
           model: formModel.trim() || undefined,
           brand: formBrand.trim(),
           shortDescription: formShortDesc.trim() || formName.trim(),
@@ -142,7 +162,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
       setProducts([data.product, ...products]);
       setIsAddModalOpen(false);
       resetForm();
-      setToastMessage({ type: "success", text: "تمت إضافة المعدة بنجاح إلى الكتالوج" });
+      setToastMessage({ type: "success", text: "تمت إضافة العطر بنجاح إلى الكتالوج" });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "فشلت عملية الإضافة";
       setToastMessage({ type: "error", text: msg });
@@ -155,6 +175,18 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
   const handleSubmitEdit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingProduct || !formName.trim()) return;
+
+    const numPrice = Number(formPrice);
+    if (!formPrice || isNaN(numPrice) || numPrice < 0) {
+      setToastMessage({ type: "error", text: "يرجى تحديد سعر البيع ج.م بشكل صحيح" });
+      return;
+    }
+
+    const numCompareAtPrice = formCompareAtPrice ? Number(formCompareAtPrice) : undefined;
+    if (numCompareAtPrice !== undefined && (isNaN(numCompareAtPrice) || numCompareAtPrice < 0)) {
+      setToastMessage({ type: "error", text: "السعر قبل الخصم غير صالح" });
+      return;
+    }
 
     const catObj = categories.find((c) => c.id === formCategory) || categories[0];
     const cleanedSpecs = formSpecs.filter((s) => s.label.trim() && s.value.trim());
@@ -169,6 +201,8 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
           name: formName.trim(),
           categoryId: catObj.id,
           categoryName: catObj.name,
+          price: numPrice,
+          compareAtPrice: numCompareAtPrice,
           model: formModel.trim() || undefined,
           brand: formBrand.trim(),
           shortDescription: formShortDesc.trim() || formName.trim(),
@@ -183,7 +217,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
 
       setProducts(products.map((p) => (p.id === editingProduct.id ? data.product : p)));
       setEditingProduct(null);
-      setToastMessage({ type: "success", text: "تم تحديث بيانات المعدة بنجاح" });
+      setToastMessage({ type: "success", text: "تم تحديث بيانات العطر بنجاح" });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "فشلت عملية التعديل";
       setToastMessage({ type: "error", text: msg });
@@ -205,7 +239,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
 
       setProducts(products.filter((p) => p.id !== deletingProduct.id));
       setDeletingProduct(null);
-      setToastMessage({ type: "success", text: "تم حذف المعدة من الكتالوج بنجاح" });
+      setToastMessage({ type: "success", text: "تم حذف المنتج من الكتالوج بنجاح" });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "تعذر إتمام عملية الحذف";
       setToastMessage({ type: "error", text: msg });
@@ -227,7 +261,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
         setProducts(products.map((p) => (p.id === id ? data.product : p)));
         setToastMessage({
           type: "success",
-          text: data.product.published ? "تم نشر المعدة للجمهور" : "تم تحويل المعدة لمسودة غير منشورة",
+          text: data.product.published ? "تم نشر المنتج للجمهور" : "تم تحويل المنتج لمسودة غير منشورة",
         });
       }
     } catch {
@@ -252,13 +286,13 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
             إدارة الكتالوج
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-neutral-900 tracking-tight mt-0.5">
-            الآلات والمعدات الزراعية ({products.length})
+            كتالوج العطور والمنتجات الفاخرة ({products.length})
           </h1>
         </div>
 
         <Button onClick={handleOpenAdd} variant="primary" size="sm" className="gap-2 font-bold shadow-sm">
           <Plus className="h-4 w-4" />
-          إضافة معدة جديدة
+          إضافة عطر جديد
         </Button>
       </div>
 
@@ -268,7 +302,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
           <Search className="absolute start-3 top-3.5 h-4 w-4 text-brand-neutral-400" />
           <input
             type="text"
-            placeholder="البحث باسم المعدّة أو كود الموديل..."
+            placeholder="البحث باسم العطر أو كود الموديل..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-xl border border-brand-neutral-300 bg-white ps-9 pe-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green-600"
@@ -295,8 +329,9 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
           <table className="w-full text-start text-sm">
             <thead className="bg-brand-neutral-50 border-b border-brand-neutral-200 text-xs font-bold text-brand-neutral-600">
               <tr>
-                <th className="py-3.5 px-4 text-start">اسم المعدة / المنتج</th>
+                <th className="py-3.5 px-4 text-start">اسم العطر / المنتج</th>
                 <th className="py-3.5 px-4 text-start">القسم</th>
+                <th className="py-3.5 px-4 text-start">السعر (ج.م)</th>
                 <th className="py-3.5 px-4 text-start">الموديل / الماركة</th>
                 <th className="py-3.5 px-4 text-start">حالة النشر</th>
                 <th className="py-3.5 px-4 text-start">مميز بالرئيسية</th>
@@ -308,8 +343,8 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                 <tr key={product.id} className="hover:bg-brand-neutral-50/60 transition-colors">
                   <td className="py-3.5 px-4 font-bold text-brand-neutral-900">
                     <div className="flex items-center gap-2.5">
-                      <div className="h-8 w-8 rounded-lg bg-brand-green-50 text-brand-green-700 flex items-center justify-center shrink-0">
-                        <Tractor className="h-4 w-4" />
+                      <div className="h-8 w-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+                        <Sparkles className="h-4 w-4" />
                       </div>
                       <span className="line-clamp-1">{product.name}</span>
                     </div>
@@ -319,8 +354,22 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                       {product.categoryName}
                     </span>
                   </td>
+                  <td className="py-3.5 px-4 font-bold text-brand-neutral-900">
+                    {product.price !== undefined ? (
+                      <div className="flex items-center gap-1.5">
+                        <span>{product.price.toLocaleString("ar-EG")} ج.م</span>
+                        {product.compareAtPrice && product.compareAtPrice > product.price && (
+                          <span className="text-xs text-brand-neutral-400 line-through">
+                            {product.compareAtPrice.toLocaleString("ar-EG")}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-xs text-brand-neutral-400">—</span>
+                    )}
+                  </td>
                   <td className="py-3.5 px-4 text-xs font-mono text-brand-neutral-600">
-                    {product.model || "—"} ({product.brand || "LKL"})
+                    {product.model || "—"} ({product.brand || "Ameer Store"})
                   </td>
                   <td className="py-3.5 px-4">
                     <button
@@ -364,7 +413,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                         type="button"
                         onClick={() => handleOpenEdit(product)}
                         className="rounded-lg p-1.5 text-brand-neutral-500 hover:bg-brand-neutral-100 hover:text-blue-700 transition-colors"
-                        title="تعديل المعدة"
+                        title="تعديل العطر"
                       >
                         <Edit className="h-4 w-4" />
                       </button>
@@ -372,7 +421,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                         type="button"
                         onClick={() => setDeletingProduct(product)}
                         className="rounded-lg p-1.5 text-brand-neutral-500 hover:bg-red-50 hover:text-red-600 transition-colors"
-                        title="حذف المعدة"
+                        title="حذف العطر"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -392,21 +441,43 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
           setIsAddModalOpen(false);
           setEditingProduct(null);
         }}
-        title={editingProduct ? "تعديل بيانات المعدّة الزراعية" : "إضافة معدّة زراعية جديدة للكتالوج"}
+        title={editingProduct ? "تعديل بيانات العطر" : "إضافة عطر جديد للكتالوج"}
       >
         <form onSubmit={editingProduct ? handleSubmitEdit : handleSubmitAdd} className="space-y-4 max-h-[75vh] overflow-y-auto px-1">
           <Input
-            label="اسم المعدة بالكامل"
+            label="اسم العطر بالكامل"
             required
-            placeholder="مثال: موتور رش زراعي 450 بار"
+            placeholder="مثال: عطر أمير العود الملكي"
             value={formName}
             onChange={(e) => setFormName(e.target.value)}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Input
+              label="سعر البيع (ج.م)"
+              type="number"
+              min="0"
+              step="any"
+              required
+              placeholder="مثال: 1200"
+              value={formPrice}
+              onChange={(e) => setFormPrice(e.target.value)}
+            />
+            <Input
+              label="السعر قبل الخصم (ج.م - اختياري)"
+              type="number"
+              min="0"
+              step="any"
+              placeholder="مثال: 1500"
+              value={formCompareAtPrice}
+              onChange={(e) => setFormCompareAtPrice(e.target.value)}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-brand-neutral-800 mb-1.5">
-                القسم الزراعي <span className="text-red-500">*</span>
+                قسم العطور <span className="text-red-500">*</span>
               </label>
               <select
                 value={formCategory}
@@ -422,8 +493,8 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
             </div>
 
             <Input
-              label="كود الموديل (Model)"
-              placeholder="مثال: SP-450"
+              label="كود العطر / الموديل"
+              placeholder="مثال: AM-OUD-100"
               value={formModel}
               onChange={(e) => setFormModel(e.target.value)}
             />
@@ -431,14 +502,14 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
 
           <Input
             label="الماركة أو العلامة التجارية"
-            placeholder="LKL Equipment"
+            placeholder="Ameer Store"
             value={formBrand}
             onChange={(e) => setFormBrand(e.target.value)}
           />
 
           <Input
             label="الوصف المختصر"
-            placeholder="موتور رش عالي الضغط مخصص للمزارع..."
+            placeholder="عطر شرقي فاخر بتركيبة دهن العود والمسك الأبيض..."
             value={formShortDesc}
             onChange={(e) => setFormShortDesc(e.target.value)}
           />
@@ -446,7 +517,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
           <Textarea
             label="الوصف المفصل"
             rows={3}
-            placeholder="اكتب شرحاً وافياً عن طبيعة عمل المعدة واستخداماتها الميدانية..."
+            placeholder="اكتب شرحاً وافياً عن مكونات العطر والهرم العطري والمناسبات الملائمة..."
             value={formDesc}
             onChange={(e) => setFormDesc(e.target.value)}
           />
@@ -455,7 +526,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
           <div className="space-y-2 border-t border-brand-neutral-200 pt-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-brand-neutral-700">
-                المواصفات والبيانات الفنية
+                المواصفات العطرية والتركيبة
               </span>
               <button
                 type="button"
@@ -470,14 +541,14 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
               <div key={idx} className="flex items-center gap-2">
                 <input
                   type="text"
-                  placeholder="البند (مثال: نوع الوقود)"
+                  placeholder="البند (مثال: الحجم والتركيز)"
                   value={spec.label}
                   onChange={(e) => handleSpecChange(idx, "label", e.target.value)}
                   className="flex-1 rounded-lg border border-brand-neutral-300 p-2 text-xs"
                 />
                 <input
                   type="text"
-                  placeholder="القيمة (مثال: بنزين رباعي الأشواط)"
+                  placeholder="القيمة (مثال: 100 مل Eau de Parfum)"
                   value={spec.value}
                   onChange={(e) => handleSpecChange(idx, "value", e.target.value)}
                   className="flex-1 rounded-lg border border-brand-neutral-300 p-2 text-xs"
@@ -502,7 +573,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
               className="h-4 w-4 rounded text-brand-green-600 focus:ring-brand-green-500"
             />
             <label htmlFor="formFeatured" className="text-sm font-semibold text-brand-neutral-800">
-              تمييز هذه المعدة في الصفحة الرئيسية
+              تمييز هذا العطر في الصفحة الرئيسية
             </label>
           </div>
 
@@ -529,7 +600,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
       <Modal
         isOpen={deletingProduct !== null}
         onClose={() => setDeletingProduct(null)}
-        title="تأكيد حذف المعدّة"
+        title="تأكيد حذف العطر"
       >
         <div className="space-y-4 text-start">
           <div className="flex items-center gap-3 p-3 bg-red-50 border border-red-200 rounded-xl text-red-800 text-sm">

@@ -8,14 +8,14 @@ const STORAGE_FILE = "settings.json";
 
 function getDefaultSettings(): BusinessSettings {
   return {
-    phone: env.business.phone || "01220792948",
-    secondaryPhone: env.business.secondaryPhone || "01114587917",
-    whatsapp: env.business.whatsapp || "01220792948",
-    googleMapsUrl: env.business.googleMapsUrl || "https://maps.app.goo.gl/87VQjF6s9bEyF9yz7",
-    addressPhrase: env.business.addressPhrase || "طريق بنها - الزقازيق (طريق مصر الزراعي)، قرية الجديدة، مركز منيا القمح",
-    workingHours: "يومياً من 8:00 صباحاً حتى 9:00 مساءً",
-    slogan: env.business.slogan || "الجودة • الثقة • الخدمة المتميزة",
-    facebook: "https://facebook.com/lkl.machinery",
+    phone: env.business.phone || "01220086002",
+    secondaryPhone: env.business.secondaryPhone || "01220086002",
+    whatsapp: env.business.whatsapp || "01220086002",
+    googleMapsUrl: env.business.googleMapsUrl || "https://maps.google.com/?q=30.58768,31.50200",
+    addressPhrase: env.business.addressPhrase || "الزقازيق، محافظة الشرقية، جمهورية مصر العربية",
+    workingHours: "يومياً من 10:00 صباحاً حتى 11:00 مساءً",
+    slogan: env.business.slogan || "فخامة تدوم • أصالة العود • عبير لا يُنسى",
+    facebook: "https://facebook.com/ameerstore.perfumes",
     youtube: "",
   };
 }

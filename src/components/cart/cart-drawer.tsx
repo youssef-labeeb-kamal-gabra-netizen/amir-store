@@ -27,9 +27,11 @@ export function CartDrawer() {
     subtotal,
     isCartOpen,
     setIsCartOpen,
+    clearCart,
   } = useCart();
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isWhatsAppSubmitting, setIsWhatsAppSubmitting] = useState(false);
 
   if (!isCartOpen) return null;
 
@@ -41,23 +43,63 @@ export function CartDrawer() {
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const formattedWhatsApp = cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp;
 
-  const generateWhatsAppOrderUrl = () => {
-    const itemsList = items
-      .map(
-        (i) =>
-          `• ${i.name} (${i.model || "الحجم القياسي"}) × ${i.quantity} = ${(i.price * i.quantity).toLocaleString("ar-EG")} ج.م`
-      )
-      .join("\n");
+  const handleWhatsAppCheckout = async () => {
+    if (items.length === 0 || isWhatsAppSubmitting) return;
+    setIsWhatsAppSubmitting(true);
 
-    const message = encodeURIComponent(
-      `السلام عليكم ورحمة الله،\nأود إتمام طلب وشراء المنتجات التالية من متجر أمير ستور:\n\n` +
-      `${itemsList}\n\n` +
-      `الإجمالي: ${subtotal.toLocaleString("ar-EG")} ج.م\n` +
-      `الشحن: ${subtotal >= FREE_SHIPPING_THRESHOLD ? "مجاني لكافة المحافظات" : "حسب المحافظة"}\n\n` +
-      `برجاء إفادتي بتفاصيل الشحن والتوصيل. شكراً لكم!`
-    );
+    try {
+      // 1. Authoritative order registration with paymentMethod: "WHATSAPP"
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: "عميل واتساب",
+          phone: "01000000000",
+          governorate: "القاهرة",
+          address: "طلب مباشر عبر محادثة واتساب",
+          paymentMethod: "WHATSAPP",
+          items: items.map((i) => ({ id: i.id, quantity: i.quantity })),
+        }),
+      });
 
-    return `https://wa.me/${formattedWhatsApp}?text=${message}`;
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.message || "تعذر تسجيل الطلب عبر السيرفر");
+      }
+
+      const orderId = data.order?.id || `AMR-${Math.floor(100000 + Math.random() * 900000)}`;
+      const totalAmount = data.order?.total ?? subtotal;
+      const shippingAmount = data.order?.shippingCost ?? (subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 50);
+
+      const itemsList = items
+        .map(
+          (i) =>
+            `• ${i.name} (${i.model || "الحجم القياسي"}) × ${i.quantity} = ${(i.price * i.quantity).toLocaleString("ar-EG")} ج.م`
+        )
+        .join("\n");
+
+      const message = encodeURIComponent(
+        `السلام عليكم ورحمة الله،\nأود إتمام وتأكيد طلبي من متجر أمير ستور:\n` +
+        `كود الطلب الرسمي: ${orderId}\n\n` +
+        `المنتجات المطلوبة:\n${itemsList}\n\n` +
+        `المجموع: ${subtotal.toLocaleString("ar-EG")} ج.م\n` +
+        `الشحن: ${shippingAmount === 0 ? "شحن مجاني" : `${shippingAmount.toLocaleString("ar-EG")} ج.م`}\n` +
+        `الإجمالي النهائي: ${totalAmount.toLocaleString("ar-EG")} ج.م\n\n` +
+        `برجاء تأكيد استلام الطلب وتحديد موعد التوصيل. شكراً لكم!`
+      );
+
+      // 2. Clear cart and close drawer
+      clearCart();
+      setIsCartOpen(false);
+
+      // 3. Open WhatsApp with authoritative Order ID
+      window.open(`https://wa.me/${formattedWhatsApp}?text=${message}`, "_blank", "noopener,noreferrer");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "حدث خطأ غير متوقع أثناء إرسال الطلب";
+      alert(msg);
+    } finally {
+      setIsWhatsAppSubmitting(false);
+    }
   };
 
   return (
@@ -276,16 +318,18 @@ export function CartDrawer() {
                   <span>إتمام الشراء (الدفع عند الاستلام)</span>
                 </button>
 
-                {/* 2. Direct WhatsApp Order */}
-                <a
-                  href={generateWhatsAppOrderUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-extrabold text-xs sm:text-sm shadow-sm transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+                {/* 2. Synchronized WhatsApp Order Button */}
+                <button
+                  type="button"
+                  onClick={handleWhatsAppCheckout}
+                  disabled={isWhatsAppSubmitting}
+                  className="w-full py-3 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-extrabold text-xs sm:text-sm shadow-sm transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  <span>طلب فوري عبر محادثة واتساب</span>
-                </a>
+                  <span>
+                    {isWhatsAppSubmitting ? "جاري إنشاء كود الطلب..." : "طلب فوري عبر محادثة واتساب"}
+                  </span>
+                </button>
               </div>
             </div>
           )}

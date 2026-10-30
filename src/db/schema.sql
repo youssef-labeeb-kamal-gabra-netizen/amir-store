@@ -1,7 +1,6 @@
 -- ==============================================================================
--- LKL Agricultural Machinery (شركة لبيب كمال للأدوات والآلات الزراعية)
+-- Ameer Store Luxury Perfumes (أمير ستور للعطور والعود الفاخر)
 -- Master Production Relational Database Schema (PostgreSQL)
--- Tasks 076 - 087
 -- ==============================================================================
 
 -- Enable UUID extension if supported

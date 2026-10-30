@@ -5,7 +5,7 @@ import { MediaManager, MediaItem } from "@/components/admin/media-manager";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
-  title: "مكتبة وسائط وصور المعدات | شركة لبيب كمال",
+  title: "مكتبة الوسائط وصور المنتجات | أمير ستور",
   noIndex: true,
 });
 
@@ -38,7 +38,7 @@ export default function AdminMediaPage() {
   if (fs.existsSync(productsDir)) {
     const productFiles = fs.readdirSync(productsDir);
     for (const file of productFiles) {
-      if (file.endsWith(".jpg") || file.endsWith(".png") || file.endsWith(".webp")) {
+      if (file.endsWith(".jpg") || file.endsWith(".png") || file.endsWith(".webp") || file.endsWith(".svg")) {
         const fullPath = path.join(productsDir, file);
         const stat = fs.statSync(fullPath);
         mediaList.push({

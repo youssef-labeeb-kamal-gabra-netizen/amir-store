@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 export const metadata = constructMetadata({
-  title: "حسابي الخاص | شركة لبيب كمال للأدوات والآلات الزراعية",
+  title: "حسابي الخاص | متجر أمير ستور للعطور والعود",
   description: "المساحة الخاصة للعميل لمتابعة الاستفسارات والطلبات وحماية البيانات الشخصية.",
   noIndex: true,
 });
@@ -180,10 +180,10 @@ export default async function AccountPage() {
         <div className="space-y-1">
           <h3 className="text-base font-bold text-brand-neutral-900 flex items-center gap-2">
             <PhoneCall className="h-4 w-4 text-brand-green-700" />
-            هل تريد استشارة سريعة بخصوص الآلات أو قطع الغيار؟
+            هل تريد استشارة سريعة بخصوص العطور أو الهدايا الخاصة؟
           </h3>
           <p className="text-xs sm:text-sm text-brand-neutral-600">
-            فريق المهندسين والفنيين في شركة لبيب كمال جاهز لمساعدتك في اختيار أنسب ماكينة لأرضك.
+            فريق خبراء العطور في أمير ستور جاهز لمساعدتك في اختيار أنسب تركيبة عطرية تناسب ذوقك ومناسباتك.
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
@@ -194,7 +194,7 @@ export default async function AccountPage() {
             </Button>
           </Link>
           <a
-            href="https://wa.me/201006540307?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%85%D8%B3%D8%AC%D9%84%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D9%88%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%81%D9%86%D9%8A%D8%A9."
+            href={`https://wa.me/201220086002?text=${encodeURIComponent("مرحباً، أود استشارة خبير العطور لدى متجر أمير ستور.")}`}
             target="_blank"
             rel="noopener noreferrer"
           >

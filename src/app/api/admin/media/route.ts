@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { requireAdmin } from "@/lib/auth";
+import { ApplicationError } from "@/lib/error";
 
 const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
 
@@ -18,29 +19,30 @@ function ensureUploadsDir(): boolean {
 }
 
 /**
- * Validates real binary magic bytes for JPEG, PNG, and WebP
+ * Validates real binary magic bytes for JPEG, PNG, and WebP,
+ * and derives the authoritative file extension directly from byte inspection.
  */
-function validateImageMagicBytes(buffer: Buffer): boolean {
-  if (buffer.length < 12) return false;
+function getImageExtensionFromMagicBytes(buffer: Buffer): ".jpg" | ".png" | ".webp" | null {
+  if (buffer.length < 12) return null;
 
   // JPEG: FF D8 FF
   if (buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff) {
-    return true;
+    return ".jpg";
   }
 
   // PNG: 89 50 4E 47 (0x89 'P' 'N' 'G')
   if (buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4e && buffer[3] === 0x47) {
-    return true;
+    return ".png";
   }
 
   // WebP: 'RIFF' .... 'WEBP'
   const riff = buffer.toString("ascii", 0, 4);
   const webp = buffer.toString("ascii", 8, 12);
   if (riff === "RIFF" && webp === "WEBP") {
-    return true;
+    return ".webp";
   }
 
-  return false;
+  return null;
 }
 
 export async function GET() {
@@ -109,7 +111,7 @@ export async function POST(request: Request) {
     await requireAdmin();
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
-    const altText = (formData.get("altText") as string) || "صورة معدة زراعية";
+    const altText = (formData.get("altText") as string) || "صورة عطر فاخر";
 
     if (!file) {
       return NextResponse.json({ ok: false, message: "يرجى اختيار ملف صورة صالح" }, { status: 400 });
@@ -136,7 +138,8 @@ export async function POST(request: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    if (!validateImageMagicBytes(buffer)) {
+    const safeExt = getImageExtensionFromMagicBytes(buffer);
+    if (!safeExt) {
       return NextResponse.json(
         { ok: false, message: "محتوى الملف غير صالح أو لا يطابق ترويسة صور JPG أو PNG أو WEBP الحقيقية." },
         { status: 400 }
@@ -154,10 +157,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Sanitize and generate unique safe filename
-    const ext = path.extname(file.name).toLowerCase() || ".jpg";
-    const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9_-]/g, "_");
-    const uniqueName = `${Date.now()}-${baseName}${ext}`;
+    // Derive destination file extension STRICTLY from validated magic bytes, never client filename
+    const clientExt = path.extname(file.name);
+    const rawBaseName = path.basename(file.name, clientExt);
+    const safeBaseName = rawBaseName.replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 50) || "upload";
+    const uniqueName = `${Date.now()}-${safeBaseName}${safeExt}`;
     const destinationPath = path.join(UPLOADS_DIR, uniqueName);
 
     try {
@@ -188,7 +192,14 @@ export async function POST(request: Request) {
     };
 
     return NextResponse.json({ ok: true, media: mediaItem }, { status: 201 });
-  } catch (err) {
+  } catch (err: unknown) {
+    if (err instanceof ApplicationError && (err.status === 401 || err.status === 403)) {
+      return NextResponse.json({ ok: false, message: err.message || "غير مصرح" }, { status: 403 });
+    }
+    const errMsg = err instanceof Error ? err.message : "";
+    if (errMsg.includes("صلاحية") || errMsg.includes("تسجيل الدخول") || errMsg.includes("مصرح")) {
+      return NextResponse.json({ ok: false, message: "غير مصرح" }, { status: 403 });
+    }
     console.error("Media upload error:", err);
     return NextResponse.json({ ok: false, message: "تعذر رفع وحفظ الصورة على الخادم" }, { status: 500 });
   }

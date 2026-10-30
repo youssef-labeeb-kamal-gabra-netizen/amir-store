@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Tractor } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export interface ProductGalleryProps {
@@ -28,9 +28,9 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
           />
         ) : (
           <div className="flex flex-col items-center justify-center p-8 text-center text-brand-neutral-400">
-            <Tractor className="h-24 w-24 text-brand-green-700/40 mb-3" />
-            <span className="text-sm font-bold text-brand-neutral-600">{productName}</span>
-            <span className="text-xs text-brand-neutral-400 mt-1">صورة توضيحية للمعدّة</span>
+            <Sparkles className="h-20 w-20 text-amber-500/50 mb-3" />
+            <span className="text-sm font-bold text-brand-neutral-700">{productName}</span>
+            <span className="text-xs text-brand-neutral-400 mt-1">صورة توضيحية لزجاجة العطر</span>
           </div>
         )}
       </div>

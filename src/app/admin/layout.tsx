@@ -5,7 +5,7 @@ import { AdminShell } from "@/components/admin/admin-shell";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
-  title: "لوحة تحكم الإدارة | شركة لبيب كمال",
+  title: "لوحة تحكم الإدارة | أمير ستور",
   noIndex: true,
 });
 

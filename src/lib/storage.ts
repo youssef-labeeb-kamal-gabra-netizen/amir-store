@@ -12,14 +12,14 @@ import os from "os";
  */
 
 declare global {
-  var __lkl_storage_cache: Map<string, unknown> | undefined;
+  var __ameer_storage_cache: Map<string, unknown> | undefined;
 }
 
 function getCache(): Map<string, unknown> {
-  if (!global.__lkl_storage_cache) {
-    global.__lkl_storage_cache = new Map();
+  if (!global.__ameer_storage_cache) {
+    global.__ameer_storage_cache = new Map();
   }
-  return global.__lkl_storage_cache;
+  return global.__ameer_storage_cache;
 }
 
 let resolvedStorageDir: string | null = null;
@@ -46,7 +46,7 @@ export function getStorageDirectory(): string {
     return resolvedStorageDir;
   } catch {
     // If standard directory is read-only (such as Vercel /var/task), fallback to OS temp dir
-    const tmpStorage = path.join(os.tmpdir(), "lkl_storage");
+    const tmpStorage = path.join(os.tmpdir(), "ameer_storage");
     try {
       if (!fs.existsSync(tmpStorage)) {
         fs.mkdirSync(tmpStorage, { recursive: true });
@@ -106,6 +106,35 @@ export function readStorageFile<T>(filename: string, fallback: T): T {
     console.warn(`[StorageEngine] Failed reading ${filename}, using fallback:`, err instanceof Error ? err.message : err);
     cache.set(filename, fallback);
     return fallback;
+  }
+}
+
+// Per-filename asynchronous serialization queue to prevent lost updates under concurrency
+const fileQueues = new Map<string, Promise<unknown>>();
+
+/**
+ * Executes an operation with an exclusive async mutex lock for a specific storage file.
+ * All operations on the same filename are strictly serialized.
+ */
+export async function withStorageMutex<T>(
+  filename: string,
+  operation: () => Promise<T> | T
+): Promise<T> {
+  const previousOp = fileQueues.get(filename) || Promise.resolve();
+
+  let resolveCurrent: () => void = () => {};
+  const currentOp = new Promise<void>((resolve) => {
+    resolveCurrent = resolve;
+  });
+
+  const nextQueueEntry = previousOp.then(() => currentOp, () => currentOp);
+  fileQueues.set(filename, nextQueueEntry);
+
+  await previousOp.catch(() => {});
+  try {
+    return await operation();
+  } finally {
+    resolveCurrent();
   }
 }
 

@@ -13,8 +13,8 @@ export const metadata = constructMetadata({
 });
 
 export default function AboutPage() {
-  const phone1 = env.business.phone || "01220792948";
-  const rawWhatsApp = env.business.whatsapp || "01220792948";
+  const phone1 = env.business.phone || "01220086002";
+  const rawWhatsApp = env.business.whatsapp || "01220086002";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
     "السلام عليكم، أود معرفة المزيد عن تشكيلة العطور المتوفرة لدى أمير ستور."

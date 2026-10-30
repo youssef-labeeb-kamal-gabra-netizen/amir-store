@@ -10,7 +10,7 @@ import {
   XCircle,
   Trash2,
   MapPin,
-  Wrench,
+  Sparkles,
   Clock,
 } from "lucide-react";
 
@@ -234,8 +234,8 @@ export function ReviewsManager({
               {/* Equipment Used tag */}
               {rev.equipmentUsed && (
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-neutral-100 text-brand-neutral-700 text-xs font-semibold">
-                  <Wrench className="h-3 w-3 text-brand-neutral-500" />
-                  <span>المعدة: {rev.equipmentUsed}</span>
+                  <Sparkles className="h-3 w-3 text-brand-neutral-500" />
+                  <span>العطر: {rev.equipmentUsed}</span>
                 </div>
               )}
 

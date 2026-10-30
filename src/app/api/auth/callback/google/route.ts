@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
     const normalizedEmail = googleUser.email.trim().toLowerCase();
     const session = await createSession({
       id: googleUser.id,
-      name: googleUser.name || "مستخدم LKL",
+      name: googleUser.name || "عميل أمير ستور",
       email: normalizedEmail,
       image: googleUser.picture,
     });

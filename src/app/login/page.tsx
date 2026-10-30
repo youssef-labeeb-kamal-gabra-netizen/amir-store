@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,7 @@ import { Toast } from "@/components/ui/toast";
 import { BrandLogo } from "@/components/common/brand-logo";
 import { ShieldCheck } from "lucide-react";
 
-export default function LoginPage() {
+function LoginContent() {
   const searchParams = useSearchParams();
   const errorParam = searchParams.get("error");
   const loggedOutParam = searchParams.get("logged_out");
@@ -21,10 +21,10 @@ export default function LoginPage() {
           <BrandLogo size="lg" showText={false} />
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-neutral-900 tracking-tight">
-          تسجيل الدخول إلى LKL
+          تسجيل الدخول إلى أمير ستور
         </h1>
         <p className="text-sm text-brand-neutral-600 mt-1.5 font-bold">
-          شركة لبيب كمال لبيب للأدوات والآلات الزراعية
+          دار العطور الشرقية والفرنسية الفاخرة ودهن العود
         </p>
       </div>
 
@@ -85,5 +85,20 @@ export default function LoginPage() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-md mx-auto px-4 py-16 sm:py-24 text-center">
+          <div className="h-10 w-48 bg-neutral-200 animate-pulse rounded-full mx-auto mb-4" />
+          <div className="h-64 bg-white rounded-3xl border border-neutral-200 shadow-sm animate-pulse" />
+        </div>
+      }
+    >
+      <LoginContent />
+    </Suspense>
   );
 }

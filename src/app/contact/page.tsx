@@ -25,9 +25,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const initialProduct = params.product || "";
   const settings = getCustomSettings();
 
-  const phone1 = settings.phone || env.business.phone || "01220792948";
-  const phone2 = settings.secondaryPhone || env.business.secondaryPhone || "01114587917";
-  const rawWhatsApp = settings.whatsapp || env.business.whatsapp || "01220792948";
+  const phone1 = settings.phone || env.business.phone || "01220086002";
+  const phone2 = settings.secondaryPhone || env.business.secondaryPhone || "01220086002";
+  const rawWhatsApp = settings.whatsapp || env.business.whatsapp || "01220086002";
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp}?text=${encodeURIComponent(
     "السلام عليكم ورحمة الله، أود الاستفسار عن تفاصيل العطور والعود المتوفرة لدى متجر أمير ستور."
@@ -83,7 +83,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   <span>مراسلة فورية عبر واتساب</span>
                 </div>
                 <p className="text-xs text-emerald-700 leading-relaxed">
-                  تواصل معنا مباشرة عبر واتساب لتلقي الرد الفوري ومقاطع الفيديو وصور المعدات وقطع الغيار:
+                  تواصل معنا مباشرة عبر واتساب لتلقي الرد الفوري وترشيحات العطور وتفاصيل الشحن والمعاينة:
                 </p>
                 <a
                   href={whatsappUrl}
@@ -107,9 +107,11 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     <a href={`tel:${phone1}`} className="hover:text-brand-green-700 hover:underline">
                       {phone1}
                     </a>
-                    <a href={`tel:${phone2}`} className="hover:text-brand-green-700 hover:underline">
-                      {phone2}
-                    </a>
+                    {phone2 && phone2 !== phone1 && (
+                      <a href={`tel:${phone2}`} className="hover:text-brand-green-700 hover:underline">
+                        {phone2}
+                      </a>
+                    )}
                   </div>
                   <span className="text-xs text-brand-neutral-500 block mt-0.5">متاح طوال اليوم</span>
                 </div>
@@ -158,14 +160,14 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <StoreLocationMap showDetails={false} />
 
           {/* Trust Banner */}
-          <div className="rounded-3xl bg-brand-green-950 text-white p-6 sm:p-7 space-y-3 shadow-lg">
-            <div className="flex items-center gap-2 text-brand-gold-300">
+          <div className="rounded-3xl bg-[#1c1917] text-white p-6 sm:p-7 space-y-3 shadow-lg border border-neutral-800">
+            <div className="flex items-center gap-2 text-amber-300">
               <ShieldCheck className="h-5 w-5" />
-              <span className="text-xs font-bold uppercase tracking-wider">تأسسنا سنة 2005 (خبرة +20 عاماً)</span>
+              <span className="text-xs font-bold uppercase tracking-wider">ضمان الأصالة والجودة الملكية</span>
             </div>
-            <p className="text-lg font-bold text-white">الجودة • الثقة • الخدمة المتميزة</p>
-            <p className="text-xs text-brand-green-200 leading-relaxed">
-              هدفنا الأول دائماً تقديم النصيحة الفنية السليمة لاختيار المعدة المناسبة لطبيعة أرضك ومحصولك، وتوفير الدعم المستمر وقطع الغيار الأصلية.
+            <p className="text-lg font-bold text-white">فخامة تدوم • أصالة العود • عبير لا يُنسى</p>
+            <p className="text-xs text-neutral-300 leading-relaxed">
+              هدفنا تقديم أرقى تجربة عطرية ملكية مع ضمان خلو جميع الزيوت من أي إضافات كيميائية ضارة، وإتاحة حق المعاينة الكاملة عند الاستلام لجميع المحافظات.
             </p>
           </div>
         </div>

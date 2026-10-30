@@ -74,10 +74,28 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
   const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, "");
   const formattedWhatsApp = cleanWhatsApp.startsWith("0") ? `2${cleanWhatsApp}` : cleanWhatsApp;
 
+  const FREE_SHIPPING_THRESHOLD = 1000;
+  const shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 50;
+  const finalTotal = subtotal + shippingCost;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim() || !phone.trim() || !address.trim()) {
       alert("يرجى ملء جميع الحقول المطلوبة: الاسم، رقم الهاتف، والعنوان بالتفصيل.");
+      return;
+    }
+
+    const cleanPhone = phone.replace(/[\s\-()]/g, "").trim();
+    const normalizedPhone = cleanPhone.startsWith("+20")
+      ? cleanPhone.slice(3)
+      : cleanPhone.startsWith("0020")
+      ? cleanPhone.slice(4)
+      : cleanPhone.startsWith("20") && cleanPhone.length === 12
+      ? cleanPhone.slice(2)
+      : cleanPhone;
+
+    if (!/^(010|011|012|015)[0-9]{8}$/.test(normalizedPhone)) {
+      alert("يرجى كتابة رقم هاتف مصري صحيح (11 رقماً يبدأ بـ 010 أو 011 أو 012 أو 015).");
       return;
     }
 
@@ -89,17 +107,13 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customerName: fullName,
-          phone,
+          phone: normalizedPhone,
           governorate,
           address,
           notes,
           items: items.map((i) => ({
             id: i.id,
-            name: i.name,
-            model: i.model,
-            price: i.price,
             quantity: i.quantity,
-            image: i.image,
           })),
           paymentMethod: "COD",
         }),
@@ -120,7 +134,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
         total: data.order.total,
         governorate,
         address,
-        phone,
+        phone: normalizedPhone,
         name: fullName,
       });
 
@@ -231,12 +245,24 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Order mini summary */}
-              <div className="p-3.5 rounded-2xl bg-brand-green-50/70 border border-brand-green-200/80 flex items-center justify-between text-xs font-bold text-brand-green-900">
-                <span>عدد المنتجات ({items.reduce((s, i) => s + i.quantity, 0)})</span>
-                <span className="text-sm text-brand-green-950">
-                  الإجمالي: {subtotal.toLocaleString("ar-EG")} ج.م
-                </span>
+              {/* Order mini summary with transparent pricing */}
+              <div className="p-3.5 rounded-2xl bg-brand-green-50/70 border border-brand-green-200/80 space-y-1.5 text-xs text-brand-green-950">
+                <div className="flex items-center justify-between font-bold">
+                  <span>عدد المنتجات ({items.reduce((s, i) => s + i.quantity, 0)}):</span>
+                  <span>{subtotal.toLocaleString("ar-EG")} ج.م</span>
+                </div>
+                <div className="flex items-center justify-between font-medium text-brand-neutral-700">
+                  <span>رسوم الشحن والتوصيل:</span>
+                  <span className={shippingCost === 0 ? "text-emerald-700 font-bold" : "font-bold"}>
+                    {shippingCost === 0 ? "مجاني (للطلبات 1000+ ج.م)" : "50 ج.م"}
+                  </span>
+                </div>
+                <div className="pt-2 border-t border-brand-green-200 flex items-center justify-between font-black text-xs sm:text-sm text-brand-green-950">
+                  <span>المبلغ الإجمالي عند الاستلام:</span>
+                  <span className="text-sm sm:text-base text-brand-green-900 font-black">
+                    {finalTotal.toLocaleString("ar-EG")} ج.م
+                  </span>
+                </div>
               </div>
 
               {/* Full Name */}
@@ -351,7 +377,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                 {isSubmitting ? (
                   <span>جاري تسجيل الطلب...</span>
                 ) : (
-                  <span>تأكيد الطلب الآن (الدفع عند الاستلام)</span>
+                  <span>تأكيد الطلب — {finalTotal.toLocaleString("ar-EG")} ج.م (الدفع عند الاستلام)</span>
                 )}
               </button>
             </form>

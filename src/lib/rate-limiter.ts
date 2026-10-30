@@ -1,5 +1,5 @@
 /**
- * LKL Production-Grade Security & Sliding-Window Rate Limiter
+ * Ameer Store Production-Grade Security & Sliding-Window Rate Limiter
  * Protects against DDoS, automated scanning tools, brute force, and abusive traffic.
  */
 
@@ -8,6 +8,8 @@ interface RateLimitRecord {
   resetTime: number;
   burstCount: number;
   burstResetTime: number;
+  apiCount: number;
+  apiResetTime: number;
   blockedUntil?: number;
 }
 
@@ -52,7 +54,11 @@ if (typeof setInterval !== "undefined") {
   setInterval(() => {
     const now = Date.now();
     for (const [ip, record] of ipStore.entries()) {
-      if (record.resetTime < now && (!record.blockedUntil || record.blockedUntil < now)) {
+      if (
+        record.resetTime < now &&
+        record.apiResetTime < now &&
+        (!record.blockedUntil || record.blockedUntil < now)
+      ) {
         ipStore.delete(ip);
       }
     }
@@ -68,19 +74,42 @@ export interface RateLimitResult {
   retryAfterSeconds?: number;
 }
 
+// IP validation regexes
+const IPV4_REGEX = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+const IPV6_REGEX = /^(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}$|^::1$|^[a-fA-F0-9:]+$/;
+
+function sanitizeIp(rawIp: string | null | undefined): string | null {
+  if (!rawIp) return null;
+  let cleaned = rawIp.trim();
+  if (cleaned.startsWith("[") && cleaned.includes("]")) {
+    cleaned = cleaned.replace(/^\[([a-fA-F0-9:]+)\](?::\d+)?$/, "$1");
+  } else if (cleaned.includes(":") && !cleaned.includes("::") && cleaned.split(":").length === 2) {
+    cleaned = cleaned.split(":")[0].trim();
+  }
+
+  if (IPV4_REGEX.test(cleaned) || IPV6_REGEX.test(cleaned)) {
+    return cleaned;
+  }
+  return null;
+}
+
 /**
- * Extracts a reliable client IP from headers
+ * Extracts a reliable client IP from headers, rejecting spoofed or malformed values
  */
 export function getClientIp(headers: Headers): string {
+  const cfConnectingIp = sanitizeIp(headers.get("cf-connecting-ip"));
+  if (cfConnectingIp) return cfConnectingIp;
+
+  const realIp = sanitizeIp(headers.get("x-real-ip"));
+  if (realIp) return realIp;
+
   const forwarded = headers.get("x-forwarded-for");
   if (forwarded) {
-    const first = forwarded.split(",")[0].trim();
-    if (first) return first;
+    const parts = forwarded.split(",").map((p) => sanitizeIp(p)).filter(Boolean);
+    if (parts.length > 0 && parts[0]) {
+      return parts[0] as string;
+    }
   }
-  const realIp = headers.get("x-real-ip");
-  if (realIp) return realIp.trim();
-  const cfConnectingIp = headers.get("cf-connecting-ip");
-  if (cfConnectingIp) return cfConnectingIp.trim();
 
   return "127.0.0.1";
 }
@@ -124,6 +153,8 @@ export function checkRateLimit(ip: string, pathname: string): RateLimitResult {
       resetTime: now + SECURITY_CONFIG.GLOBAL_WINDOW_MS,
       burstCount: 0,
       burstResetTime: now + SECURITY_CONFIG.BURST_WINDOW_MS,
+      apiCount: 0,
+      apiResetTime: now + SECURITY_CONFIG.API_WINDOW_MS,
     };
     ipStore.set(ip, record);
   }
@@ -153,6 +184,12 @@ export function checkRateLimit(ip: string, pathname: string): RateLimitResult {
     record.resetTime = now + SECURITY_CONFIG.GLOBAL_WINDOW_MS;
   }
 
+  // Reset API window if expired
+  if (now > record.apiResetTime) {
+    record.apiCount = 0;
+    record.apiResetTime = now + SECURITY_CONFIG.API_WINDOW_MS;
+  }
+
   record.count += 1;
   record.burstCount += 1;
 
@@ -169,16 +206,16 @@ export function checkRateLimit(ip: string, pathname: string): RateLimitResult {
     };
   }
 
-  // 2. Check strict API rate limit
-  if (isApiRoute && record.count > SECURITY_CONFIG.API_MAX_REQUESTS && (record.resetTime - now) > (SECURITY_CONFIG.GLOBAL_WINDOW_MS - SECURITY_CONFIG.API_WINDOW_MS)) {
-    // API limit check
-    if (record.count > SECURITY_CONFIG.API_MAX_REQUESTS * 3) {
+  // 2. Check strict API rate limit (independent 1-minute sliding window)
+  if (isApiRoute) {
+    record.apiCount += 1;
+    if (record.apiCount > SECURITY_CONFIG.API_MAX_REQUESTS) {
       record.blockedUntil = now + 120 * 1000;
       return {
         success: false,
         limit: SECURITY_CONFIG.API_MAX_REQUESTS,
         remaining: 0,
-        reset: Math.ceil(record.resetTime / 1000),
+        reset: Math.ceil(record.apiResetTime / 1000),
         reason: "API_LIMIT_EXCEEDED",
         retryAfterSeconds: 120,
       };
@@ -204,4 +241,29 @@ export function checkRateLimit(ip: string, pathname: string): RateLimitResult {
     remaining: Math.max(0, SECURITY_CONFIG.GLOBAL_MAX_REQUESTS - record.count),
     reset: Math.ceil(record.resetTime / 1000),
   };
+}
+
+// In-memory sliding-window map for specific route rate-limiting (e.g. orders, contact)
+const routeRateLimitMap = new Map<string, number[]>();
+
+/**
+ * Endpoint-specific sliding window rate limiter
+ * Returns true if request should be blocked, false if allowed
+ */
+export function checkEndpointRateLimit(
+  key: string,
+  maxRequests: number = 5,
+  windowMs: number = 10 * 60 * 1000
+): boolean {
+  const now = Date.now();
+  const timestamps = (routeRateLimitMap.get(key) || []).filter(
+    (t) => now - t < windowMs
+  );
+  if (timestamps.length >= maxRequests) {
+    routeRateLimitMap.set(key, timestamps);
+    return true; // blocked
+  }
+  timestamps.push(now);
+  routeRateLimitMap.set(key, timestamps);
+  return false; // allowed
 }

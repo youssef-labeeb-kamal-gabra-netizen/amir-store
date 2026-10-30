@@ -167,7 +167,7 @@ export function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
                 {rev.equipmentUsed && (
                   <div className="pt-2">
                     <span className="text-[11px] font-semibold text-brand-neutral-500 bg-brand-neutral-100 rounded-lg px-2.5 py-1 inline-block">
-                      المعدة: {rev.equipmentUsed}
+                      العطر: {rev.equipmentUsed}
                     </span>
                   </div>
                 )}
@@ -206,10 +206,10 @@ export function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
             <div className="mb-6 space-y-1">
               <span className="text-xs font-bold text-brand-green-700 uppercase">مراجعة اختيارية</span>
               <h3 className="text-xl font-bold text-brand-neutral-900">
-                شاركنا رأيك وتجربتك مع شركة لبيب كمال
+                شاركنا رأيك وتجربتك مع أمير ستور
               </h3>
               <p className="text-xs text-brand-neutral-500">
-                رأيك يساعد إخوانك من المزارعين في اختيار المعدة المناسبة ويسهم في تطوير خدماتنا.
+                رأيك وتجربتك العطرية تسعدنا وتسهم في تطوير خدماتنا وتقديم الأفضل دائماً.
               </p>
             </div>
 
@@ -234,7 +234,7 @@ export function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
                 <input
                   type="text"
                   required
-                  placeholder="مثال: الحاج أحمد عبد العال"
+                  placeholder="مثال: د. أحمد السعيد"
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
                   className="w-full rounded-xl border border-brand-neutral-300 px-3.5 py-2.5 text-sm focus:border-brand-green-600 focus:outline-none"
@@ -248,7 +248,7 @@ export function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
                   </label>
                   <input
                     type="text"
-                    placeholder="مثال: الزقازيق، منيا القمح، ديرب نجم..."
+                    placeholder="مثال: الزقازيق، القاهرة، المنصورة..."
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     className="w-full rounded-xl border border-brand-neutral-300 px-3.5 py-2.5 text-sm focus:border-brand-green-600 focus:outline-none"
@@ -260,7 +260,7 @@ export function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
                   </label>
                   <input
                     type="text"
-                    placeholder="مثال: مزارع، فني ري، مقاول..."
+                    placeholder="مثال: مهتم بالعطور، استشاري، طبيب..."
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
                     className="w-full rounded-xl border border-brand-neutral-300 px-3.5 py-2.5 text-sm focus:border-brand-green-600 focus:outline-none"
@@ -270,11 +270,11 @@ export function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
 
               <div>
                 <label className="block text-xs font-bold text-brand-neutral-800 mb-1">
-                  المعدة التي اشتريتها أو قمت بصيانتها (اختياري)
+                  العطر أو دهن العود الذي جربته (اختياري)
                 </label>
                 <input
                   type="text"
-                  placeholder="مثال: موتور رش 450، طلمبة مياه 3 بوصة، موتور ديزل..."
+                  placeholder="مثال: عطر أمير العود الملكي، دهن عود تراد، مسك أبيض..."
                   value={equipmentUsed}
                   onChange={(e) => setEquipmentUsed(e.target.value)}
                   className="w-full rounded-xl border border-brand-neutral-300 px-3.5 py-2.5 text-sm focus:border-brand-green-600 focus:outline-none"
@@ -311,7 +311,7 @@ export function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
                 <textarea
                   required
                   rows={4}
-                  placeholder="اكتب عن كفاءة الموتور، توفر قطع الغيار، تعامل أولاد الحاج لبيب معك..."
+                  placeholder="اكتب عن ثبات العطر، فوحان الرائحة، جودة التغليف وسرعة التوصيل..."
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   className="w-full rounded-xl border border-brand-neutral-300 px-3.5 py-2.5 text-sm focus:border-brand-green-600 focus:outline-none leading-relaxed"

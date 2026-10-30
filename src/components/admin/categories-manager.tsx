@@ -54,7 +54,7 @@ export function CategoriesManager({ initialCategories, products }: CategoriesMan
 
       setCategories([...categories, data.category]);
       setIsAddModalOpen(false);
-      setToastMessage({ type: "success", text: "تمت إضافة القسم الزراعي بنجاح" });
+      setToastMessage({ type: "success", text: "تمت إضافة قسم العطور بنجاح" });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "حدث خطأ";
       setToastMessage({ type: "error", text: msg });
@@ -125,7 +125,7 @@ export function CategoriesManager({ initialCategories, products }: CategoriesMan
             هيكلة الكتالوج
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-neutral-900 tracking-tight mt-0.5">
-            الأقسام والتصنيفات الزراعية ({categories.length})
+            أقسام وتصنيفات المتجر ({categories.length})
           </h1>
         </div>
 
@@ -200,13 +200,13 @@ export function CategoriesManager({ initialCategories, products }: CategoriesMan
           setIsAddModalOpen(false);
           setEditingCategory(null);
         }}
-        title={editingCategory ? "تعديل بيانات القسم الزراعي" : "إضافة قسم زراعي جديد"}
+        title={editingCategory ? "تعديل بيانات قسم العطور" : "إضافة قسم عطور جديد"}
       >
         <form onSubmit={editingCategory ? handleSubmitEdit : handleSubmitAdd} className="space-y-4">
           <Input
             label="اسم القسم"
             required
-            placeholder="مثال: محركات الديزل الزراعية"
+            placeholder="مثال: العطور الشرقية والفرنسية"
             value={formName}
             onChange={(e) => setFormName(e.target.value)}
           />
@@ -214,7 +214,7 @@ export function CategoriesManager({ initialCategories, products }: CategoriesMan
           <Textarea
             label="وصف القسم"
             rows={3}
-            placeholder="وصف طبيعة المعدات المدرجة في هذا التصنيف..."
+            placeholder="وصف طبيعة العطور المدرجة في هذا التصنيف..."
             value={formDesc}
             onChange={(e) => setFormDesc(e.target.value)}
           />

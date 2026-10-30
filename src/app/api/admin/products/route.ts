@@ -23,14 +23,28 @@ export async function POST(request: Request) {
   try {
     await requireAdmin();
     const body = await request.json();
-    const { name, categoryId, categoryName, model, brand, shortDescription, description, specifications, featured } = body;
+    const { name, categoryId, categoryName, model, brand, price, compareAtPrice, shortDescription, description, specifications, featured } = body;
 
     if (!name || typeof name !== "string" || name.trim().length < 2) {
-      return NextResponse.json({ ok: false, message: "اسم المعدة مطلوب (حرفين على الأقل)" }, { status: 400 });
+      return NextResponse.json({ ok: false, message: "اسم المنتج مطلوب (حرفين على الأقل)" }, { status: 400 });
     }
 
     if (!categoryId || !categoryName) {
-      return NextResponse.json({ ok: false, message: "يرجى تحديد القسم الزراعي التابع له" }, { status: 400 });
+      return NextResponse.json({ ok: false, message: "يرجى تحديد القسم التابع له" }, { status: 400 });
+    }
+
+    const numPrice = Number(price);
+    if (price === undefined || price === null || price === "" || isNaN(numPrice) || numPrice < 0) {
+      return NextResponse.json({ ok: false, message: "سعر المنتج مطلوب ويجب أن يكون رقماً صحيحاً أو موجباً" }, { status: 400 });
+    }
+
+    const numCompareAtPrice =
+      compareAtPrice !== undefined && compareAtPrice !== null && compareAtPrice !== ""
+        ? Number(compareAtPrice)
+        : undefined;
+
+    if (numCompareAtPrice !== undefined && (isNaN(numCompareAtPrice) || numCompareAtPrice < 0)) {
+      return NextResponse.json({ ok: false, message: "السعر قبل الخصم غير صالح" }, { status: 400 });
     }
 
     const slug = slugify(name) + "-" + Date.now().toString().slice(-4);
@@ -40,11 +54,13 @@ export async function POST(request: Request) {
       slug,
       categoryId,
       categoryName,
+      price: numPrice,
+      compareAtPrice: numCompareAtPrice,
       model: model ? String(model).trim() : undefined,
-      brand: brand ? String(brand).trim() : "LKL Equipment",
+      brand: brand ? String(brand).trim() : "Ameer Store",
       shortDescription: shortDescription ? String(shortDescription).trim() : name.trim(),
       description: description ? String(description).trim() : name.trim(),
-      images: ["/images/products/spray-motor-1.jpg"],
+      images: ["/images/products/ameer-oud-parfum.svg"],
       specifications: Array.isArray(specifications) ? specifications : [],
       featured: Boolean(featured),
       published: true,
@@ -60,13 +76,35 @@ export async function PUT(request: Request) {
   try {
     await requireAdmin();
     const body = await request.json();
-    const { id, ...updates } = body;
+    const { id, price, compareAtPrice, ...updates } = body;
 
     if (!id) {
       return NextResponse.json({ ok: false, message: "معرف المنتج مطلوب للتحديث" }, { status: 400 });
     }
 
-    const updated = updateProduct(id, updates);
+    const payloadUpdates: Record<string, unknown> = { ...updates };
+
+    if (price !== undefined && price !== null && price !== "") {
+      const numPrice = Number(price);
+      if (isNaN(numPrice) || numPrice < 0) {
+        return NextResponse.json({ ok: false, message: "سعر المنتج غير صالح" }, { status: 400 });
+      }
+      payloadUpdates.price = numPrice;
+    }
+
+    if (compareAtPrice !== undefined) {
+      if (compareAtPrice === null || compareAtPrice === "") {
+        payloadUpdates.compareAtPrice = undefined;
+      } else {
+        const numCompare = Number(compareAtPrice);
+        if (isNaN(numCompare) || numCompare < 0) {
+          return NextResponse.json({ ok: false, message: "السعر قبل الخصم غير صالح" }, { status: 400 });
+        }
+        payloadUpdates.compareAtPrice = numCompare;
+      }
+    }
+
+    const updated = updateProduct(id, payloadUpdates);
     if (!updated) {
       return NextResponse.json({ ok: false, message: "المنتج غير موجود" }, { status: 404 });
     }

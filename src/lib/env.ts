@@ -6,21 +6,25 @@
 const isProduction = process.env.NODE_ENV === "production";
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const FALLBACK_PRODUCTION_SECRET = "lkl-store-sha256-auth-secret-production-persistent-key-9823419082341";
-
 function getRuntimeAuthSecret(): string {
-  if (process.env.AUTH_SECRET && process.env.AUTH_SECRET.trim().length >= 32) {
-    return process.env.AUTH_SECRET.trim();
+  const secret = process.env.AUTH_SECRET?.trim();
+  if (secret && secret.length >= 32 && secret !== "dev-fallback-secret-for-local-build-only") {
+    return secret;
   }
-  return FALLBACK_PRODUCTION_SECRET;
+  if (isProduction) {
+    throw new Error(
+      "SECURITY CRITICAL: AUTH_SECRET is missing, insecure, or shorter than 32 characters in production! Configure a strong secret (>= 32 chars)."
+    );
+  }
+  return "dev-secret-ameer-store-development-only-fallback-32chars";
 }
 
 // Strict production security invariants check
 export function validateProductionSecurity(): void {
   if (!isProduction) return;
 
-  const authSecret = process.env.AUTH_SECRET;
-  if (!authSecret || authSecret === "dev-fallback-secret-for-local-build-only" || authSecret.trim().length < 32) {
+  const authSecret = process.env.AUTH_SECRET?.trim();
+  if (!authSecret || authSecret === "dev-fallback-secret-for-local-build-only" || authSecret.length < 32) {
     throw new Error(
       "SECURITY CRITICAL: AUTH_SECRET is missing, insecure, or using dev fallback in production! Configure a strong secret (>= 32 chars)."
     );
@@ -34,11 +38,16 @@ export function validateProductionSecurity(): void {
   }
 }
 
+// Enforce validation on module load in production
+if (isProduction) {
+  validateProductionSecurity();
+}
+
 export const env = {
   isProduction,
   isDevelopment,
   
-  appUrl: process.env.NEXT_PUBLIC_APP_URL || (isProduction ? "https://lkl-store.vercel.app" : "http://localhost:3000"),
+  appUrl: process.env.NEXT_PUBLIC_APP_URL || (isProduction ? "https://ameer-store.vercel.app" : "http://localhost:3000"),
   
   business: {
     name: process.env.NEXT_PUBLIC_BUSINESS_NAME || "أمير ستور للعطور والعود الفاخر",
@@ -49,7 +58,7 @@ export const env = {
     phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || "01220086002",
     secondaryPhone: process.env.NEXT_PUBLIC_BUSINESS_SECONDARY_PHONE || "01220086002",
     whatsapp: process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || "01220086002",
-    googleMapsUrl: process.env.NEXT_PUBLIC_BUSINESS_MAPS_URL || "",
+    googleMapsUrl: process.env.NEXT_PUBLIC_BUSINESS_MAPS_URL || "https://maps.google.com/place",
     establishedYear: "2024",
     experienceYears: "الأصالة والثقة",
   },

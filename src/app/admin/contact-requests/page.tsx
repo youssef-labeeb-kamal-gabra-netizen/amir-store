@@ -4,7 +4,7 @@ import { ContactRequestsManager } from "@/components/admin/contact-requests-mana
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
-  title: "إدارة طلبات واستفسارات الزبائن | شركة لبيب كمال",
+  title: "إدارة طلبات واستفسارات الزبائن | أمير ستور",
   noIndex: true,
 });
 

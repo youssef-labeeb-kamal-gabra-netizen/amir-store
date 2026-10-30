@@ -35,17 +35,46 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from localStorage on mount with strict schema validation
   useEffect(() => {
     try {
       const stored = localStorage.getItem(CART_STORAGE_KEY);
       if (stored) {
-        setItems(JSON.parse(stored));
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          const validItems: CartItem[] = parsed.filter(
+            (item): item is CartItem =>
+              Boolean(
+                item &&
+                  typeof item === "object" &&
+                  typeof item.id === "string" &&
+                  item.id.trim() !== "" &&
+                  typeof item.name === "string" &&
+                  typeof item.price === "number" &&
+                  !isNaN(item.price) &&
+                  item.price > 0 &&
+                  Number.isInteger(item.quantity) &&
+                  item.quantity > 0 &&
+                  item.quantity <= 50
+              )
+          );
+          setItems(validItems);
+        } else {
+          // If stored value is not an array, purge corrupt state
+          localStorage.removeItem(CART_STORAGE_KEY);
+          setItems([]);
+        }
       }
     } catch {
-      // Fallback
+      try {
+        localStorage.removeItem(CART_STORAGE_KEY);
+      } catch {
+        // Fallback if localStorage access is blocked
+      }
+      setItems([]);
+    } finally {
+      setIsHydrated(true);
     }
-    setIsHydrated(true);
   }, []);
 
   // Save to localStorage

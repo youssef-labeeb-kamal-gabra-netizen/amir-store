@@ -67,7 +67,7 @@ export function GsapHeroShowcase() {
       {/* Golden Aura Glow */}
       <div
         ref={auraRef}
-        className="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-gradient-to-tr from-amber-400/30 via-yellow-300/20 to-emerald-500/20 blur-3xl pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-gradient-to-tr from-amber-400/30 via-yellow-300/20 to-emerald-500/20 blur-3xl pointer-events-none"
       />
 
       {/* Main Official Emblem Container */}

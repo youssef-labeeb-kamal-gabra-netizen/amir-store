@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Product, Category } from "@/types/product";
 import { ProductCard } from "@/components/products/product-card";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -34,6 +34,10 @@ export function ProductCatalogView({
   const [sortOption, setSortOption] = useState<
     "newest" | "price_asc" | "price_desc" | "name_asc" | "name_desc"
   >("newest");
+
+  useEffect(() => {
+    setSelectedCategory(initialCategorySlug || "");
+  }, [initialCategorySlug]);
 
   const filteredProducts = useMemo(() => {
     let list = products.filter((p) => p.published);

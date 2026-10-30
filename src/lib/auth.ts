@@ -24,9 +24,9 @@ interface StoredSessionPayload {
   jti: string; // Unique Session ID for revocation (Phase 1, Item 4)
 }
 
-export const SESSION_COOKIE_NAME = "lkl_session";
-export const OAUTH_STATE_COOKIE = "lkl_oauth_state";
-export const OAUTH_PKCE_COOKIE = "lkl_oauth_pkce";
+export const SESSION_COOKIE_NAME = "ameer_session";
+export const OAUTH_STATE_COOKIE = "ameer_oauth_state";
+export const OAUTH_PKCE_COOKIE = "ameer_oauth_pkce";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
 interface RevocationsStore {

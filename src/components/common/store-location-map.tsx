@@ -12,16 +12,16 @@ interface StoreLocationMapProps {
 export function StoreLocationMap({ className = "", showDetails = true }: StoreLocationMapProps) {
   const [copied, setCopied] = useState(false);
 
-  // Exact official coordinates directly from the store Google Maps embed
-  const latitude = 30.5346921;
-  const longitude = 31.3866374;
-  const placeName = "شركة لبيب كمال للآلات الزراعية";
-  const addressArabic = "طريق بنها - الزقازيق (طريق مصر الزراعي)، قرية الجديدة، مركز منيا القمح، محافظة الشرقية";
-  const directMapsUrl = env.business.googleMapsUrl || "https://maps.app.goo.gl/87VQjF6s9bEyF9yz7";
-  const directionsUrl = "https://maps.app.goo.gl/87VQjF6s9bEyF9yz7";
+  // Official showroom location in Zagazig, Sharkia, Egypt
+  const latitude = 30.58768;
+  const longitude = 31.502;
+  const placeName = "أمير ستور — للعطور الفاخرة ودهن العود";
+  const addressArabic = "الزقازيق، محافظة الشرقية، جمهورية مصر العربية (شحن سريع ومعاينة لكافة المحافظات)";
+  const directMapsUrl = env.business.googleMapsUrl || `https://maps.google.com/?q=${latitude},${longitude}`;
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
 
-  // Official Google Maps Embed URL provided by store owner
-  const embedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3436.5172308565784!2d31.38406250000001!3d30.534687499999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f7e5007a056ec1%3A0xc8b55e0580a9488a!2z2LTYsdmD2Kkg2YTYqNmK2Kgg2YPZhdin2YQg2YTZhNij2YTYp9iqINin2YTYstix2KfYudmK2Yc!5e0!3m2!1sen!2seg!4v1792691595629!5m2!1sen!2seg";
+  // Google Maps Embed URL for Zagazig, Sharkia, Egypt
+  const embedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110034.4068393539!2d31.43265882489242!3d30.587680015091723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f7f05256e29783%3A0xc331a98075f10255!2sZagazig%2C%20Al-Sharqia%20Governorate!5e0!3m2!1sen!2seg!4v1700000000000!5m2!1sen!2seg";
 
   const copyCoordinates = () => {
     navigator.clipboard.writeText(`${latitude}, ${longitude}`);
@@ -44,15 +44,15 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
   return (
     <div className={`overflow-hidden rounded-3xl border border-brand-neutral-200 bg-white shadow-lg ${className}`}>
       {/* Header Info Banner */}
-      <div className="bg-gradient-to-r from-[#022c22] to-[#064e3b] p-4 sm:p-6 text-white text-start">
+      <div className="bg-gradient-to-r from-[#1c1917] via-[#292524] to-[#1c1917] p-4 sm:p-6 text-white text-start">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-1.5 min-w-0">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-950/70 px-3 py-1 text-[11px] sm:text-xs font-semibold text-emerald-200 border border-emerald-500/30 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-950/70 px-3 py-1 text-[11px] sm:text-xs font-semibold text-amber-200 border border-amber-500/30 backdrop-blur-sm">
               <MapPin className="h-3.5 w-3.5 text-brand-gold-400 shrink-0" />
-              <span>موقعنا الرسمي المعتمد على الخريطة</span>
+              <span>معرضنا ونقاط الانطلاق المعتمدة</span>
             </div>
             <h3 className="text-lg sm:text-2xl font-black text-white">{placeName}</h3>
-            <p className="text-xs sm:text-sm text-emerald-100/80 leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
               <span>{addressArabic}</span>
             </p>
           </div>
@@ -73,7 +73,7 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/25 border border-white/20 px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-white transition-all active:scale-95 w-full sm:w-auto backdrop-blur-sm"
             >
-              <Navigation className="h-4 w-4 text-emerald-300" />
+              <Navigation className="h-4 w-4 text-amber-300" />
               <span>الاتجاهات والمسار</span>
             </a>
           </div>
@@ -83,7 +83,7 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
       {/* Interactive Map Iframe */}
       <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-brand-neutral-100 min-h-[320px]">
         <iframe
-          title="موقع شركة لبيب كمال لبيب على خرائط جوجل"
+          title="موقع معرض أمير ستور على خرائط جوجل"
           src={embedUrl}
           className="absolute inset-0 h-full w-full border-0"
           loading="lazy"
@@ -94,7 +94,7 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
         {/* Floating Quick Action Overlay */}
         <div className="absolute top-4 start-4 z-10 hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-brand-neutral-200 text-xs font-semibold text-brand-neutral-800">
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>المحل مفتوح وجاهز لاستقبالكم</span>
+          <span>المعرض مفتوح وجاهز لاستقبالكم وخدمتكم</span>
         </div>
       </div>
 
@@ -103,13 +103,13 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
         <div className="p-6 bg-brand-neutral-50/70 border-t border-brand-neutral-200">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-start text-xs sm:text-sm">
             <div className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-brand-neutral-200">
-              <div className="h-8 w-8 rounded-xl bg-brand-green-100 text-brand-green-800 flex items-center justify-center shrink-0">
+              <div className="h-8 w-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
                 <MapPin className="h-4 w-4" />
               </div>
               <div>
                 <p className="font-bold text-brand-neutral-900">العنوان بالتفصيل:</p>
                 <p className="text-brand-neutral-600 mt-0.5 leading-relaxed">
-                  طريق بنها - الزقازيق (طريق مصر الزراعي)، قرية الجديدة، مركز منيا القمح، محافظة الشرقية (رمز الخريطة: G9MM+VMW)
+                  الزقازيق، محافظة الشرقية، مصر — شحن ومعاينة لكافة محافظات جمهورية مصر العربية
                 </p>
               </div>
             </div>
@@ -121,9 +121,9 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
               <div>
                 <p className="font-bold text-brand-neutral-900">أرقام التواصل:</p>
                 <p className="text-brand-neutral-700 mt-0.5" dir="ltr">
-                  01220792948 / 01114587917
+                  01220086002
                 </p>
-                <p className="text-[11px] text-brand-neutral-500 mt-0.5">متاحون للرد وتحديد المسار هاتفياً</p>
+                <p className="text-[11px] text-brand-neutral-500 mt-0.5">متاحون للرد والاستفسار وتحديد الطلبات</p>
               </div>
             </div>
 
@@ -133,8 +133,8 @@ export function StoreLocationMap({ className = "", showDetails = true }: StoreLo
                 <p className="text-brand-neutral-500 text-xs font-mono" dir="ltr">
                   {latitude.toFixed(5)}, {longitude.toFixed(5)}
                 </p>
-                <p className="text-[11px] text-emerald-700 font-semibold" dir="ltr">
-                  Plus Code: G9MM+VMW
+                <p className="text-[11px] text-amber-700 font-semibold" dir="ltr">
+                  Plus Code: HGP2+3X الزقازيق
                 </p>
               </div>
               <div className="flex items-center gap-1.5">

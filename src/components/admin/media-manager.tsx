@@ -92,13 +92,13 @@ export function MediaManager({ initialMedia }: { initialMedia: MediaItem[] }) {
 
       <div className="border-b border-brand-neutral-200 pb-5">
         <span className="text-xs font-bold text-brand-green-700 tracking-wider uppercase">
-          إدارة الأصول الرقمية وصور المعدات
+          إدارة الأصول الرقمية وصور العطور
         </span>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-neutral-900 tracking-tight mt-0.5">
-          مكتبة وسائط وصور المعدات ({mediaList.length})
+          مكتبة وسائط وصور العطور ({mediaList.length})
         </h1>
         <p className="text-sm text-brand-neutral-500 mt-1">
-          رفع وحفظ صور المعدات فعلياً على الخادم مع فحص الامتدادات وحجم الملفات ونسخ روابطها لاستخدامها في الكتالوج.
+          رفع وحفظ صور العطور فعلياً على الخادم مع فحص الامتدادات وحجم الملفات ونسخ روابطها لاستخدامها في الكتالوج.
         </p>
       </div>
 
@@ -106,7 +106,7 @@ export function MediaManager({ initialMedia }: { initialMedia: MediaItem[] }) {
       <form onSubmit={handleUpload} className="rounded-2xl border border-brand-neutral-200 bg-white p-6 shadow-sm space-y-4 max-w-xl">
         <h3 className="text-base font-bold text-brand-neutral-900 flex items-center gap-2">
           <Upload className="h-5 w-5 text-brand-green-700" />
-          رفع صورة معدة زراعية جديدة
+          رفع صورة عطر جديد
         </h3>
 
         <div className="space-y-3 text-sm">
@@ -123,8 +123,8 @@ export function MediaManager({ initialMedia }: { initialMedia: MediaItem[] }) {
           </div>
 
           <Input
-            label="النص البديل (Alt Text) لوصف المعدة بمحركات البحث"
-            placeholder="مثال: صورة تفصيلية لموتور رش زراعي 450 بار"
+            label="النص البديل (Alt Text) لوصف العطر بمحركات البحث"
+            placeholder="مثال: صورة تفصيلية لزجاجة عطر أمير العود الفاخر"
             value={altText}
             onChange={(e) => setAltText(e.target.value)}
           />
