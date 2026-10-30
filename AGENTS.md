@@ -1,5 +1,5 @@
 # دُستور تطوير متجر «أمير ستور» (AGENTS.md)
-## Ameer Store — Luxury Perfumes & Pure Oud Platform Constitution
+## Amir Store — Luxury Perfumes & Pure Oud Platform Constitution
 
 هذا الملف هو المرجع الأساسي والتعليمات الإلزامية الصارمة لجميع المطورين ووكلاء الذكاء الاصطناعي (AI Agents) العاملين على المشروع.
 
@@ -61,3 +61,13 @@ src/
 - **GSAP Motion & Micro-interactions:** انتقالات فيزيائية ناعمة بدلاً من التحركات الحادة.
 - **Security Review (Strix & OWASP standards):** فحص مستمر للثغرات، حماية الرؤوس (Security Headers)، ومنع XSS و CSRF.
 - **React & Next.js Best Practices:** استخدام Server Actions، تحسين الـ Bundle، تقليل حجم الـ JavaScript المحمل على العميل.
+
+---
+
+### 5. قواعد العزل والمعمارية السحابية المجانية (Isolation & Zero-Cost Cloud Rules)
+1. **قاعدة العزل والتطهير الشامل (Strict Isolation & Brand Cleansing):**
+   - الحفاظ على نظافة المشروع الأصلي بنسبة 100%، وتطهير كافة التوثيقات والسكربتات والوسائط القديمة من أي بقايا، وتوحيد اسم العلامة الإنجليزية بدقة (`Amir Store`).
+2. **المعمارية السحابية المجانية فائقة الأمان (Zero-Cost Enterprise Stack):**
+   - **قاعدة البيانات:** محرك هجين يربط PostgreSQL السحابي (Neon/Supabase) مع هبوط آمن محلي للتخزين الذري المحمي بـ Mutex.
+   - **تخزين الصور:** دعم Cloudinary المجاني (25GB) مع فحص البايتات السحرية وحذف الكاش تلقائياً من الـ CDN.
+   - **البريد الإلكتروني التلقائي:** دعم Resend المجاني (3000 إيميل/شهر) مع قوالب HTML ملكية عربية، وتعقيم كامل من ثغرات XSS عبر `escapeHtml`، ونمط محاكاة ذكي بدون توقف.
