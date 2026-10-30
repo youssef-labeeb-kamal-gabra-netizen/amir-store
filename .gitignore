@@ -44,3 +44,7 @@ data/storage/*.json
 next-env.d.ts
 
 .vercel
+
+# Playwright test outputs
+playwright-report/
+test-results/

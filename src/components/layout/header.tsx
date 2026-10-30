@@ -36,6 +36,7 @@ interface HeaderProps {
 const quickNavLinks = [
   { href: "/", label: "الرئيسية" },
   { href: "/products", label: "مجموعة العطور الملكية" },
+  { href: "/#olfactory-pyramid", label: "الهرم العطري 3D" },
   { href: "/templates", label: "تجارب وقوالب الاستكشاف" },
   { href: "/about", label: "عن أمير ستور" },
   { href: "/contact", label: "تواصل معنا" },

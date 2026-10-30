@@ -11,6 +11,7 @@ import { GsapTextReveal } from "@/components/motion/gsap-text-reveal";
 import { GsapReveal } from "@/components/motion/gsap-reveal";
 import { GsapStaggerReveal } from "@/components/motion/gsap-stagger-reveal";
 import { MagneticButton } from "@/components/motion/magnetic-button";
+import { OlfactoryPyramid3D } from "@/components/products/olfactory-pyramid-3d";
 import {
   ShieldCheck,
   CheckCircle2,
@@ -391,7 +392,10 @@ export default async function HomePage() {
           </GsapReveal>
         </section>
 
-        {/* 5. CRAFTSMANSHIP STORYTELLING ("رحلة العود الملكي") */}
+        {/* 5. INTERACTIVE 3D OLFACTORY ARCHITECTURE & MOLECULAR PYRAMID */}
+        <OlfactoryPyramid3D />
+
+        {/* 6. CRAFTSMANSHIP STORYTELLING ("رحلة العود الملكي") */}
         <section className="relative rounded-3xl bg-gradient-to-br from-[#13161F] via-[#0D0F14] to-[#08090C] border border-amber-400/30 p-8 sm:p-12 lg:p-16 text-start shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] overflow-hidden">
           <div className="absolute top-0 end-0 w-96 h-96 bg-amber-400/10 rounded-full blur-[100px] pointer-events-none" />
 
