@@ -9,7 +9,6 @@ import {
   Heart,
   Award,
   Phone,
-  MessageCircle,
   MapPin,
   ShieldCheck,
   User,
@@ -66,16 +65,14 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
     };
   }, [isOpen]);
 
-  // Close on Escape key
+  // Handle escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-    }
+    window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [onClose]);
 
   if (!mounted || !isOpen) return null;
 
@@ -90,23 +87,23 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
     <div className="fixed inset-0 z-50 flex animate-in fade-in duration-200">
       {/* Backdrop overlay */}
       <div
-        className="fixed inset-0 bg-brand-green-950/70 backdrop-blur-sm transition-opacity duration-300"
+        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Slide-out Drawer Panel (from right side in RTL) */}
       <aside
-        className="relative w-full sm:w-[420px] max-w-[90vw] h-full bg-white shadow-2xl z-50 flex flex-col border-e border-brand-neutral-200 animate-in slide-in-from-right duration-300 text-start overflow-hidden"
+        className="relative w-full sm:w-[420px] max-w-[90vw] h-full bg-[#0D0F14] text-white shadow-2xl z-50 flex flex-col border-e border-amber-400/25 animate-in slide-in-from-right duration-300 text-start overflow-hidden"
         aria-label="القائمة الجانبية للتنقل"
       >
         {/* Drawer Header */}
-        <div className="p-5 border-b border-brand-neutral-200 bg-brand-neutral-50/90 flex items-center justify-between shrink-0">
+        <div className="p-5 border-b border-amber-400/20 bg-[#08090C] flex items-center justify-between shrink-0">
           <BrandLogo size="sm" />
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-xl text-brand-neutral-600 hover:text-brand-neutral-900 hover:bg-brand-neutral-200 transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="إغلاق القائمة"
           >
             <X className="h-6 w-6" />
@@ -116,14 +113,14 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
         {/* Scrollable Drawer Content */}
         <div className="flex-1 overflow-y-auto p-5 space-y-6">
           {/* Fragrance Advisor Banner CTA */}
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-brand-green-950 to-brand-green-800 text-white shadow-md relative overflow-hidden">
+          <div className="p-4 rounded-2xl bg-gradient-to-br from-[#13161F] to-[#08090C] border border-amber-400/30 text-white shadow-lg relative overflow-hidden">
             <div className="relative z-10 space-y-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-gold-500/20 text-brand-gold-300 text-[11px] font-bold border border-brand-gold-400/30">
-                <Sparkles className="h-3 w-3 text-brand-gold-400" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[11px] font-bold border border-amber-400/30">
+                <Sparkles className="h-3 w-3 text-amber-400" />
                 <span>مستشارك العطري الخاص</span>
               </span>
               <h4 className="text-base font-extrabold text-white">محتار تختار العطر المناسب لذوقك؟</h4>
-              <p className="text-xs text-brand-neutral-300 leading-relaxed">
+              <p className="text-xs text-slate-300 leading-relaxed">
                 تواصل مع خبرائنا لاختيار النوتة العطرية المناسبة لشخصيتك أو كهدية فاخرة تدوم طويلاً.
               </p>
               <a
@@ -131,7 +128,7 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onClose}
-                className="mt-1 w-full py-2.5 px-3 rounded-xl bg-brand-gold-600 hover:bg-brand-gold-500 active:bg-brand-gold-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-sm cursor-pointer"
+                className="mt-1 w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:brightness-110 active:scale-95 text-black font-black text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer"
               >
                 <span>استشر خبير العطور عبر واتساب</span>
                 <ChevronLeft className="h-4 w-4" />
@@ -141,7 +138,7 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
 
           {/* Main Navigation Links */}
           <div className="space-y-1.5">
-            <h5 className="text-xs font-bold text-brand-neutral-400 uppercase tracking-wider px-2">
+            <h5 className="text-xs font-bold text-amber-400 uppercase tracking-wider px-2 font-serif">
               الصفحات الرئيسية
             </h5>
             <nav className="space-y-1">
@@ -155,138 +152,133 @@ export function SideNavDrawer({ isOpen, onClose, user }: SideNavDrawerProps) {
                     className={cn(
                       "flex items-center justify-between p-3 rounded-xl text-sm font-bold transition-all active:scale-[0.98]",
                       isActive
-                        ? "bg-brand-green-50 text-brand-green-800 font-extrabold shadow-2xs"
-                        : "text-brand-neutral-700 hover:bg-brand-neutral-100 hover:text-brand-neutral-900"
+                        ? "bg-amber-400/15 text-amber-300 border border-amber-400/30 font-extrabold shadow-sm"
+                        : "text-slate-300 hover:bg-white/[0.05] hover:text-white"
                     )}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={cn("p-1.5 rounded-lg", isActive ? "bg-brand-green-100 text-brand-green-800" : "bg-brand-neutral-100 text-brand-neutral-500")}>
-                        <Icon className="h-4 w-4" />
-                      </div>
+                      <Icon className={cn("h-4 w-4", isActive ? "text-amber-400" : "text-slate-400")} />
                       <span>{item.label}</span>
                     </div>
-                    <ChevronLeft className="h-4 w-4 text-brand-neutral-400" />
+                    <ChevronLeft className="h-4 w-4 text-slate-500" />
                   </Link>
                 );
               })}
             </nav>
           </div>
 
-          {/* Product Categories Section */}
-          <div className="space-y-1.5">
+          {/* Perfume Categories */}
+          <div className="space-y-2">
             <div className="flex items-center justify-between px-2">
-              <h5 className="text-xs font-bold text-brand-neutral-400 uppercase tracking-wider">
-                أقسام العطور والعود
+              <h5 className="text-xs font-bold text-amber-400 uppercase tracking-wider font-serif">
+                أقسام العطور الملكية
               </h5>
-              <Link
-                href="/products"
-                className="text-xs font-bold text-brand-green-800 hover:underline active:scale-95 transition-all"
-              >
-                عرض الكل
+              <Link href="/products" className="text-[11px] text-amber-300 hover:underline">
+                الكل
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-1">
-              {CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.id}
-                  href={`/products?category=${cat.slug}`}
-                  className="flex items-center justify-between p-2.5 rounded-xl hover:bg-brand-neutral-100 text-brand-neutral-800 active:scale-[0.98] transition-all text-xs font-semibold cursor-pointer"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1 rounded-lg bg-brand-green-50 text-brand-green-800">
-                      <Sparkles className="h-3.5 w-3.5" />
+              {CATEGORIES.map((cat) => {
+                const icon =
+                  cat.slug === "pure-oud-oils" ? "🪵" :
+                  cat.slug === "oriental-perfumes" ? "👑" :
+                  cat.slug === "french-perfumes" ? "🌹" :
+                  cat.slug === "musk-and-amber" ? "🌸" :
+                  cat.slug === "bakhoor-and-incense" ? "💨" : "🎁";
+
+                return (
+                  <Link
+                    key={cat.id}
+                    href={`/products?category=${cat.slug}`}
+                    className="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/[0.04] transition-colors group"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-base group-hover:scale-110 transition-transform">{icon}</span>
+                      <span className="text-xs font-bold text-slate-300 group-hover:text-white">
+                        {cat.name}
+                      </span>
                     </div>
-                    <span>{cat.name}</span>
-                  </div>
-                  <ChevronLeft className="h-3.5 w-3.5 text-brand-neutral-400" />
-                </Link>
-              ))}
+                    <ChevronLeft className="h-3.5 w-3.5 text-slate-600 group-hover:text-amber-400 transition-colors" />
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
-          {/* Quick Contact Actions */}
-          <div className="space-y-2 pt-2 border-t border-brand-neutral-200">
-            <h5 className="text-xs font-bold text-brand-neutral-400 uppercase tracking-wider px-2">
-              التواصل السريع والشحن
+          {/* User Account Section */}
+          <div className="pt-4 border-t border-amber-400/20 space-y-2">
+            <h5 className="text-xs font-bold text-amber-400 uppercase tracking-wider px-2 font-serif">
+              الحساب والأمان
             </h5>
+            {user ? (
+              <div className="p-3 rounded-2xl bg-white/[0.04] border border-amber-400/20 space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-amber-400 to-amber-600 text-black flex items-center justify-center font-black text-sm shrink-0">
+                    {(user.name || user.email || "U").charAt(0).toUpperCase()}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-bold text-white truncate">{user.name || "العميل الكريم"}</p>
+                    <p className="text-[11px] text-slate-400 truncate">{user.email}</p>
+                  </div>
+                </div>
 
-            <a
-              href={`tel:${phone1}`}
-              className="flex items-center justify-center gap-1.5 p-2.5 rounded-xl bg-brand-neutral-100 hover:bg-brand-neutral-200 text-brand-neutral-900 text-xs font-bold active:scale-95 transition-all shadow-2xs"
-              dir="ltr"
-            >
-              <Phone className="h-3.5 w-3.5 text-brand-green-700" />
-              <span>{phone1}</span>
-            </a>
-
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full p-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white text-xs font-bold active:scale-95 transition-all shadow-2xs"
-            >
-              <MessageCircle className="h-4 w-4" />
-              <span>محادثة واتساب فورية مباشرة</span>
-            </a>
-
-            <div className="flex items-center gap-2 p-3 rounded-xl border border-brand-neutral-200 bg-white text-brand-neutral-800 text-xs font-bold">
-              <MapPin className="h-4 w-4 text-brand-gold-600 shrink-0" />
-              <div className="text-start">
-                <p className="font-bold text-brand-neutral-900">نطاق الشحن والتوصيل</p>
-                <p className="text-[11px] text-brand-neutral-500">شحن سريع مع المعاينة لجميع محافظات مصر</p>
+                <div className="flex items-center gap-2 pt-2 border-t border-white/10 text-xs">
+                  {user.role === "ADMIN" && (
+                    <Link
+                      href="/admin"
+                      className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-black text-center shadow-xs"
+                    >
+                      لوحة الإدارة
+                    </Link>
+                  )}
+                  <Link
+                    href="/account"
+                    className="flex-1 py-2 px-3 rounded-xl border border-amber-400/30 text-center font-bold text-white hover:bg-white/10"
+                  >
+                    سجل الطلبات
+                  </Link>
+                  <form action="/api/auth/logout" method="POST">
+                    <button
+                      type="submit"
+                      title="تسجيل الخروج"
+                      className="p-2 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-950/40"
+                    >
+                      <LogOut className="h-4 w-4" />
+                    </button>
+                  </form>
+                </div>
               </div>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl border border-amber-400/30 bg-white/[0.04] hover:bg-amber-400/10 text-amber-300 font-bold text-xs transition-colors"
+              >
+                <User className="h-4 w-4" />
+                <span>تسجيل الدخول / إنشاء حساب</span>
+              </Link>
+            )}
+          </div>
+
+          {/* Quick Contact Info */}
+          <div className="p-4 rounded-2xl bg-white/[0.02] border border-amber-400/15 space-y-2.5 text-xs text-slate-300">
+            <div className="flex items-center gap-2 text-amber-300 font-bold">
+              <ShieldCheck className="h-4 w-4 text-amber-400" />
+              <span>معاينة قبل الدفع • ضمان ثبات 72 ساعة</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4 text-amber-400" />
+              <span dir="ltr" className="font-mono">{phone1}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-amber-400" />
+              <span>شحن وتوصيل فوري لكافة محافظات مصر</span>
             </div>
           </div>
         </div>
 
-        {/* Drawer Footer: User Profile / Admin / Login */}
-        <div className="p-4 border-t border-brand-neutral-200 bg-brand-neutral-50 shrink-0">
-          {user ? (
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <div className="h-9 w-9 rounded-full bg-brand-green-700 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                  {(user.name || user.email || "U").charAt(0).toUpperCase()}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-xs font-bold text-brand-neutral-900 truncate">
-                    {user.email}
-                  </p>
-                  <p className="text-[11px] text-brand-green-700 font-semibold">
-                    {user.role === "ADMIN" ? "مدير النظام (Admin)" : "عميل مسجل"}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-1.5 shrink-0">
-                {user.role === "ADMIN" && (
-                  <Link
-                    href="/admin"
-                    className="p-2 rounded-xl bg-purple-900 hover:bg-purple-950 text-white transition-colors"
-                    title="لوحة الإدارة"
-                  >
-                    <ShieldCheck className="h-4 w-4 text-brand-gold-400" />
-                  </Link>
-                )}
-                <form action="/api/auth/logout" method="POST">
-                  <button
-                    type="submit"
-                    className="p-2 rounded-xl text-brand-neutral-500 hover:text-red-600 hover:bg-red-50 transition-colors"
-                    title="تسجيل الخروج"
-                  >
-                    <LogOut className="h-4 w-4" />
-                  </button>
-                </form>
-              </div>
-            </div>
-          ) : (
-            <Link
-              href="/login"
-              className="flex items-center justify-center gap-2 w-full p-2.5 rounded-xl border border-brand-neutral-300 bg-white hover:bg-brand-neutral-50 text-xs font-bold text-brand-neutral-800 transition-colors"
-            >
-              <User className="h-4 w-4 text-brand-neutral-600" />
-              <span>تسجيل الدخول عبر Google</span>
-            </Link>
-          )}
+        {/* Drawer Footer */}
+        <div className="p-4 border-t border-amber-400/20 bg-[#08090C] text-center text-[11px] text-slate-500 shrink-0">
+          متجر أمير ستور • دار العطور والعود الفاخر © {new Date().getFullYear()}
         </div>
       </aside>
     </div>

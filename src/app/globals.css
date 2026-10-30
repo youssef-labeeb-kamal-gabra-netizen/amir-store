@@ -3,28 +3,28 @@
 @tailwind utilities;
 
 :root {
-  /* OUD SHOP Exact Color Tokens */
-  --color-1: #2E3A24;
-  --color-2: #696969;
-  --color-3: #56CFE1;
-  --color-4: #DFDDD4;
-  --color-5: #DDDDDD;
-  --color-6: #EEEBE7;
-  --color-7: #FFFFFF;
+  /* Royal Obsidian Noir & Liquid Gold Palette Tokens */
+  --color-1: #D4AF37;
+  --color-2: #E2E8F0;
+  --color-3: #F5E296;
+  --color-4: #94A3B8;
+  --color-5: rgba(212, 175, 55, 0.2);
+  --color-6: #08090C;
+  --color-7: #F8F9FA;
 
-  /* OUD SHOP Shape Tokens */
-  --radius-sm: 3px;
+  /* Luxury Shape Tokens */
+  --radius-sm: 4px;
   --radius-md: 50px;
   --radius-lg: 80px;
   --radius-xl: 100%;
   --radius-full: 9999px;
 
-  /* OUD SHOP Elevation Tokens */
-  --shadow-sm: 1px 1px 3px 0px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0px 0px 6px 0px rgb(46, 58, 36);
+  /* Luxury Elevation Tokens */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
 
-  --background: var(--color-6);
-  --foreground: var(--color-1);
+  --background: #08090C;
+  --foreground: #F8F9FA;
 }
 
 html {
@@ -33,13 +33,15 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   max-width: 100vw;
+  background-color: #08090C;
+  color: #F8F9FA;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #08090C;
+  color: #F8F9FA;
   font-feature-settings: "rlig" 1, "calt" 1;
   min-height: 100vh;
   display: flex;
@@ -49,7 +51,7 @@ body {
   position: relative;
 }
 
-/* Tactile Active Feedback for Rural & Mobile Users */
+/* Tactile Active Feedback for Luxury Touch */
 .btn-touch {
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
@@ -58,34 +60,72 @@ body {
 }
 
 .card-touch {
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
 }
 .card-touch:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 .card-touch:active {
   transform: scale(0.98);
 }
 
-/* Ensure focus visibility for accessibility across all interactive elements */
+/* 3D Card Lift & Shine Sweep */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px -15px rgba(212, 175, 55, 0.3);
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+/* Interactive Hover Shine Sweep */
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.shine-sweep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+  z-index: 20;
+}
+.shine-sweep:hover::before {
+  left: 200%;
+}
+
+/* Ensure focus visibility with metallic gold ring */
 :focus-visible {
-  outline: 2px solid #56CFE1;
+  outline: 2px solid #D4AF37;
   outline-offset: 2px;
 }
 
-/* Scrollbar customization */
+/* Luxury Obsidian & Gold Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #EEEBE7;
+  background: #08090C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #DFDDD4;
+  background: #1A1F2C;
   border-radius: 9999px;
+  border: 2px solid #08090C;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #696969;
+  background: #D4AF37;
 }
 
 /* Luxury Typography & Metallic Foils */
@@ -97,12 +137,55 @@ body {
   font-family: var(--font-cinzel), "Playfair Display", Georgia, serif;
 }
 
+.liquid-gold-text {
+  background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .gold-foil-text {
-  background: linear-gradient(135deg, #ECC880 0%, #C5A059 50%, #8C6527 100%);
+  background: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #B8860B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-foil-border {
-  border-image: linear-gradient(135deg, #ECC880 0%, #C5A059 50%, #8C6527 100%) 1;
+  border-image: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #B8860B 100%) 1;
+}
+
+/* Glassmorphism Surfaces */
+.glass-obsidian {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.glass-obsidian-subtle {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Gold Glowing Aura Ring */
+.gold-aura-ring {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+@keyframes pulseGoldAura {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.65;
+  }
+}
+
+.animate-gold-aura {
+  animation: pulseGoldAura 4s ease-in-out infinite;
 }

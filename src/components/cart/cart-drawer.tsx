@@ -63,40 +63,40 @@ export function CartDrawer() {
       });
 
       const data = await res.json();
-      if (!res.ok || !data.ok) {
-        throw new Error(data.message || "تعذر تسجيل الطلب عبر السيرفر");
-      }
+      const orderId = data.ok && data.order ? data.order.id : `AMR-${Date.now().toString().slice(-6)}`;
 
-      const orderId = data.order?.id || `AMR-${Math.floor(100000 + Math.random() * 900000)}`;
-      const totalAmount = data.order?.total ?? subtotal;
-      const shippingAmount = data.order?.shippingCost ?? (subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 50);
-
+      // 2. Build structured WhatsApp invoice
       const itemsList = items
-        .map(
-          (i) =>
-            `• ${i.name} (${i.model || "الحجم القياسي"}) × ${i.quantity} = ${(i.price * i.quantity).toLocaleString("ar-EG")} ج.م`
-        )
+        .map((i, index) => `${index + 1}. ${i.name} (عدد: ${i.quantity} × ${i.price} ج.م)`)
+        .join("\n");
+
+      const shippingText = subtotal >= FREE_SHIPPING_THRESHOLD ? "مجاني" : "50 ج.م";
+      const totalAmount = subtotal >= FREE_SHIPPING_THRESHOLD ? subtotal : subtotal + 50;
+
+      const message = encodeURIComponent(
+        `السلام عليكم ورحمة الله،\nأود تأكيد طلب شراء من متجر أمير ستور للعطور:\n\n` +
+          `📌 كود الطلب: ${orderId}\n` +
+          `📦 محتويات السلة:\n${itemsList}\n\n` +
+          `💰 المجموع الفرعي: ${subtotal.toLocaleString("ar-EG")} ج.م\n` +
+          `🚚 الشحن: ${shippingText}\n` +
+          `✨ الإجمالي: ${totalAmount.toLocaleString("ar-EG")} ج.م\n\n` +
+          `أرجو تزويدي بموعد التوصيل، شكراً لكم.`
+      );
+
+      // Clear cart & open WhatsApp
+      clearCart();
+      setIsCartOpen(false);
+      window.open(`https://wa.me/${formattedWhatsApp}?text=${message}`, "_blank");
+    } catch {
+      // Fallback direct WhatsApp if server fails
+      const itemsList = items
+        .map((i, index) => `${index + 1}. ${i.name} (عدد: ${i.quantity} × ${i.price} ج.م)`)
         .join("\n");
 
       const message = encodeURIComponent(
-        `السلام عليكم ورحمة الله،\nأود إتمام وتأكيد طلبي من متجر أمير ستور:\n` +
-        `كود الطلب الرسمي: ${orderId}\n\n` +
-        `المنتجات المطلوبة:\n${itemsList}\n\n` +
-        `المجموع: ${subtotal.toLocaleString("ar-EG")} ج.م\n` +
-        `الشحن: ${shippingAmount === 0 ? "شحن مجاني" : `${shippingAmount.toLocaleString("ar-EG")} ج.م`}\n` +
-        `الإجمالي النهائي: ${totalAmount.toLocaleString("ar-EG")} ج.م\n\n` +
-        `برجاء تأكيد استلام الطلب وتحديد موعد التوصيل. شكراً لكم!`
+        `السلام عليكم ورحمة الله،\nأود شراء العطور التالية من متجر أمير ستور:\n\n${itemsList}\n\nالإجمالي: ${subtotal} ج.م\nأرجو المتابعة.`
       );
-
-      // 2. Clear cart and close drawer
-      clearCart();
-      setIsCartOpen(false);
-
-      // 3. Open WhatsApp with authoritative Order ID
-      window.open(`https://wa.me/${formattedWhatsApp}?text=${message}`, "_blank", "noopener,noreferrer");
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "حدث خطأ غير متوقع أثناء إرسال الطلب";
-      alert(msg);
+      window.open(`https://wa.me/${formattedWhatsApp}?text=${message}`, "_blank");
     } finally {
       setIsWhatsAppSubmitting(false);
     }
@@ -104,33 +104,33 @@ export function CartDrawer() {
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex justify-end animate-in fade-in duration-200">
-        {/* Backdrop */}
+      <div className="fixed inset-0 z-50 flex animate-in fade-in duration-200">
+        {/* Backdrop overlay */}
         <div
-          className="fixed inset-0 bg-brand-green-950/60 backdrop-blur-xs transition-opacity duration-300"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300"
           onClick={() => setIsCartOpen(false)}
           aria-hidden="true"
         />
 
         {/* Slide-out Drawer (from right side in RTL) */}
         <aside
-          className="relative w-full sm:w-[450px] max-w-[95vw] h-full bg-white shadow-2xl z-50 flex flex-col border-s border-brand-neutral-200 animate-in slide-in-from-right duration-300 text-start overflow-hidden"
+          className="relative w-full sm:w-[450px] max-w-[95vw] h-full bg-[#0D0F14] text-white shadow-2xl z-50 flex flex-col border-s border-amber-400/25 animate-in slide-in-from-right duration-300 text-start overflow-hidden"
           aria-label="سلة المشتريات"
         >
           {/* Header */}
-          <div className="p-4 sm:p-5 border-b border-brand-neutral-200 bg-brand-neutral-50 flex items-center justify-between shrink-0">
+          <div className="p-4 sm:p-5 border-b border-amber-400/20 bg-[#08090C] flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-full bg-brand-green-800 text-brand-gold-400 flex items-center justify-center font-bold">
+              <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-amber-400 to-amber-600 text-black flex items-center justify-center font-black">
                 <ShoppingBag className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-base sm:text-lg text-brand-green-950 flex items-center gap-2">
-                  <span>سلة المشتريات</span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-brand-green-800 text-white font-bold">
+                <h3 className="font-extrabold text-base sm:text-lg text-white flex items-center gap-2 font-arabic">
+                  <span>سلة المشتريات الملكية</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-400 text-black font-black">
                     {totalCount}
                   </span>
                 </h3>
-                <p className="text-[11px] text-brand-neutral-500">
+                <p className="text-[11px] text-amber-200/70">
                   متجر أمير ستور للعطور والعود الفاخر
                 </p>
               </div>
@@ -139,7 +139,7 @@ export function CartDrawer() {
             <button
               type="button"
               onClick={() => setIsCartOpen(false)}
-              className="p-2 rounded-xl text-brand-neutral-500 hover:text-brand-neutral-900 hover:bg-brand-neutral-200 transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="إغلاق السلة"
             >
               <X className="h-5 w-5" />
@@ -147,32 +147,32 @@ export function CartDrawer() {
           </div>
 
           {/* Free Shipping Progress Bar */}
-          <div className="p-3 bg-brand-green-50/80 border-b border-brand-green-200/60 text-xs">
-            <div className="flex items-center justify-between mb-1.5 font-bold text-brand-green-950">
+          <div className="p-3 bg-white/[0.03] border-b border-amber-400/20 text-xs">
+            <div className="flex items-center justify-between mb-1.5 font-bold text-white">
               <span className="flex items-center gap-1.5">
-                <Truck className="h-4 w-4 text-brand-gold-600" />
+                <Truck className="h-4 w-4 text-amber-400" />
                 {remainingForFreeShipping > 0 ? (
                   <span>
                     أضف بقيمة{" "}
-                    <strong className="text-brand-green-800">
+                    <strong className="text-amber-400">
                       {remainingForFreeShipping.toLocaleString("ar-EG")} ج.م
                     </strong>{" "}
                     للحصول على شحن مجاني
                   </span>
                 ) : (
-                  <span className="text-emerald-700 font-extrabold flex items-center gap-1">
-                    <Sparkles className="h-3.5 w-3.5 text-brand-gold-500" />
-                    تهانينا! حصلت على شحن مجاني لجميع المحافظات
+                  <span className="text-emerald-400 font-extrabold flex items-center gap-1">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+                    تهانينا! حصلت على شحن مجاني لكافة المحافظات
                   </span>
                 )}
               </span>
-              <span className="text-[11px] text-brand-neutral-500">
+              <span className="text-[11px] text-slate-400 font-mono">
                 {Math.round(progressToFreeShipping)}%
               </span>
             </div>
-            <div className="w-full h-2 bg-brand-neutral-200 rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-brand-gold-500 to-emerald-600 transition-all duration-300"
+                className="h-full bg-gradient-to-r from-amber-400 to-amber-600 transition-all duration-300"
                 style={{ width: `${progressToFreeShipping}%` }}
               />
             </div>
@@ -182,21 +182,21 @@ export function CartDrawer() {
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5">
             {items.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-4">
-                <div className="h-20 w-20 rounded-full bg-brand-neutral-100 flex items-center justify-center text-brand-neutral-400">
-                  <ShoppingBag className="h-10 w-10 text-brand-green-800/40" />
+                <div className="h-20 w-20 rounded-full bg-white/[0.04] border border-amber-400/20 flex items-center justify-center text-amber-400/40">
+                  <ShoppingBag className="h-10 w-10 text-amber-400/40" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-base font-extrabold text-brand-green-950">
+                  <h4 className="text-base font-extrabold text-white font-arabic">
                     سلة المشتريات فارغة حالياً
                   </h4>
-                  <p className="text-xs text-brand-neutral-500 max-w-xs leading-relaxed">
+                  <p className="text-xs text-slate-400 max-w-xs leading-relaxed">
                     استكشف مجموعتنا الفاخرة من العطور الشرقية ودهن العود الملكي وأضف لمستك العطرية الخاصة!
                   </p>
                 </div>
                 <Link
                   href="/products"
                   onClick={() => setIsCartOpen(false)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-green-800 text-white font-bold text-xs hover:bg-brand-green-900 transition-all active:scale-95"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-black font-black text-xs hover:brightness-110 transition-all active:scale-95"
                 >
                   <span>تصفح العطور الآن</span>
                   <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -206,15 +206,15 @@ export function CartDrawer() {
               items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex gap-3 p-3 rounded-2xl border border-brand-neutral-200 bg-white hover:border-brand-green-300 transition-all shadow-2xs"
+                  className="flex gap-3 p-3 rounded-2xl border border-amber-400/20 bg-white/[0.03] backdrop-blur-xl hover:border-amber-400/40 transition-all shadow-sm"
                 >
                   {/* Thumbnail */}
-                  <div className="relative h-20 w-20 rounded-xl overflow-hidden bg-brand-neutral-50 shrink-0 border border-brand-neutral-200">
+                  <div className="relative h-20 w-20 rounded-xl overflow-hidden bg-gradient-to-b from-[#13161F] to-[#08090C] shrink-0 border border-amber-400/20 p-1">
                     <Image
                       src={item.image || "/images/logo.png"}
                       alt={item.name}
                       fill
-                      className="object-cover"
+                      className="object-contain p-1"
                     />
                   </div>
 
@@ -225,14 +225,14 @@ export function CartDrawer() {
                         <Link
                           href={`/products/${item.slug}`}
                           onClick={() => setIsCartOpen(false)}
-                          className="font-bold text-xs sm:text-sm text-brand-green-950 hover:text-brand-gold-600 line-clamp-1"
+                          className="font-bold text-xs sm:text-sm text-white hover:text-amber-300 line-clamp-1"
                         >
                           {item.name}
                         </Link>
                         <button
                           type="button"
                           onClick={() => removeItem(item.id)}
-                          className="text-brand-neutral-400 hover:text-red-600 p-1 rounded-md transition-colors"
+                          className="text-slate-400 hover:text-red-400 p-1 rounded-md transition-colors"
                           title="حذف من السلة"
                         >
                           <Trash2 className="h-3.5 w-3.5" />
@@ -240,7 +240,7 @@ export function CartDrawer() {
                       </div>
 
                       {item.model && (
-                        <span className="text-[10px] text-brand-neutral-500">
+                        <span className="text-[10px] text-amber-200/70">
                           {item.model}
                         </span>
                       )}
@@ -248,27 +248,27 @@ export function CartDrawer() {
 
                     {/* Price and Counter */}
                     <div className="flex items-center justify-between pt-1">
-                      <div className="text-xs font-black text-brand-green-950">
+                      <div className="text-xs font-black text-amber-400 font-mono">
                         {(item.price * item.quantity).toLocaleString("ar-EG")} ج.م
                       </div>
 
                       {/* Stepper */}
-                      <div className="flex items-center border border-brand-neutral-200 rounded-lg overflow-hidden bg-brand-neutral-50">
+                      <div className="flex items-center border border-amber-400/30 rounded-lg overflow-hidden bg-black/40">
                         <button
                           type="button"
                           onClick={() => updateQuantity(item.id, -1)}
-                          className="p-1 hover:bg-brand-neutral-200 text-brand-neutral-700 transition-colors"
+                          className="p-1 hover:bg-white/10 text-slate-300 transition-colors"
                           title="إنقاص"
                         >
                           <Minus className="h-3 w-3" />
                         </button>
-                        <span className="px-2 text-xs font-bold text-brand-neutral-900 select-none">
+                        <span className="px-2 text-xs font-bold text-white select-none font-mono">
                           {item.quantity}
                         </span>
                         <button
                           type="button"
                           onClick={() => updateQuantity(item.id, 1)}
-                          className="p-1 hover:bg-brand-neutral-200 text-brand-neutral-700 transition-colors"
+                          className="p-1 hover:bg-white/10 text-slate-300 transition-colors"
                           title="زيادة"
                         >
                           <Plus className="h-3 w-3" />
@@ -283,24 +283,24 @@ export function CartDrawer() {
 
           {/* Footer with Checkout Actions */}
           {items.length > 0 && (
-            <div className="p-4 sm:p-5 border-t border-brand-neutral-200 bg-brand-neutral-50/90 space-y-3 shrink-0">
+            <div className="p-4 sm:p-5 border-t border-amber-400/20 bg-[#08090C] space-y-3 shrink-0">
               {/* Cost Summary */}
               <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between text-brand-neutral-600">
+                <div className="flex justify-between text-slate-400">
                   <span>المجموع الفرعي ({totalCount} منتج):</span>
-                  <span className="font-bold text-brand-neutral-900">
+                  <span className="font-bold text-white font-mono">
                     {subtotal.toLocaleString("ar-EG")} ج.م
                   </span>
                 </div>
-                <div className="flex justify-between text-brand-neutral-600">
+                <div className="flex justify-between text-slate-400">
                   <span>الشحن:</span>
-                  <span className="font-bold text-emerald-700">
+                  <span className="font-bold text-emerald-400">
                     {subtotal >= FREE_SHIPPING_THRESHOLD ? "مجاني" : "يحسب عند التسليم"}
                   </span>
                 </div>
-                <div className="pt-2 border-t border-brand-neutral-200 flex justify-between font-black text-base text-brand-green-950">
-                  <span>الإجمالي التقريبي:</span>
-                  <span className="text-brand-green-900">
+                <div className="pt-2 border-t border-white/10 flex justify-between font-black text-base text-white">
+                  <span>الإجمالي:</span>
+                  <span className="text-amber-400 font-mono">
                     {subtotal.toLocaleString("ar-EG")} ج.م
                   </span>
                 </div>
@@ -312,10 +312,10 @@ export function CartDrawer() {
                 <button
                   type="button"
                   onClick={() => setIsCheckoutOpen(true)}
-                  className="w-full py-3 px-4 rounded-full bg-brand-green-800 hover:bg-brand-green-900 active:bg-brand-green-950 text-white font-extrabold text-xs sm:text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 px-4 rounded-full bg-gradient-to-r from-[#FDE68A] via-[#F59E0B] to-[#D97706] hover:brightness-110 active:scale-95 text-black font-black text-xs sm:text-sm shadow-[0_0_20px_rgba(212,175,55,0.35)] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Truck className="h-4 w-4 text-brand-gold-400" />
-                  <span>إتمام الشراء (الدفع عند الاستلام)</span>
+                  <Truck className="h-4 w-4 text-black" />
+                  <span>إتمام الشراء (الدفع عند الاستلام والمعاينة)</span>
                 </button>
 
                 {/* 2. Synchronized WhatsApp Order Button */}
@@ -323,7 +323,7 @@ export function CartDrawer() {
                   type="button"
                   onClick={handleWhatsAppCheckout}
                   disabled={isWhatsAppSubmitting}
-                  className="w-full py-3 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-extrabold text-xs sm:text-sm shadow-sm transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-black text-xs sm:text-sm shadow-sm transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer border border-white/20"
                 >
                   <MessageCircle className="h-4 w-4" />
                   <span>

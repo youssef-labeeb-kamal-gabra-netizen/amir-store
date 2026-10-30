@@ -170,27 +170,27 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-green-950/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-brand-neutral-200 overflow-hidden text-start">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg bg-[#0D0F14] text-white rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-amber-400/30 overflow-hidden text-start">
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-brand-neutral-200 bg-brand-neutral-50/80">
+        <div className="flex items-center justify-between p-5 border-b border-amber-400/20 bg-[#08090C]">
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-full bg-brand-green-800 text-brand-gold-400 flex items-center justify-center font-bold">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-amber-400 to-amber-600 text-black flex items-center justify-center font-black">
               <Truck className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-extrabold text-base sm:text-lg text-brand-green-950">
+              <h3 className="font-extrabold text-base sm:text-lg text-white font-arabic">
                 {orderSuccess ? "تم استلام طلبك بنجاح!" : "إتمام الشراء (الدفع عند الاستلام)"}
               </h3>
-              <p className="text-xs text-brand-neutral-500">
-                شحن لجميع محافظات مصر مع إمكانية المعاينة قبل الدفع
+              <p className="text-xs text-slate-400">
+                شحن لكافة محافظات مصر مع إمكانية المعاينة قبل الدفع
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-xl text-brand-neutral-400 hover:text-brand-neutral-800 hover:bg-brand-neutral-100 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
@@ -200,34 +200,34 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
         <div className="p-6 max-h-[80vh] overflow-y-auto">
           {orderSuccess ? (
             <div className="text-center space-y-5 py-4">
-              <div className="inline-flex p-3 rounded-full bg-emerald-100 text-emerald-700">
+              <div className="inline-flex p-3 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300">
                 <CheckCircle2 className="h-14 w-14" />
               </div>
               <div>
-                <h4 className="text-xl font-extrabold text-brand-green-950">
+                <h4 className="text-xl font-extrabold text-white font-arabic">
                   شكراً لك يا {orderSuccess.name}!
                 </h4>
-                <p className="text-sm text-brand-neutral-600 mt-1">
-                  رقم طلبك هو: <strong className="text-brand-green-800 text-base">{orderSuccess.orderId}</strong>
+                <p className="text-sm text-slate-300 mt-1">
+                  رقم طلبك هو: <strong className="text-amber-400 font-mono text-base">{orderSuccess.orderId}</strong>
                 </p>
-                <p className="text-xs text-brand-neutral-500 mt-2">
+                <p className="text-xs text-slate-400 mt-2">
                   سيتم تجهيز طلبك بعناية مع تغليف هدايا ملكي مجاني، وسيتواصل معك مندوب الشحن قبل التسليم.
                 </p>
               </div>
 
               {/* Order quick summary box */}
-              <div className="rounded-2xl bg-brand-neutral-50 border border-brand-neutral-200 p-4 text-start text-xs space-y-2">
-                <div className="flex justify-between font-bold text-brand-green-950">
+              <div className="rounded-2xl bg-white/[0.03] border border-amber-400/20 p-4 text-start text-xs space-y-2">
+                <div className="flex justify-between font-bold text-white">
                   <span>المحافظة والعنوان:</span>
                   <span>{orderSuccess.governorate} - {orderSuccess.address}</span>
                 </div>
-                <div className="flex justify-between font-bold text-brand-green-950">
+                <div className="flex justify-between font-bold text-white">
                   <span>المبلغ المطلوب عند الاستلام:</span>
-                  <span className="text-brand-gold-600 text-sm">{orderSuccess.total.toLocaleString("ar-EG")} ج.م</span>
+                  <span className="text-amber-400 font-mono text-sm">{orderSuccess.total.toLocaleString("ar-EG")} ج.م</span>
                 </div>
                 {orderSuccess.email && (
-                  <div className="flex items-center gap-1.5 pt-1 text-[11px] text-brand-green-800 font-semibold border-t border-brand-neutral-200/70">
-                    <Mail className="h-3.5 w-3.5 text-brand-gold-600" />
+                  <div className="flex items-center gap-1.5 pt-1 text-[11px] text-amber-300 font-semibold border-t border-white/10">
+                    <Mail className="h-3.5 w-3.5 text-amber-400" />
                     <span>تم إرسال نسخة من الفاتورة إلى: {orderSuccess.email}</span>
                   </div>
                 )}
@@ -239,7 +239,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                   href={getWhatsAppConfirmationUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-bold py-3.5 px-6 shadow-md transition-all active:scale-95 text-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] text-white font-black py-3.5 px-6 shadow-md transition-all active:scale-95 text-sm border border-white/20"
                 >
                   <MessageCircle className="h-5 w-5" />
                   <span>تأكيد الطلب عبر واتساب ومتابعة الشحن</span>
@@ -248,7 +248,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                 <button
                   type="button"
                   onClick={onClose}
-                  className="w-full inline-flex items-center justify-center rounded-full border border-brand-neutral-300 hover:bg-brand-neutral-50 text-brand-neutral-800 font-bold py-3 text-xs"
+                  className="w-full inline-flex items-center justify-center rounded-full border border-amber-400/30 hover:bg-white/10 text-slate-300 font-bold py-3 text-xs"
                 >
                   متابعة التسوق في المتجر
                 </button>
@@ -257,20 +257,20 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Order mini summary with transparent pricing */}
-              <div className="p-3.5 rounded-2xl bg-brand-green-50/70 border border-brand-green-200/80 space-y-1.5 text-xs text-brand-green-950">
+              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-amber-400/25 space-y-1.5 text-xs text-white">
                 <div className="flex items-center justify-between font-bold">
                   <span>عدد المنتجات ({items.reduce((s, i) => s + i.quantity, 0)}):</span>
-                  <span>{subtotal.toLocaleString("ar-EG")} ج.م</span>
+                  <span className="font-mono text-amber-300">{subtotal.toLocaleString("ar-EG")} ج.م</span>
                 </div>
-                <div className="flex items-center justify-between font-medium text-brand-neutral-700">
+                <div className="flex items-center justify-between font-medium text-slate-400">
                   <span>رسوم الشحن والتوصيل:</span>
-                  <span className={shippingCost === 0 ? "text-emerald-700 font-bold" : "font-bold"}>
+                  <span className={shippingCost === 0 ? "text-emerald-400 font-bold" : "font-bold font-mono text-white"}>
                     {shippingCost === 0 ? "مجاني (للطلبات 1000+ ج.م)" : "50 ج.م"}
                   </span>
                 </div>
-                <div className="pt-2 border-t border-brand-green-200 flex items-center justify-between font-black text-xs sm:text-sm text-brand-green-950">
+                <div className="pt-2 border-t border-white/10 flex items-center justify-between font-black text-xs sm:text-sm text-white">
                   <span>المبلغ الإجمالي عند الاستلام:</span>
-                  <span className="text-sm sm:text-base text-brand-green-900 font-black">
+                  <span className="text-sm sm:text-base text-amber-400 font-black font-mono">
                     {finalTotal.toLocaleString("ar-EG")} ج.م
                   </span>
                 </div>
@@ -278,29 +278,29 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
 
               {/* Full Name */}
               <div>
-                <label className="block text-xs font-bold text-brand-green-950 mb-1">
-                  الاسم بالكامل <span className="text-red-500">*</span>
+                <label className="block text-xs font-bold text-slate-300 mb-1">
+                  الاسم بالكامل <span className="text-amber-400">*</span>
                 </label>
                 <div className="relative">
-                  <User className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-neutral-400" />
+                  <User className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-amber-400/60" />
                   <input
                     type="text"
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="مثال: محمد أحمد"
-                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white"
+                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-amber-400/30 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400/40 bg-white/[0.04] text-white"
                   />
                 </div>
               </div>
 
               {/* Phone Number */}
               <div>
-                <label className="block text-xs font-bold text-brand-green-950 mb-1">
-                  رقم الهاتف (للتواصل والتسليم) <span className="text-red-500">*</span>
+                <label className="block text-xs font-bold text-slate-300 mb-1">
+                  رقم الهاتف (للتواصل والتسليم) <span className="text-amber-400">*</span>
                 </label>
                 <div className="relative">
-                  <Phone className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-neutral-400" />
+                  <Phone className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-amber-400/60" />
                   <input
                     type="tel"
                     required
@@ -308,43 +308,43 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="010XXXXXXXX / 012XXXXXXXX"
-                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white text-start"
+                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-amber-400/30 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400/40 bg-white/[0.04] text-white text-start"
                   />
                 </div>
               </div>
 
               {/* Email Address (Optional for Invoice) */}
               <div>
-                <label className="block text-xs font-bold text-brand-green-950 mb-1">
+                <label className="block text-xs font-bold text-slate-300 mb-1">
                   البريد الإلكتروني (اختياري — لاستلام فاتورة الشراء)
                 </label>
                 <div className="relative">
-                  <Mail className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-neutral-400" />
+                  <Mail className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-amber-400/60" />
                   <input
                     type="email"
                     dir="ltr"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="example@domain.com"
-                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white text-start"
+                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-amber-400/30 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400/40 bg-white/[0.04] text-white text-start"
                   />
                 </div>
               </div>
 
               {/* Governorate Selection */}
               <div>
-                <label className="block text-xs font-bold text-brand-green-950 mb-1">
-                  المحافظة <span className="text-red-500">*</span>
+                <label className="block text-xs font-bold text-slate-300 mb-1">
+                  المحافظة <span className="text-amber-400">*</span>
                 </label>
                 <div className="relative">
-                  <MapPin className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-neutral-400" />
+                  <MapPin className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-amber-400/60" />
                   <select
                     value={governorate}
                     onChange={(e) => setGovernorate(e.target.value)}
-                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white"
+                    className="w-full ps-9 pe-3 py-2.5 rounded-xl border border-amber-400/30 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400/40 bg-[#13161F] text-white"
                   >
                     {EGYPT_GOVERNORATES.map((gov) => (
-                      <option key={gov} value={gov}>
+                      <option key={gov} value={gov} className="bg-[#13161F] text-white">
                         {gov}
                       </option>
                     ))}
@@ -354,8 +354,8 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
 
               {/* Detailed Address */}
               <div>
-                <label className="block text-xs font-bold text-brand-green-950 mb-1">
-                  العنوان بالتفصيل (المدينة - الحي - الشارع - رقم العقار) <span className="text-red-500">*</span>
+                <label className="block text-xs font-bold text-slate-300 mb-1">
+                  العنوان بالتفصيل (المدينة - الحي - الشارع - رقم العقار) <span className="text-amber-400">*</span>
                 </label>
                 <textarea
                   required
@@ -363,36 +363,36 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="مثال: المعادي - شارع النصر - برج الياسمين الدور الرابع"
-                  className="w-full p-2.5 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white resize-none"
+                  className="w-full p-2.5 rounded-xl border border-amber-400/30 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400/40 bg-white/[0.04] text-white resize-none"
                 />
               </div>
 
               {/* Notes */}
               <div>
-                <label className="block text-xs font-bold text-brand-green-950 mb-1">
+                <label className="block text-xs font-bold text-slate-300 mb-1">
                   ملاحظات إضافية أو كتابة إهداء (اختياري)
                 </label>
                 <div className="relative">
-                  <FileText className="absolute start-3 top-3 h-4 w-4 text-brand-neutral-400" />
+                  <FileText className="absolute start-3 top-3 h-4 w-4 text-amber-400/60" />
                   <input
                     type="text"
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="مثال: برجاء وضع كارت إهداء باسم (سارة)"
-                    className="w-full ps-9 pe-3 py-2 rounded-xl border border-brand-neutral-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-green-700 bg-white"
+                    className="w-full ps-9 pe-3 py-2 rounded-xl border border-amber-400/30 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400/40 bg-white/[0.04] text-white"
                   />
                 </div>
               </div>
 
               {/* Trust Indicators */}
-              <div className="pt-2 flex items-center justify-between text-[11px] text-brand-neutral-600 bg-brand-neutral-50 p-2.5 rounded-xl border border-brand-neutral-200">
+              <div className="pt-2 flex items-center justify-between text-[11px] text-slate-300 bg-white/[0.02] p-2.5 rounded-xl border border-amber-400/20">
                 <span className="flex items-center gap-1">
-                  <ShieldCheck className="h-3.5 w-3.5 text-brand-gold-600" />
+                  <ShieldCheck className="h-3.5 w-3.5 text-amber-400" />
                   <span>معاينة العطر قبل الاستلام</span>
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <Truck className="h-3.5 w-3.5 text-brand-green-800" />
+                  <Truck className="h-3.5 w-3.5 text-amber-400" />
                   <span>دفع نقدي عند الاستلام</span>
                 </span>
               </div>
@@ -401,7 +401,7 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full mt-2 py-3.5 rounded-full bg-brand-green-800 hover:bg-brand-green-900 active:bg-brand-green-950 text-white font-extrabold text-sm shadow-md transition-all active:scale-95 disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                className="w-full mt-2 py-3.5 rounded-full bg-gradient-to-r from-[#FDE68A] via-[#F59E0B] to-[#D97706] hover:brightness-110 active:scale-95 text-black font-black text-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <span>جاري تسجيل الطلب...</span>

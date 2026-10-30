@@ -15,24 +15,29 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
 
   return (
     <div className="space-y-4">
-      {/* Main Image Display */}
-      <div className="relative aspect-[4/3] w-full rounded-3xl border border-brand-neutral-200 bg-brand-neutral-900/5 flex items-center justify-center overflow-hidden shadow-md">
+      {/* Main Image Display / Flacon Pedestal */}
+      <div className="relative aspect-[4/3] w-full rounded-3xl border border-amber-400/25 bg-gradient-to-b from-[#13161F] to-[#08090C] flex items-center justify-center overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] p-6">
         {images && images[selectedIdx] ? (
-          <Image
-            src={images[selectedIdx]}
-            alt={productName}
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={images[selectedIdx]}
+              alt={productName}
+              fill
+              className="object-contain drop-shadow-[0_10px_30px_rgba(212,175,55,0.35)]"
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
         ) : (
-          <div className="flex flex-col items-center justify-center p-8 text-center text-brand-neutral-400">
-            <Sparkles className="h-20 w-20 text-amber-500/50 mb-3" />
-            <span className="text-sm font-bold text-brand-neutral-700">{productName}</span>
-            <span className="text-xs text-brand-neutral-400 mt-1">صورة توضيحية لزجاجة العطر</span>
+          <div className="flex flex-col items-center justify-center p-8 text-center text-slate-400">
+            <Sparkles className="h-20 w-20 text-amber-400/60 mb-3" />
+            <span className="text-sm font-bold text-white">{productName}</span>
+            <span className="text-xs text-amber-200/60 mt-1">صورة توضيحية لقارورة العطر</span>
           </div>
         )}
+
+        {/* Ambient Pedestal Light */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-amber-400/10 to-transparent pointer-events-none" />
       </div>
 
       {/* Thumbnails if multiple images exist */}
@@ -45,13 +50,13 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
               aria-label={`عرض الصورة رقم ${idx + 1}`}
               onClick={() => setSelectedIdx(idx)}
               className={cn(
-                "relative h-20 w-20 rounded-2xl border-2 bg-brand-neutral-100 flex items-center justify-center shrink-0 transition-all overflow-hidden cursor-pointer active:scale-95",
+                "relative h-20 w-20 rounded-2xl border-2 bg-[#13161F] flex items-center justify-center shrink-0 transition-all overflow-hidden cursor-pointer active:scale-95 p-1",
                 selectedIdx === idx
-                  ? "border-brand-green-600 ring-2 ring-brand-green-200 shadow-sm"
-                  : "border-brand-neutral-200 hover:border-brand-neutral-400"
+                  ? "border-amber-400 ring-2 ring-amber-400/30 shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                  : "border-amber-400/20 hover:border-amber-400/50"
               )}
             >
-              <Image src={img} alt="" fill className="object-cover" sizes="80px" />
+              <Image src={img} alt="" fill className="object-contain p-1" sizes="80px" />
             </button>
           ))}
         </div>

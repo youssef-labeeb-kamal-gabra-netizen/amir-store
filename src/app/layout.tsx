@@ -36,7 +36,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0c3b2e",
+  themeColor: "#08090C",
 };
 
 export const metadata: Metadata = constructMetadata();
@@ -51,7 +51,7 @@ export default async function RootLayout({
 
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${amiri.variable} ${cinzel.variable} overflow-x-clip`}>
-      <body className="font-sans antialiased bg-brand-neutral-50 text-brand-neutral-900 flex flex-col min-h-screen overflow-x-clip">
+      <body className="font-sans antialiased bg-[#08090C] text-[#F8F9FA] flex flex-col min-h-screen overflow-x-clip selection:bg-amber-400 selection:text-black">
         <CartProvider>
           <Header user={session} settings={settings} />
           <main className="flex-1 w-full pb-20 md:pb-0">{children}</main>

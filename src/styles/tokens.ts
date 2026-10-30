@@ -1,58 +1,58 @@
 /**
- * Centralized Design System Tokens for Amir Store (Strict OUD SHOP Specification)
- * Matches https://oud-shop.com design tokens 100%.
+ * Centralized Design System Tokens for Amir Store
+ * Royal Obsidian Noir & Liquid Gold Luxury Specification
  */
 
 export const tokens = {
-  // Raw OUD SHOP Tokens
+  // Raw Royal Obsidian Noir & Liquid Gold Tokens
   raw: {
-    color1: "#2E3A24", // Role: Border
-    color2: "#696969", // Role: Text Primary
-    color3: "#56CFE1", // Role: Accent
-    color4: "#DFDDD4", // Role: Text Light
-    color5: "#DDDDDD", // Role: Border
-    color6: "#EEEBE7", // Role: Surface
-    color7: "#FFFFFF", // Role: Text Light
+    color1: "#D4AF37", // Role: Royal Gold Primary
+    color2: "#E2E8F0", // Role: Platinum Text Primary
+    color3: "#F5E296", // Role: Champagne Accent
+    color4: "#94A3B8", // Role: Muted Text
+    color5: "rgba(212, 175, 55, 0.2)", // Role: Gold Border
+    color6: "#08090C", // Role: Deep Obsidian Base
+    color7: "#F8F9FA", // Role: Crisp Ivory
   },
 
   // Semantic Mappings
   colors: {
     primary: {
-      default: "#2E3A24", // color-1
-      hover: "#242e1d",
-      subtle: "#EEEBE7", // color-6
-      border: "#2E3A24", // color-1
+      default: "#D4AF37", // Metallic Champagne Gold
+      hover: "#F5E296",
+      subtle: "rgba(212, 175, 55, 0.12)",
+      border: "rgba(212, 175, 55, 0.3)",
     },
     accent: {
-      default: "#56CFE1", // color-3
-      hover: "#3eb8cb",
-      subtle: "#f0fcfe",
-      border: "#56CFE1",
+      default: "#F5E296",
+      hover: "#FAF5E8",
+      subtle: "rgba(245, 226, 150, 0.15)",
+      border: "#F5E296",
     },
     surface: {
-      canvas: "#EEEBE7", // color-6
-      card: "#FFFFFF",   // color-7
-      muted: "#DFDDD4",  // color-4
-      elevated: "#FFFFFF",
+      canvas: "#08090C", // Deep Obsidian Onyx
+      card: "#13161F",   // Obsidian Glass
+      muted: "#0D0F14",  // Dark Slate
+      elevated: "#1A1F2C",
     },
     text: {
-      primary: "#696969", // color-2
-      heading: "#2E3A24", // color-1
-      secondary: "#696969",
-      light: "#DFDDD4",   // color-4
-      inverted: "#FFFFFF",// color-7
+      primary: "#F8F9FA", // Crisp Ivory
+      heading: "#F8F9FA",
+      secondary: "#E2E8F0", // Platinum
+      light: "#94A3B8",
+      inverted: "#08090C",
     },
     border: {
-      subtle: "#DDDDDD", // color-5
-      default: "#DFDDD4",// color-4
-      dark: "#2E3A24",   // color-1
-      focus: "#56CFE1",  // color-3
+      subtle: "rgba(255, 255, 255, 0.08)",
+      default: "rgba(212, 175, 55, 0.2)",
+      dark: "rgba(212, 175, 55, 0.4)",
+      focus: "#D4AF37",
     },
     status: {
-      success: "#2E3A24",
-      warning: "#d97706",
-      error: "#dc2626",
-      info: "#56CFE1",
+      success: "#10b981",
+      warning: "#f59e0b",
+      error: "#ef4444",
+      info: "#D4AF37",
     },
   },
 
@@ -78,7 +78,7 @@ export const tokens = {
 
   // Shapes & Border Radius
   radius: {
-    sm: "rounded-[3px]",
+    sm: "rounded-[4px]",
     md: "rounded-[50px]",
     lg: "rounded-[80px]",
     xl: "rounded-full",
@@ -87,8 +87,10 @@ export const tokens = {
 
   // Elevation
   shadows: {
-    sm: "shadow-[1px_1px_3px_0px_rgba(0,0,0,0.3)]",
-    md: "shadow-[0px_0px_6px_0px_rgb(46,58,36)]",
+    sm: "shadow-[0_2px_8px_rgba(0,0,0,0.5)]",
+    md: "shadow-[0_8px_32px_0_rgba(0,0,0,0.6)]",
+    goldSm: "shadow-[0_0_15px_rgba(212,175,55,0.2)]",
+    goldMd: "shadow-[0_0_30px_rgba(212,175,55,0.35)]",
   },
 
   // Motion
@@ -117,6 +119,7 @@ export const tokens = {
       medium: 500,
       semibold: 600,
       bold: 700,
+      black: 900,
     },
   },
 

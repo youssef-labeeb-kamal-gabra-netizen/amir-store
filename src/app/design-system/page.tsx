@@ -4,134 +4,116 @@ import { constructMetadata } from "@/lib/seo";
 import { Sparkles, ArrowLeft, Heart } from "lucide-react";
 
 export const metadata = constructMetadata({
-  title: "دليل نظام التصميم OUD SHOP Design System | أمير ستور",
-  description: "العرض التفاعلي الشامل لتوكنز الألوان، المقاسات، والظلال لنظام OUD SHOP المعتمد لمتجر أمير ستور.",
+  title: "دليل نظام التصميم الملكي | أمير ستور",
+  description: "العرض التفاعلي الشامل لتوكنز الألوان، المقاسات، والظلال لنظام Royal Obsidian Noir & Liquid Gold المعتمد لمتجر أمير ستور.",
   canonicalUrl: "/design-system",
 });
 
 const COLOR_TOKENS = [
   {
-    token: "color-6",
-    name: "Surface",
-    hex: "#EEEBE7",
-    role: "الخلفية العامة والأسطح الأساسية للمتجر (Canvas & Surface)",
-    textColor: "#2E3A24",
-    border: "#DDDDDD",
+    token: "obsidian-950",
+    name: "Deep Obsidian Noir",
+    hex: "#08090C",
+    role: "الخلفية العامة الفاخرة للواجهة (Onyx Black Canvas)",
+    textColor: "#F8F9FA",
+    border: "rgba(212, 175, 55, 0.3)",
   },
   {
-    token: "color-1",
-    name: "Border / Dark Olive",
-    hex: "#2E3A24",
-    role: "العناوين الرئيسية، هوية البراند، والحدود الداكنة (Brand Primary)",
-    textColor: "#FFFFFF",
-    border: "#2E3A24",
+    token: "obsidian-900",
+    name: "Obsidian Surface Dark",
+    hex: "#0D0F14",
+    role: "الأسطح الثانوية والأشرطة العلوية (Surface Dark)",
+    textColor: "#F8F9FA",
+    border: "rgba(212, 175, 55, 0.25)",
   },
   {
-    token: "color-3",
-    name: "Accent (Cyan)",
-    hex: "#56CFE1",
-    role: "الأزرار التفاعلية الحيوية وشارات التمييز (Interactive Accent)",
-    textColor: "#12190e",
-    border: "#56CFE1",
+    token: "obsidian-800",
+    name: "Obsidian Card Glass",
+    hex: "#13161F",
+    role: "بطاقات العطور الزجاجية والأسطح المرفوعة (Glassmorphism)",
+    textColor: "#F8F9FA",
+    border: "rgba(212, 175, 55, 0.2)",
   },
   {
-    token: "color-2",
-    name: "Text Primary",
-    hex: "#696969",
-    role: "نصوص الفقرات والمحتوى العام المريح للعين (Body Text)",
-    textColor: "#FFFFFF",
-    border: "#696969",
+    token: "gold-400",
+    name: "Royal Champagne Gold",
+    hex: "#D4AF37",
+    role: "هوية البراند الملكية، الأسعار، والأزرار الرئيسية (Brand Primary)",
+    textColor: "#08090C",
+    border: "#D4AF37",
   },
   {
-    token: "color-4",
-    name: "Text Light / Subtle",
-    hex: "#DFDDD4",
-    role: "الأسطح الثانوية والنصوص الهادئة (Surface Subtle / Text Light)",
-    textColor: "#2E3A24",
-    border: "#DDDDDD",
+    token: "gold-200",
+    name: "Champagne Light",
+    hex: "#F5E296",
+    role: "عناصر التمييز، التوهج، واللمسات البراقة (Accent & Highlights)",
+    textColor: "#08090C",
+    border: "#F5E296",
   },
   {
-    token: "color-5",
-    name: "Border Light",
-    hex: "#DDDDDD",
-    role: "حدود البطاقات والفواصل الناعمة (Card Borders & Dividers)",
-    textColor: "#2E3A24",
-    border: "#DDDDDD",
+    token: "text-ivory",
+    name: "Crisp Ivory",
+    hex: "#F8F9FA",
+    role: "العناوين الملكية والنصوص البارزة فائقة الوضوح (Primary Text)",
+    textColor: "#08090C",
+    border: "rgba(255, 255, 255, 0.3)",
   },
   {
-    token: "color-7",
-    name: "Text Light / White",
-    hex: "#FFFFFF",
-    role: "أسطح البطاقات البيضاء والخلفيات المرفوعة (Card Surface & White)",
-    textColor: "#2E3A24",
-    border: "#DDDDDD",
+    token: "text-platinum",
+    name: "Platinum Muted",
+    hex: "#E2E8F0",
+    role: "نصوص الفقرات والمحتوى العام المريح للعين (Secondary Text)",
+    textColor: "#08090C",
+    border: "rgba(255, 255, 255, 0.2)",
   },
 ];
 
 const TYPOGRAPHY_LEVELS = [
-  { level: "text-9", size: "45px", lh: "53.7px", usage: "العناوين الكبرى والشاشات العريضة (Display / Hero)", sample: "أمير ستور للعطور الفاخرة" },
-  { level: "text-4xl", size: "35px", lh: "45.9px", usage: "عناوين الأقسام الرئيسية (Section Headings)", sample: "أندر أدهان العود الملكية" },
+  { level: "text-9", size: "45px", lh: "53.7px", usage: "العناوين الكبرى والشاشات العريضة (Display / Hero)", sample: "أمير ستور للعطور والعود الفاخر" },
+  { level: "text-4xl", size: "35px", lh: "45.9px", usage: "عناوين الأقسام الرئيسية (Section Headings)", sample: "أندر أدهان العود الملكية الطبيعية" },
   { level: "text-3xl", size: "27px", lh: "38.0px", usage: "عناوين الصفحات الداخلية (Page Headings)", sample: "دهن عود كلمنتان طبيعي سوبر" },
   { level: "text-2xl", size: "25px", lh: "35.0px", usage: "عناوين البطاقات الكبيرة (Card Headings)", sample: "عطر أمير الملكي Extrait de Parfum" },
   { level: "text-xl", size: "18px", lh: "25.6px", usage: "العناوين الفرعية والمجموعات (Subheadings)", sample: "مزيج استثنائي من العود والعنبر والورد" },
   { level: "text-lg", size: "16px", lh: "22.4px", usage: "نصوص التأكيد والأزرار (Buttons & Emphasis)", sample: "اطلب الآن عبر واتساب — شحن فوري" },
-  { level: "text-base", size: "14px", lh: "21.0px", usage: "نصوص الفقرات الافتراضية (Default Body Text)", sample: "ننتقي لك أرقى أدهان العود والزيوت العطرية النقية بدون أي إضافات كيميائية مع ضمان ثبات 48 ساعة." },
-  { level: "text-sm", size: "12px", lh: "16.8px", usage: "التسميات والمواصفات (Labels & Secondary)", sample: "الحجم: 100 مل • تركيز 30% • أصلي 100%" },
+  { level: "text-base", size: "14px", lh: "21.0px", usage: "نصوص الفقرات الافتراضية (Default Body Text)", sample: "ننتقي لك أرقى أدهان العود والزيوت العطرية النقية بدون أي إضافات كيميائية مع ضمان ثبات 72 ساعة." },
+  { level: "text-sm", size: "12px", lh: "16.8px", usage: "التسميات والمواصفات (Labels & Secondary)", sample: "الحجم: 100 مل • تركيز Extrait 30% • أصلي 100%" },
   { level: "text-xs", size: "10px", lh: "14.4px", usage: "البيانات الإضافية والشارات (Captions & Badges)", sample: "ضمان أصالة ومعاينة مجانية قبل الدفع" },
 ];
 
 const SHAPE_TOKENS = [
-  { token: "radius-sm", value: "3px", usage: "البادجات الدقيقة وحقول الإدخال الصامتة" },
+  { token: "radius-sm", value: "4px", usage: "البادجات الدقيقة وحقول الإدخال الصامتة" },
   { token: "radius-md", value: "50px", usage: "الأزرار البيضاوية ومربعات الخيارات (Pills)" },
   { token: "radius-lg", value: "80px", usage: "الحاويات الانسيابية وكروت العطور العريضة" },
   { token: "radius-full", value: "9999px", usage: "الأزرار الرئيسية وشارات التمييز الدائرية الكاملة" },
 ];
 
-const SPACING_TOKENS = [
-  { token: "space-1", val: "2px" },
-  { token: "space-2", val: "3px" },
-  { token: "space-3", val: "5px" },
-  { token: "space-4", val: "7px" },
-  { token: "space-5", val: "8px" },
-  { token: "space-6", val: "10px" },
-  { token: "space-7", val: "12px" },
-  { token: "space-8", val: "13px" },
-  { token: "space-9", val: "15px" },
-  { token: "space-10", val: "16px" },
-  { token: "space-11", val: "23px" },
-  { token: "space-12", val: "25px" },
-  { token: "space-13", val: "26px" },
-  { token: "space-14", val: "30px" },
-  { token: "space-15", val: "38px" },
-];
-
 export default function DesignSystemPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 text-start">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 text-start text-white">
       {/* Page Header */}
-      <div className="space-y-4 border-b border-[#DDDDDD] pb-8">
-        <div className="inline-flex items-center gap-2 rounded-full bg-[#2E3A24] text-[#56CFE1] px-4 py-1.5 text-xs font-bold">
-          <Sparkles className="h-4 w-4 text-[#56CFE1]" />
-          <span>OUD SHOP — Design System Tokens Verified</span>
+      <div className="space-y-4 border-b border-amber-400/20 pb-8">
+        <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30 px-4 py-1.5 text-xs font-bold">
+          <Sparkles className="h-4 w-4 text-amber-400" />
+          <span>Royal Obsidian Noir & Liquid Gold Palette Verified</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-[#2E3A24] tracking-tight">
-          لوحة نظام التصميم والهوية المعتمدة
+        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-arabic">
+          لوحة نظام التصميم والهوية الملكية المعتمدة
         </h1>
-        <p className="text-base sm:text-lg text-[#696969] max-w-3xl leading-relaxed">
-          تم تطبيق وتضمين كامل التوكنز السبعة المحددة في مواصفات <strong>OUD SHOP</strong> بدقة 100% داخل كود Tailwind ومكتبة الـ Tokens الخاصة بمتجر <strong>أمير ستور</strong>.
+        <p className="text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
+          تم تطبيق وتضمين كامل لوحة ألوان <strong>Royal Obsidian Noir & Liquid Gold</strong> بدقة 100% داخل كود Tailwind ومكتبة الـ Tokens ومتحولات CSS الخاصة بمتجر <strong>أمير ستور</strong>.
         </p>
       </div>
 
       {/* 1. COLOR TOKENS */}
       <section className="space-y-6">
         <div>
-          <span className="text-xs font-bold text-[#56CFE1] uppercase tracking-wider bg-[#2E3A24] px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-black uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-600 px-3 py-1 rounded-full font-serif">
             المجموعة الأولى
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2E3A24] mt-3">
-            لوحة الألوان الأساسية (The 7 Exact Color Tokens)
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3 font-arabic">
+            لوحة الألوان الملكية (Royal Obsidian Noir & Liquid Gold)
           </h2>
-          <p className="text-sm text-[#696969] mt-1">
+          <p className="text-sm text-slate-400 mt-1">
             جميع الألوان مستخرجة بالقيم السداسية العشرية (HEX) الدقيقة وتعمل كـ Tailwind Tokens ومتحولات CSS.
           </p>
         </div>
@@ -140,8 +122,8 @@ export default function DesignSystemPage() {
           {COLOR_TOKENS.map((item) => (
             <div
               key={item.token}
-              className="rounded-3xl border bg-white p-5 space-y-4 shadow-sm hover:shadow-md transition-shadow"
-              style={{ borderColor: "#DDDDDD" }}
+              className="rounded-3xl border bg-white/[0.03] backdrop-blur-2xl p-5 space-y-4 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] card-lift"
+              style={{ borderColor: "rgba(212, 175, 55, 0.25)" }}
             >
               {/* Color Box */}
               <div
@@ -154,8 +136,8 @@ export default function DesignSystemPage() {
                 <div
                   className="px-2.5 py-1 rounded-full text-xs font-mono font-bold w-fit shadow-xs backdrop-blur-xs"
                   style={{
-                    backgroundColor: "rgba(255,255,255,0.85)",
-                    color: "#2E3A24",
+                    backgroundColor: "rgba(0,0,0,0.75)",
+                    color: "#D4AF37",
                   }}
                 >
                   {item.hex}
@@ -165,20 +147,20 @@ export default function DesignSystemPage() {
               {/* Token Info */}
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono font-black text-sm text-[#2E3A24]">
+                  <span className="font-mono font-black text-sm text-amber-400">
                     {item.token}
                   </span>
-                  <span className="text-xs font-bold text-[#696969]">
+                  <span className="text-xs font-bold text-slate-300">
                     {item.name}
                   </span>
                 </div>
-                <p className="text-xs text-[#696969] leading-relaxed">
+                <p className="text-xs text-slate-400 leading-relaxed">
                   {item.role}
                 </p>
               </div>
 
               {/* Utility Classes helper */}
-              <div className="pt-2 border-t border-[#DDDDDD] flex items-center justify-between text-[11px] font-mono text-[#696969]">
+              <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
                 <span>bg-{item.token}</span>
                 <span>text-{item.token}</span>
               </div>
@@ -190,49 +172,49 @@ export default function DesignSystemPage() {
       {/* 2. LIVE INTERACTIVE BUTTONS & STATES */}
       <section className="space-y-6">
         <div>
-          <span className="text-xs font-bold text-[#56CFE1] uppercase tracking-wider bg-[#2E3A24] px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-black uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-600 px-3 py-1 rounded-full font-serif">
             المجموعة الثانية
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2E3A24] mt-3">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3 font-arabic">
             حالات الأزرار التفاعلية (Interactive Button States)
           </h2>
-          <p className="text-sm text-[#696969] mt-1">
-            الأزرار البيضاوية (Pills) بتوكنز الحواف <code className="font-mono bg-white px-1.5 py-0.5 rounded">radius-md (50px)</code> و <code className="font-mono bg-white px-1.5 py-0.5 rounded">radius-full (9999px)</code>.
+          <p className="text-sm text-slate-400 mt-1">
+            الأزرار البيضاوية (Pills) بتوكنز الحواف <code className="font-mono bg-white/10 px-1.5 py-0.5 rounded text-amber-300">radius-md (50px)</code> و <code className="font-mono bg-white/10 px-1.5 py-0.5 rounded text-amber-300">radius-full (9999px)</code>.
           </p>
         </div>
 
-        <div className="rounded-3xl border border-[#DDDDDD] bg-white p-6 sm:p-8 space-y-6">
+        <div className="rounded-3xl border border-amber-400/25 bg-white/[0.03] backdrop-blur-2xl p-6 sm:p-8 space-y-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Primary Button */}
+            {/* Primary Liquid Gold CTA */}
             <div className="space-y-2">
-              <span className="text-xs font-semibold text-[#696969]">Primary CTA (#2E3A24)</span>
+              <span className="text-xs font-semibold text-slate-400">Primary Liquid Gold CTA</span>
               <button
                 type="button"
-                className="w-full py-3.5 px-6 rounded-full bg-[#2E3A24] hover:bg-[#1a2215] active:scale-95 text-white font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-[#FDE68A] via-[#F59E0B] to-[#D97706] hover:brightness-110 active:scale-95 text-black font-black text-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Sparkles className="h-4 w-4 text-[#56CFE1]" />
+                <Sparkles className="h-4 w-4 text-black" />
                 <span>شراء العطر الآن</span>
               </button>
             </div>
 
-            {/* Accent Button */}
+            {/* Accent WhatsApp Action */}
             <div className="space-y-2">
-              <span className="text-xs font-semibold text-[#696969]">Accent Action (#56CFE1)</span>
+              <span className="text-xs font-semibold text-slate-400">WhatsApp Instant (#25D366)</span>
               <button
                 type="button"
-                className="w-full py-3.5 px-6 rounded-full bg-[#56CFE1] hover:bg-[#3eb8cb] active:scale-95 text-[#12190e] font-black text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:scale-95 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20"
               >
                 <Heart className="h-4 w-4" />
-                <span>إضافة للمفضلة</span>
+                <span>طلب عبر واتساب</span>
               </button>
             </div>
 
             {/* Outline Button */}
             <div className="space-y-2">
-              <span className="text-xs font-semibold text-[#696969]">Outline (#2E3A24 border)</span>
+              <span className="text-xs font-semibold text-slate-400">Obsidian Glass Outline</span>
               <button
                 type="button"
-                className="w-full py-3.5 px-6 rounded-full border-2 border-[#2E3A24] text-[#2E3A24] hover:bg-[#2E3A24] hover:text-white active:scale-95 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-full border border-amber-400/40 bg-white/[0.04] text-amber-300 hover:bg-amber-400/15 hover:border-amber-400 active:scale-95 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>تفاصيل المكونات</span>
               </button>
@@ -240,11 +222,11 @@ export default function DesignSystemPage() {
 
             {/* Disabled State */}
             <div className="space-y-2">
-              <span className="text-xs font-semibold text-[#696969]">Disabled State</span>
+              <span className="text-xs font-semibold text-slate-400">Disabled State</span>
               <button
                 type="button"
                 disabled
-                className="w-full py-3.5 px-6 rounded-full bg-[#DFDDD4] text-[#696969] font-bold text-sm opacity-60 cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-3.5 px-6 rounded-full bg-white/5 border border-white/10 text-slate-500 font-bold text-sm opacity-50 cursor-not-allowed flex items-center justify-center gap-2"
               >
                 <span>نفدت الكمية</span>
               </button>
@@ -256,10 +238,10 @@ export default function DesignSystemPage() {
       {/* 3. SHAPES & ELEVATION */}
       <section className="space-y-6">
         <div>
-          <span className="text-xs font-bold text-[#56CFE1] uppercase tracking-wider bg-[#2E3A24] px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-black uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-600 px-3 py-1 rounded-full font-serif">
             المجموعة الثالثة
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2E3A24] mt-3">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3 font-arabic">
             الأشكال، الحواف، والظلال (Shapes, Radius & Elevation)
           </h2>
         </div>
@@ -268,75 +250,53 @@ export default function DesignSystemPage() {
           {SHAPE_TOKENS.map((shape) => (
             <div
               key={shape.token}
-              className="bg-white border border-[#DDDDDD] p-5 space-y-3 flex flex-col items-center text-center"
+              className="bg-white/[0.03] border border-amber-400/20 p-5 space-y-3 flex flex-col items-center text-center shadow-sm"
               style={{ borderRadius: shape.value }}
             >
               <div
-                className="h-12 w-12 bg-[#2E3A24] text-[#56CFE1] flex items-center justify-center font-bold text-xs"
+                className="h-12 w-12 bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center justify-center font-bold text-xs"
                 style={{ borderRadius: shape.value }}
               >
                 {shape.value}
               </div>
               <div>
-                <span className="font-mono font-bold text-sm text-[#2E3A24] block">{shape.token}</span>
-                <span className="text-xs text-[#696969] mt-1 block">{shape.usage}</span>
+                <span className="font-mono font-bold text-sm text-amber-400 block">{shape.token}</span>
+                <span className="text-xs text-slate-400 mt-1 block">{shape.usage}</span>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-          {/* Shadow SM */}
-          <div
-            className="p-6 rounded-3xl bg-white border border-[#DDDDDD] space-y-2 text-start"
-            style={{ boxShadow: "1px 1px 3px 0px rgba(0, 0, 0, 0.3)" }}
-          >
-            <span className="font-mono font-bold text-sm text-[#2E3A24]">shadow-sm</span>
-            <p className="text-xs font-mono text-[#696969]">rgba(0, 0, 0, 0.3) 1px 1px 3px 0px</p>
-            <p className="text-xs text-[#696969] pt-1">يُستخدم للبطاقات العادية والعناصر القريبة من السطح.</p>
-          </div>
-
-          {/* Shadow MD */}
-          <div
-            className="p-6 rounded-3xl bg-white border border-[#DDDDDD] space-y-2 text-start"
-            style={{ boxShadow: "0px 0px 6px 0px rgb(46, 58, 36)" }}
-          >
-            <span className="font-mono font-bold text-sm text-[#2E3A24]">shadow-md</span>
-            <p className="text-xs font-mono text-[#696969]">rgb(46, 58, 36) 0px 0px 6px 0px (Oud Glow)</p>
-            <p className="text-xs text-[#696969] pt-1">توهج أنيق بلون الأخضر الزيتي الداكن عند التحويم والتركيز.</p>
-          </div>
         </div>
       </section>
 
       {/* 4. TYPOGRAPHY SCALE */}
       <section className="space-y-6">
         <div>
-          <span className="text-xs font-bold text-[#56CFE1] uppercase tracking-wider bg-[#2E3A24] px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-black uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-600 px-3 py-1 rounded-full font-serif">
             المجموعة الرابعة
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2E3A24] mt-3">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3 font-arabic">
             مقياس الخطوط والطباعة (Typography Scale)
           </h2>
-          <p className="text-sm text-[#696969] mt-1">
-            مقياس الأحجام من 10px حتى 45px مع ارتفاعات الأسطر (Line Heights) المتطابقة.
+          <p className="text-sm text-slate-400 mt-1">
+            مقياس الأحجام من 10px حتى 45px مع خطوط Amiri للعناوين و Cairo للواجهات.
           </p>
         </div>
 
-        <div className="rounded-3xl border border-[#DDDDDD] bg-white divide-y divide-[#DDDDDD] overflow-hidden">
+        <div className="rounded-3xl border border-amber-400/20 bg-white/[0.03] backdrop-blur-2xl divide-y divide-white/10 overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
           {TYPOGRAPHY_LEVELS.map((t) => (
             <div key={t.level} className="p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-start">
               <div className="w-48 shrink-0 flex items-center gap-3">
-                <span className="font-mono font-bold text-xs bg-[#EEEBE7] text-[#2E3A24] px-2.5 py-1 rounded-full">
+                <span className="font-mono font-bold text-xs bg-amber-400/15 border border-amber-400/30 text-amber-300 px-2.5 py-1 rounded-full">
                   {t.level}
                 </span>
-                <span className="text-xs text-[#696969] font-mono">
+                <span className="text-xs text-slate-400 font-mono">
                   {t.size} / {t.lh}
                 </span>
               </div>
-              <div className="flex-1 font-bold text-[#2E3A24]" style={{ fontSize: t.size }}>
+              <div className="flex-1 font-bold text-white font-arabic" style={{ fontSize: t.size }}>
                 {t.sample}
               </div>
-              <div className="text-xs text-[#696969] max-w-xs text-start lg:text-end shrink-0">
+              <div className="text-xs text-slate-400 max-w-xs text-start lg:text-end shrink-0">
                 {t.usage}
               </div>
             </div>
@@ -344,41 +304,14 @@ export default function DesignSystemPage() {
         </div>
       </section>
 
-      {/* 5. SPACING SCALE */}
-      <section className="space-y-6">
-        <div>
-          <span className="text-xs font-bold text-[#56CFE1] uppercase tracking-wider bg-[#2E3A24] px-3 py-1 rounded-full">
-            المجموعة الخامسة
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2E3A24] mt-3">
-            مقياس المسافات (Spacing Scale — Base 4px Grid)
-          </h2>
-        </div>
-
-        <div className="rounded-3xl border border-[#DDDDDD] bg-white p-6 overflow-x-auto">
-          <div className="flex items-end gap-3 min-w-max pb-2">
-            {SPACING_TOKENS.map((sp) => (
-              <div key={sp.token} className="flex flex-col items-center gap-2">
-                <div
-                  className="bg-[#2E3A24] rounded-t-sm"
-                  style={{ width: "24px", height: sp.val }}
-                />
-                <span className="text-[10px] font-mono font-bold text-[#2E3A24]">{sp.val}</span>
-                <span className="text-[9px] font-mono text-[#696969]">{sp.token.replace("space-", "s-")}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer Navigation */}
-      <div className="pt-8 border-t border-[#DDDDDD] flex flex-col sm:flex-row items-center justify-between gap-4">
-        <Link href="/" className="inline-flex items-center gap-2 font-bold text-[#2E3A24] hover:text-[#56CFE1] transition-colors">
+      <div className="pt-8 border-t border-amber-400/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <Link href="/" className="inline-flex items-center gap-2 font-bold text-amber-300 hover:text-white transition-colors">
           <ArrowLeft className="h-4 w-4" />
           <span>العودة إلى الصفحة الرئيسية لمتجر أمير ستور</span>
         </Link>
-        <Link href="/products" className="inline-flex items-center gap-2 font-bold text-[#2E3A24] hover:text-[#56CFE1] transition-colors">
-          <span>تصفح تشكيلة العطور بالتوكنز الجديدة</span>
+        <Link href="/products" className="inline-flex items-center gap-2 font-bold text-amber-300 hover:text-white transition-colors">
+          <span>تصفح تشكيلة العطور بالتوكنز الملكية الجديدة</span>
         </Link>
       </div>
     </div>

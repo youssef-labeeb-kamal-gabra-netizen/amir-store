@@ -35,7 +35,7 @@ interface HeaderProps {
 
 const quickNavLinks = [
   { href: "/", label: "الرئيسية" },
-  { href: "/products", label: "مجموعة العطور" },
+  { href: "/products", label: "مجموعة العطور الملكية" },
   { href: "/about", label: "عن أمير ستور" },
   { href: "/contact", label: "تواصل معنا" },
 ];
@@ -55,40 +55,40 @@ export function Header({ user, settings }: HeaderProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-brand-neutral-200 bg-white/95 backdrop-blur-md shadow-xs">
+      <header className="sticky top-0 z-40 w-full border-b border-amber-400/20 bg-[#08090C]/85 backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
         {/* Top micro-bar for verified contact info, history & location */}
-        <div className="hidden lg:block border-b border-brand-green-950 bg-brand-green-800 text-white text-xs py-2 px-4 sm:px-6 lg:px-8">
+        <div className="hidden lg:block border-b border-amber-400/10 bg-[#0D0F14] text-slate-300 text-xs py-2 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-5">
-              <span className="flex items-center gap-1.5 text-oud-surfaceLight">
-                <Sparkles className="h-3.5 w-3.5 text-brand-gold-400" />
-                <span>متجر أمير ستور • عطور أصلية فاخرة وضمان ثبات وأصالة 100%</span>
+              <span className="flex items-center gap-1.5 text-amber-200/90">
+                <Sparkles className="h-3.5 w-3.5 text-amber-400 animate-pulse" />
+                <span>متجر أمير ستور • دار العطور والعود الفاخر • نقاء وثبات 72 ساعة</span>
               </span>
-              <span className="text-brand-green-700">|</span>
-              <span className="flex items-center gap-1 text-oud-surfaceLight">
-                <MapPin className="h-3.5 w-3.5 text-brand-gold-400" />
-                <span>شحن وتوصيل سريع لكافة المحافظات</span>
+              <span className="text-amber-400/30">|</span>
+              <span className="flex items-center gap-1 text-slate-300">
+                <MapPin className="h-3.5 w-3.5 text-amber-400" />
+                <span>شحن وتوصيل فوري لكافة المحافظات</span>
               </span>
             </div>
 
             <div className="flex items-center gap-4 text-xs font-semibold">
-              <span className="text-emerald-300/80">اتصال مباشر:</span>
+              <span className="text-amber-400/80">خدمة العملاء:</span>
               <a
                 href={`tel:${phone1}`}
-                className="text-white hover:text-brand-gold-400 transition-colors"
+                className="text-white hover:text-amber-300 transition-colors font-mono"
                 dir="ltr"
               >
                 {phone1}
               </a>
-              <span className="text-emerald-800">•</span>
+              <span className="text-amber-400/30">•</span>
               <a
                 href={`tel:${phone2}`}
-                className="text-white hover:text-brand-gold-400 transition-colors"
+                className="text-white hover:text-amber-300 transition-colors font-mono"
                 dir="ltr"
               >
                 {phone2}
               </a>
-              <span className="text-emerald-800">|</span>
+              <span className="text-amber-400/30">|</span>
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -111,16 +111,16 @@ export function Header({ user, settings }: HeaderProps) {
               <button
                 type="button"
                 onClick={() => setDrawerOpen(true)}
-                className="inline-flex items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-2xl bg-brand-neutral-100/80 border border-brand-neutral-200 text-brand-neutral-900 hover:bg-brand-green-50 hover:border-brand-green-300 hover:text-brand-green-900 active:scale-95 transition-all shadow-2xs group cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-green-600 shrink-0"
+                className="inline-flex items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-2xl bg-white/[0.04] border border-amber-400/20 text-white hover:bg-amber-400/10 hover:border-amber-400/50 hover:text-amber-300 active:scale-95 transition-all shadow-sm group cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400/50 shrink-0"
                 aria-label="فتح القائمة الجانبية والأقسام"
                 title="القائمة والأقسام"
               >
                 <div className="flex flex-col gap-1 w-4 sm:w-5 justify-center items-center py-0.5">
-                  <span className="block h-0.5 w-4 sm:w-5 bg-brand-neutral-800 rounded-full group-hover:bg-brand-green-700 transition-all" />
-                  <span className="block h-0.5 w-4 sm:w-5 bg-brand-neutral-800 rounded-full group-hover:bg-brand-green-700 transition-all" />
-                  <span className="block h-0.5 w-4 sm:w-5 bg-brand-neutral-800 rounded-full group-hover:bg-brand-green-700 transition-all" />
+                  <span className="block h-0.5 w-4 sm:w-5 bg-amber-300 rounded-full group-hover:bg-amber-400 transition-all" />
+                  <span className="block h-0.5 w-4 sm:w-5 bg-amber-300 rounded-full group-hover:bg-amber-400 transition-all" />
+                  <span className="block h-0.5 w-4 sm:w-5 bg-amber-300 rounded-full group-hover:bg-amber-400 transition-all" />
                 </div>
-                <span className="font-extrabold text-[11px] sm:text-sm text-brand-neutral-900 group-hover:text-brand-green-900">
+                <span className="font-extrabold text-[11px] sm:text-sm text-white group-hover:text-amber-300">
                   القائمة
                 </span>
               </button>
@@ -128,14 +128,14 @@ export function Header({ user, settings }: HeaderProps) {
               {/* Logo & Brand Identity */}
               <Link
                 href="/"
-                className="flex items-center group focus:outline-none focus:ring-2 focus:ring-brand-green-600 rounded-xl p-0.5 min-w-0"
+                className="flex items-center group focus:outline-none focus:ring-2 focus:ring-amber-400/50 rounded-xl p-0.5 min-w-0"
               >
                 <BrandLogo size="md" />
               </Link>
             </div>
 
             {/* Middle: Clean Desktop Quick Navigation */}
-            <nav className="hidden lg:flex items-center gap-1" aria-label="شريط التنقل السريع">
+            <nav className="hidden lg:flex items-center gap-1.5" aria-label="شريط التنقل السريع">
               {quickNavLinks.map((link) => {
                 const isActive =
                   pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
@@ -144,10 +144,10 @@ export function Header({ user, settings }: HeaderProps) {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "rounded-xl px-3.5 py-2 text-sm font-bold transition-all active:scale-95",
+                      "rounded-xl px-4 py-2 text-sm font-bold transition-all active:scale-95",
                       isActive
-                        ? "bg-brand-green-50 text-brand-green-800 shadow-2xs"
-                        : "text-brand-neutral-700 hover:bg-brand-neutral-100 hover:text-brand-neutral-900"
+                        ? "bg-gradient-to-r from-amber-400/20 to-amber-500/10 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+                        : "text-slate-300 hover:text-amber-300 hover:bg-white/[0.04]"
                     )}
                   >
                     {link.label}
@@ -158,25 +158,25 @@ export function Header({ user, settings }: HeaderProps) {
 
             {/* End side: Cart Drawer, Direct WhatsApp Messaging & User Account */}
             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-              {/* Cart Drawer Trigger Button */}
+              {/* Cart Drawer Trigger Button with Glowing Gold Badge */}
               <button
                 type="button"
                 onClick={() => setIsCartOpen(true)}
-                className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl border border-brand-green-800/30 bg-brand-green-50/70 hover:bg-brand-green-100 text-brand-green-950 font-bold text-xs sm:text-sm active:scale-95 transition-all shadow-2xs group cursor-pointer"
+                className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl border border-amber-400/30 bg-white/[0.04] hover:bg-amber-400/10 hover:border-amber-400/60 text-white font-bold text-xs sm:text-sm active:scale-95 transition-all shadow-[0_0_15px_rgba(212,175,55,0.15)] group cursor-pointer"
                 title="سلة المشتريات"
                 aria-label="فتح سلة المشتريات"
               >
                 <div className="relative">
-                  <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5 text-brand-green-800" />
+                  <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5 text-amber-400 group-hover:scale-110 transition-transform" />
                   {totalCount > 0 && (
-                    <span className="absolute -top-2 -end-2 flex h-4 w-4 items-center justify-center rounded-full bg-brand-green-800 text-[10px] font-black text-white shadow-xs">
+                    <span className="absolute -top-2.5 -end-2.5 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-[10px] font-black text-black shadow-md animate-pulse">
                       {totalCount}
                     </span>
                   )}
                 </div>
-                <span className="hidden sm:inline">السلة</span>
+                <span className="hidden sm:inline text-white">السلة</span>
                 {totalCount > 0 && (
-                  <span className="hidden md:inline-block text-[11px] font-bold text-brand-gold-600 bg-brand-green-950/10 px-1.5 py-0.5 rounded-md">
+                  <span className="hidden md:inline-block text-[11px] font-bold text-amber-300 bg-amber-400/20 px-1.5 py-0.5 rounded-md border border-amber-400/30">
                     ({totalCount})
                   </span>
                 )}
@@ -187,7 +187,7 @@ export function Header({ user, settings }: HeaderProps) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-2xs transition-all hover:scale-105 active:scale-95"
+                className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da851] px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-[0_0_15px_rgba(37,211,102,0.3)] transition-all hover:scale-105 active:scale-95 border border-white/20"
                 title="مراسلة فورية عبر واتساب"
               >
                 <MessageCircle className="h-4 w-4" />
@@ -199,22 +199,22 @@ export function Header({ user, settings }: HeaderProps) {
                   {user.role === "ADMIN" && (
                     <Link
                       href="/admin"
-                      className="inline-flex items-center gap-1.5 rounded-xl bg-purple-900 px-3 py-2 text-xs font-bold text-white hover:bg-purple-950 transition-colors shadow-sm"
+                      className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 px-3 py-2 text-xs font-black text-black hover:opacity-95 transition-opacity shadow-[0_0_15px_rgba(212,175,55,0.4)]"
                     >
-                      <ShieldCheck className="h-4 w-4 text-brand-gold-400" />
+                      <ShieldCheck className="h-4 w-4 text-black" />
                       <span className="hidden md:inline">لوحة الإدارة</span>
                     </Link>
                   )}
 
                   <Link
                     href="/account"
-                    className="inline-flex items-center gap-2 rounded-xl border border-brand-neutral-300 bg-brand-neutral-50 px-2.5 sm:px-3 py-1.5 text-xs text-brand-neutral-900 hover:bg-brand-neutral-100 transition-colors"
+                    className="inline-flex items-center gap-2 rounded-xl border border-amber-400/25 bg-white/[0.04] px-2.5 sm:px-3 py-1.5 text-xs text-white hover:bg-white/[0.08] transition-colors"
                     title={user.email || ""}
                   >
-                    <div className="h-7 w-7 rounded-full bg-brand-green-700 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                    <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-amber-400 to-amber-600 text-black flex items-center justify-center font-black text-xs shrink-0 shadow-xs">
                       {(user.name || user.email || "U").charAt(0).toUpperCase()}
                     </div>
-                    <span className="hidden md:inline font-bold text-brand-neutral-900 text-xs max-w-[120px] truncate">
+                    <span className="hidden md:inline font-bold text-white text-xs max-w-[120px] truncate">
                       {user.email}
                     </span>
                   </Link>
@@ -223,7 +223,7 @@ export function Header({ user, settings }: HeaderProps) {
                     <button
                       type="submit"
                       title="تسجيل الخروج"
-                      className="p-2 text-brand-neutral-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer"
+                      className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-950/30 rounded-xl transition-colors cursor-pointer"
                     >
                       <LogOut className="h-4 w-4" />
                     </button>
@@ -232,9 +232,9 @@ export function Header({ user, settings }: HeaderProps) {
               ) : (
                 <Link
                   href="/login"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-brand-neutral-300 px-3 py-2 text-xs font-bold text-brand-neutral-800 hover:bg-brand-neutral-50 transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-amber-400/30 bg-white/[0.04] px-3 py-2 text-xs font-bold text-white hover:bg-amber-400/10 hover:border-amber-400/60 hover:text-amber-300 transition-all"
                 >
-                  <User className="h-3.5 w-3.5 text-brand-neutral-600" />
+                  <User className="h-3.5 w-3.5 text-amber-400" />
                   <span className="hidden sm:inline">تسجيل الدخول</span>
                   <span className="sm:hidden">دخول</span>
                 </Link>

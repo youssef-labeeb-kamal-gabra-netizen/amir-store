@@ -90,16 +90,17 @@ export function ProductCatalogView({
   const activeCategory = categories.find((c) => c.slug === selectedCategory || c.id === selectedCategory);
 
   return (
-    <div className="space-y-8 text-start">
+    <div className="space-y-8 text-start text-white">
       {/* Title & Description Header */}
-      <div className="space-y-3 border-b border-brand-neutral-200 pb-6">
-        <span className="text-xs font-bold text-amber-700 tracking-wider uppercase font-serif">
-          HAUTE PARFUMERIE & PURE OUD
+      <div className="space-y-3 border-b border-amber-400/20 pb-6">
+        <span className="text-xs font-bold text-amber-400 tracking-wider uppercase font-serif flex items-center gap-1.5">
+          <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+          <span>HAUTE PARFUMERIE & PURE OUD</span>
         </span>
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-brand-green-950 tracking-tight font-arabic">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight font-arabic">
           {activeCategory ? activeCategory.name : "مجموعة العطور والعود الفاخر"}
         </h1>
-        <p className="text-sm sm:text-base text-brand-neutral-500 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
           {activeCategory
             ? activeCategory.description
             : "تصفح أندر أدهان العود الطبيعية، العطور الشرقية والفرنسية الملكية، والمسك والبخور الفاخر لدى متجر أمير ستور. نضمن لك ثباتاً استثنائياً ونقاءً أصلياً 100% مع إمكانية المعاينة قبل الدفع."}
@@ -116,8 +117,8 @@ export function ProductCatalogView({
           }}
           className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-95 cursor-pointer btn-touch flex items-center gap-1.5 shrink-0 ${
             !selectedCategory
-              ? "bg-brand-green-800 text-white shadow-md ring-2 ring-amber-400/40"
-              : "bg-white border border-brand-neutral-200 text-brand-neutral-700 hover:border-brand-green-800 hover:bg-brand-green-50/40"
+              ? "bg-gradient-to-r from-amber-400 to-amber-600 text-black font-black shadow-[0_0_20px_rgba(212,175,55,0.4)] ring-2 ring-amber-400"
+              : "bg-white/[0.04] border border-amber-400/20 text-slate-300 hover:border-amber-400/50 hover:bg-white/[0.08]"
           }`}
         >
           <span>✨</span>
@@ -141,8 +142,8 @@ export function ProductCatalogView({
               onClick={() => setSelectedCategory(cat.slug)}
               className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-95 cursor-pointer btn-touch flex items-center gap-1.5 shrink-0 ${
                 isSelected
-                  ? "bg-brand-green-800 text-white shadow-md ring-2 ring-amber-400/40"
-                  : "bg-white border border-brand-neutral-200 text-brand-neutral-700 hover:border-brand-green-800 hover:bg-brand-green-50/40"
+                  ? "bg-gradient-to-r from-amber-400 to-amber-600 text-black font-black shadow-[0_0_20px_rgba(212,175,55,0.4)] ring-2 ring-amber-400"
+                  : "bg-white/[0.04] border border-amber-400/20 text-slate-300 hover:border-amber-400/50 hover:bg-white/[0.08]"
               }`}
             >
               <span>{icon}</span>
@@ -154,8 +155,8 @@ export function ProductCatalogView({
 
       {/* Scent Notes Quick Pills Bar */}
       <div className="flex items-center gap-1.5 flex-wrap text-xs pt-1">
-        <span className="text-brand-neutral-400 font-bold flex items-center gap-1 me-1 text-[11px]">
-          <Sparkles className="h-3 w-3 text-amber-500" />
+        <span className="text-amber-400/80 font-bold flex items-center gap-1 me-1 text-[11px] font-serif">
+          <Sparkles className="h-3 w-3 text-amber-400" />
           <span>أبرز النوتات:</span>
         </span>
         {POPULAR_NOTES.map((note) => (
@@ -165,8 +166,8 @@ export function ProductCatalogView({
             onClick={() => setActiveNote(activeNote === note ? "" : note)}
             className={`px-3 py-1 rounded-full text-[11px] font-bold border transition-all cursor-pointer ${
               activeNote === note
-                ? "bg-amber-100 border-amber-400 text-amber-900 shadow-2xs"
-                : "bg-white/80 border-brand-neutral-200 text-brand-neutral-600 hover:border-amber-300"
+                ? "bg-amber-400/20 border-amber-400 text-amber-300 shadow-sm"
+                : "bg-white/[0.03] border-amber-400/20 text-slate-400 hover:border-amber-400/40 hover:text-white"
             }`}
           >
             {note}
@@ -178,19 +179,19 @@ export function ProductCatalogView({
       {/* Search & Sort Controls Bar */}
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
         <div className="relative flex-1 max-w-lg">
-          <Search className="absolute start-3.5 top-3.5 h-4 w-4 text-brand-neutral-400" />
+          <Search className="absolute start-3.5 top-3.5 h-4 w-4 text-amber-400/60" />
           <input
             type="text"
             placeholder="ابحث باسم العطر، نوتات الرائحة، أو الحجم..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-full border border-brand-neutral-200 bg-white ps-10 pe-10 py-3 text-sm text-brand-neutral-900 placeholder:text-brand-neutral-400 focus:outline-none focus:border-brand-green-800 focus:ring-4 focus:ring-brand-green-500/10 shadow-xs transition-all"
+            className="w-full rounded-full border border-amber-400/25 bg-white/[0.04] ps-10 pe-10 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 shadow-sm transition-all"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery("")}
-              className="absolute end-3.5 top-3 h-5 w-5 rounded-full bg-brand-neutral-200 hover:bg-brand-neutral-300 text-brand-neutral-700 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+              className="absolute end-3.5 top-3 h-5 w-5 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
               title="مسح البحث"
               aria-label="مسح البحث"
             >
@@ -200,7 +201,7 @@ export function ProductCatalogView({
         </div>
 
         <div className="flex items-center gap-2 w-full sm:w-auto">
-          <ArrowUpDown className="h-4 w-4 text-brand-neutral-500 shrink-0" />
+          <ArrowUpDown className="h-4 w-4 text-amber-400 shrink-0" />
           <select
             value={sortOption}
             onChange={(e) =>
@@ -208,7 +209,7 @@ export function ProductCatalogView({
                 e.target.value as "newest" | "price_asc" | "price_desc" | "name_asc" | "name_desc"
               )
             }
-            className="w-full sm:w-auto rounded-xl border border-brand-neutral-300 bg-white px-3 py-2.5 text-xs sm:text-sm font-semibold text-brand-neutral-800 focus:outline-none focus:ring-2 focus:ring-brand-green-600 shadow-sm cursor-pointer"
+            className="w-full sm:w-auto rounded-xl border border-amber-400/30 bg-[#13161F] px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-amber-400/30 shadow-sm cursor-pointer"
           >
             <option value="newest">الترتيب: الأحدث أولاً</option>
             <option value="price_asc">السعر: من الأقل للأعلى</option>
@@ -220,8 +221,8 @@ export function ProductCatalogView({
       </div>
 
       {/* Results Count Banner */}
-      <div className="text-xs text-brand-neutral-500">
-        يتم عرض <strong>{filteredProducts.length}</strong> من إجمالي العطور المتوفرة
+      <div className="text-xs text-slate-400">
+        يتم عرض <strong className="text-amber-300 font-mono">{filteredProducts.length}</strong> من إجمالي العطور المتوفرة
       </div>
 
       {/* Grid of Products or Empty State */}

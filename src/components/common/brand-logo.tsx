@@ -26,26 +26,31 @@ export function BrandLogo({ className = "", size = "md", showText = true }: Bran
     <div className={`flex items-center gap-2 sm:gap-3 ${className}`}>
       {/* Official Golden Royal Monogram Emblem */}
       <div
-        className={`relative ${sizeMap[size]} shrink-0 rounded-full overflow-hidden shadow-sm border border-brand-neutral-200/80 bg-[#f7f5f2]`}
+        className={`relative ${sizeMap[size]} shrink-0 rounded-full overflow-hidden shadow-[0_0_15px_rgba(212,175,55,0.35)] border border-amber-400/50 bg-[#0D0F14] p-0.5`}
       >
-        <Image
-          src="/images/logo.png"
-          alt="شعار أمير ستور الرسمي للعطور"
-          fill
-          className="object-cover scale-105"
-          priority
-        />
+        <div className="relative h-full w-full rounded-full overflow-hidden">
+          <Image
+            src="/images/logo.png"
+            alt="شعار أمير ستور الرسمي - دار العطور والعود الفاخر"
+            fill
+            className="object-cover scale-105"
+            priority
+          />
+        </div>
       </div>
 
       {showText && (
         <div className="flex flex-col text-start min-w-0">
           <span
-            className={`font-black tracking-tight text-brand-green-950 leading-tight truncate ${textSizes[size].title}`}
+            className={`font-black tracking-tight text-white font-arabic leading-tight truncate flex items-center gap-1.5 ${textSizes[size].title}`}
           >
-            أمير ستور
+            <span>أمير ستور</span>
+            <span className="text-[10px] text-amber-400 font-serif font-bold uppercase tracking-widest hidden sm:inline">
+              ROYAL
+            </span>
           </span>
-          <span className={`font-semibold text-brand-neutral-500 leading-none truncate ${textSizes[size].sub}`}>
-            <span>AMIR STORE • عطور فاخرة</span>
+          <span className={`font-semibold text-amber-200/80 leading-none truncate ${textSizes[size].sub}`}>
+            <span>AMIR STORE • دار العطور الفاخرة</span>
           </span>
         </div>
       )}

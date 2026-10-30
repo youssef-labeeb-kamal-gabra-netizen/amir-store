@@ -10,78 +10,104 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // 1. Direct OUD SHOP Spec Tokens (color-1 to color-7)
+        // 1. Royal Obsidian Noir (Base & Surface)
+        obsidian: {
+          DEFAULT: "#08090C",
+          950: "#08090C", // Deepest Onyx Black base
+          900: "#0D0F14", // Surface Dark
+          850: "#10131A", // Dark Slate Surface
+          800: "#13161F", // Card Glass Surface
+          700: "#1A1F2C", // Elevated Surface
+          600: "#242A3B", // Border Dark
+        },
+        // 2. Royal Liquid Gold & Metallic Champagne
+        gold: {
+          DEFAULT: "#D4AF37",
+          50: "#FDFBF7",
+          100: "#FAF5E8",
+          200: "#F5E296", // Champagne Light
+          300: "#E6CA65", // Liquid Gold
+          400: "#D4AF37", // Metallic Champagne Gold Primary
+          500: "#C5A059", // Rich Antique Gold
+          600: "#B8860B", // Burnished Gold
+          700: "#8C6527",
+          800: "#5C4318",
+          900: "#38280E",
+          950: "#1F1505",
+        },
+        // 3. Purged OUD SHOP spec tokens mapped to Royal Obsidian & Gold
         color: {
-          1: "#2E3A24", // Border / Dark Olive Primary
-          2: "#696969", // Text Primary
-          3: "#56CFE1", // Accent (Cyan)
-          4: "#DFDDD4", // Text Light / Surface Subtle
-          5: "#DDDDDD", // Border Light
-          6: "#EEEBE7", // Surface Background
-          7: "#FFFFFF", // Text Light / Pure White
+          1: "#D4AF37", // Royal Gold Primary
+          2: "#E2E8F0", // Platinum Body Text
+          3: "#F5E296", // Accent Champagne
+          4: "#94A3B8", // Platinum Muted
+          5: "rgba(212, 175, 55, 0.2)", // Gold Border
+          6: "#08090C", // Deep Obsidian Background
+          7: "#F8F9FA", // Crisp Ivory
         },
-        // 2. Named Semantic OUD SHOP Tokens
+        // 4. Named Semantic Tokens
         oud: {
-          surface: "#EEEBE7",      // color-6 (Surface)
-          text: "#696969",         // color-2 (Text Primary)
+          surface: "#08090C",
+          surfaceLight: "#13161F",
+          text: "#E2E8F0",
           accent: {
-            DEFAULT: "#56CFE1",    // color-3 (Accent)
-            hover: "#3eb8cb",
-            subtle: "#f0fcfe",
+            DEFAULT: "#D4AF37",
+            hover: "#F5E296",
+            subtle: "rgba(212, 175, 55, 0.12)",
           },
-          heading: "#2E3A24",      // color-1 (Dark Olive Heading)
+          heading: "#F8F9FA",
           border: {
-            DEFAULT: "#DFDDD4",    // color-4
-            dark: "#2E3A24",       // color-1 (Border)
-            light: "#DDDDDD",      // color-5 (Border)
+            DEFAULT: "rgba(212, 175, 55, 0.2)",
+            dark: "#13161F",
+            light: "rgba(255, 255, 255, 0.08)",
           },
-          subtle: "#DFDDD4",       // color-4 (Text Light)
-          white: "#FFFFFF",        // color-7 (Text Light / White)
+          subtle: "#94A3B8",
+          white: "#F8F9FA",
         },
-        // 3. Mapped Brand Palette for existing codebase
+        // 5. Mapped Brand Palette (Replaced muddy green with Gold / Obsidian)
         brand: {
           green: {
-            50: "#f6f8f4",
-            100: "#eaf0e6",
-            200: "#d5e2cd",
-            300: "#b5cda8",
-            400: "#8fb27e",
-            500: "#6e945c",
-            600: "#557646",
-            700: "#435d37",
-            800: "#2E3A24", // color-1 (#2E3A24)
-            900: "#232d1c",
-            950: "#13190e",
+            50: "rgba(212, 175, 55, 0.08)",
+            100: "rgba(212, 175, 55, 0.15)",
+            200: "rgba(212, 175, 55, 0.25)",
+            300: "#E6CA65",
+            400: "#D4AF37",
+            500: "#C5A059",
+            600: "#B8860B",
+            700: "#D4AF37",
+            800: "#D4AF37",
+            900: "#0D0F14",
+            950: "#08090C",
           },
           gold: {
-            50: "#FAF7EE",
-            100: "#F5EFD7",
-            200: "#EBDDB0",
-            300: "#DFC582",
-            400: "#D4AF37", // Burnished Gold Primary
+            50: "#FDFBF7",
+            100: "#FAF5E8",
+            200: "#F5E296",
+            300: "#E6CA65",
+            400: "#D4AF37",
             500: "#C5A059",
-            600: "#A8833B",
-            700: "#876629",
-            800: "#694E21",
-            900: "#4D381A",
-            950: "#2B1E0C",
+            600: "#B8860B",
+            700: "#8C6527",
+            800: "#5C4318",
+            900: "#38280E",
+            950: "#1F1505",
           },
           neutral: {
-            50: "#EEEBE7", // color-6 (#EEEBE7)
-            100: "#DFDDD4", // color-4 (#DFDDD4)
-            200: "#DDDDDD", // color-5 (#DDDDDD)
-            300: "#c7c5bc",
-            400: "#999890",
-            500: "#696969", // color-2 (#696969)
-            600: "#545454",
-            700: "#3d3d3d",
-            800: "#2b2b2b",
-            900: "#1e221b",
-            950: "#141712",
+            50: "#08090C",
+            100: "#0D0F14",
+            200: "rgba(255, 255, 255, 0.08)",
+            300: "rgba(255, 255, 255, 0.15)",
+            400: "#94A3B8",
+            500: "#CBD5E1",
+            600: "#E2E8F0",
+            700: "#F1F5F9",
+            800: "#F8F9FA",
+            900: "#FFFFFF",
+            950: "#FFFFFF",
           },
         },
       },
-      // Exact OUD SHOP Spacing Scale (Base unit: 4px)
+      // Spacing Scale
       spacing: {
         "space-1": "2px",
         "space-2": "3px",
@@ -99,7 +125,6 @@ const config: Config = {
         "space-14": "30px",
         "space-15": "38px",
       },
-      // Exact OUD SHOP Shapes & Border Radius
       borderRadius: {
         "radius-sm": "3px",
         "radius-md": "50px",
@@ -111,14 +136,16 @@ const config: Config = {
         "oud-lg": "80px",
         "oud-full": "9999px",
       },
-      // Exact OUD SHOP Elevation & Shadows
       boxShadow: {
-        "shadow-sm": "1px 1px 3px 0px rgba(0, 0, 0, 0.3)",
-        "shadow-md": "0px 0px 6px 0px rgb(46, 58, 36)",
-        "oud-sm": "1px 1px 3px 0px rgba(0, 0, 0, 0.3)",
-        "oud-md": "0px 0px 6px 0px rgb(46, 58, 36)",
+        "gold-sm": "0 0 15px rgba(212, 175, 55, 0.15)",
+        "gold-md": "0 0 30px rgba(212, 175, 55, 0.25)",
+        "gold-lg": "0 0 50px rgba(212, 175, 55, 0.35)",
+        "obsidian-card": "0 8px 32px 0 rgba(0, 0, 0, 0.6)",
+        "shadow-sm": "0 2px 8px rgba(0, 0, 0, 0.4)",
+        "shadow-md": "0 4px 20px rgba(212, 175, 55, 0.15)",
+        "oud-sm": "0 4px 20px rgba(0, 0, 0, 0.4)",
+        "oud-md": "0 8px 32px rgba(212, 175, 55, 0.2)",
       },
-      // Exact OUD SHOP Typography Sizes
       fontSize: {
         "text-xs": ["10px", { lineHeight: "14.4px" }],
         "text-sm": ["12px", { lineHeight: "16.8px" }],
