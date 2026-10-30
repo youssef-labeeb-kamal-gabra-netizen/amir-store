@@ -1,5 +1,5 @@
 /**
- * Ameer Store Production-Grade Security & Sliding-Window Rate Limiter
+ * Amir Store Production-Grade Security & Sliding-Window Rate Limiter
  * Protects against DDoS, automated scanning tools, brute force, and abusive traffic.
  */
 

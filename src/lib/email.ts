@@ -4,7 +4,7 @@ import { env } from "@/lib/env";
 
 /**
  * Transactional Email Service via Resend
- * Ameer Store - Luxury Fragrance Platform
+ * Amir Store - Luxury Fragrance Platform
  *
  * Free Tier Specs:
  * - 3,000 emails per month free
@@ -54,7 +54,7 @@ export function escapeHtml(str: unknown): string {
 
 /**
  * Generates an ultra-luxurious Arabic HTML email invoice
- * styled with Ameer Store's royal gold and cashmere brand aesthetics.
+ * styled with Amir Store's royal gold and cashmere brand aesthetics.
  */
 export function generateOrderInvoiceHtml(order: Order, options?: { forAdmin?: boolean }): string {
   const isAdmin = Boolean(options?.forAdmin);
@@ -289,7 +289,7 @@ export async function sendOrderEmails(order: Order): Promise<{
   adminResult?: SendEmailResult;
   simulated?: boolean;
 }> {
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "Ameer Store <onboarding@resend.dev>";
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "Amir Store <onboarding@resend.dev>";
   const adminEmails = env.auth.adminEmails;
 
   // 1. Simulation fallback when RESEND_API_KEY is not configured

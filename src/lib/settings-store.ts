@@ -15,7 +15,7 @@ function getDefaultSettings(): BusinessSettings {
     addressPhrase: env.business.addressPhrase || "الزقازيق، محافظة الشرقية، جمهورية مصر العربية",
     workingHours: "يومياً من 10:00 صباحاً حتى 11:00 مساءً",
     slogan: env.business.slogan || "فخامة تدوم • أصالة العود • عبير لا يُنسى",
-    facebook: "https://facebook.com/ameerstore.perfumes",
+    facebook: "https://facebook.com/amirstore.perfumes",
     youtube: "",
   };
 }

@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       price: numPrice,
       compareAtPrice: numCompareAtPrice,
       model: model ? String(model).trim() : undefined,
-      brand: brand ? String(brand).trim() : "Ameer Store",
+      brand: brand ? String(brand).trim() : "Amir Store",
       shortDescription: shortDescription ? String(shortDescription).trim() : name.trim(),
       description: description ? String(description).trim() : name.trim(),
       images: ["/images/products/ameer-oud-parfum.svg"],

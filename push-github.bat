@@ -1,14 +1,14 @@
 @echo off
 chcp 65001 > nul
 echo ========================================================
-echo   أمير ستور (Ameer Store) - رفع المشروع على GitHub
+echo   أمير ستور (Amir Store) - رفع المشروع على GitHub
 echo ========================================================
 echo.
 
 set PATH=%PATH%;%LOCALAPPDATA%\MinGit\cmd
 
 echo يرجى لصق رابط مستودع GitHub الخاص بمتجر أمير ستور:
-echo مثال: https://github.com/YourUsername/ameer-store.git
+echo مثال: https://github.com/YourUsername/amir-store.git
 set /p REPO_URL="رابط المستودع: "
 
 if "%REPO_URL%"=="" (

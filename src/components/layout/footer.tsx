@@ -168,7 +168,7 @@ export function Footer({ settings }: FooterProps = {}) {
 
         {/* Bottom copyright & attribution */}
         <div className="mt-12 pt-6 border-t border-brand-green-900/60 text-xs text-brand-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© {currentYear} متجر أمير ستور للعطور والعود الفاخر (Ameer Store). جميع الحقوق محفوظة.</p>
+          <p>© {currentYear} متجر أمير ستور للعطور والعود الفاخر (Amir Store). جميع الحقوق محفوظة.</p>
           <div className="flex items-center gap-3 text-xs">
             <span className="text-brand-gold-400 font-semibold">عطور فاخرة • أصالة وثبات</span>
             <span>•</span>

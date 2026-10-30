@@ -1,8 +1,8 @@
 {
-  "name": "ameer-store",
+  "name": "amir-store",
   "version": "1.0.0",
   "private": true,
-  "description": "أمير ستور - متجر العطور والبخور الفاخرة | Ameer Store Official Platform",
+  "description": "أمير ستور - متجر العطور والبخور الفاخرة | Amir Store Official Platform",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

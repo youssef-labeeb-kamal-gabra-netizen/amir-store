@@ -1,4 +1,4 @@
--- Seed initial authentic business data for Ameer Store (أمير ستور)
+-- Seed initial authentic business data for Amir Store (أمير ستور)
 INSERT INTO categories (id, name, slug, description, icon_name, sort_order, active)
 VALUES
   ('cat-1', 'دهن العود والزيوت النقية', 'pure-oud-oils', 'أندر وأفخم أدهان العود الطبيعية الصافية من غابات كلمنتان وكمبوديا وتراد.', 'Sparkles', 1, true),

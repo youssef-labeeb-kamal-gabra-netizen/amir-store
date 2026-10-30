@@ -317,7 +317,7 @@ export default async function HomePage() {
           </GsapReveal>
         </section>
 
-        {/* 4. WHY AMEER STORE (Trust Signals) */}
+        {/* 4. WHY AMIR STORE (Trust Signals) */}
         <section className="rounded-3xl bg-white p-6 sm:p-10 text-start space-y-6 border border-brand-neutral-200 shadow-oud-sm">
           <div className="max-w-2xl">
             <span className="text-xs font-bold text-brand-green-800 tracking-wider uppercase">

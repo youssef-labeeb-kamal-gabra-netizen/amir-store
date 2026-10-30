@@ -40,7 +40,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
   const [formPrice, setFormPrice] = useState("");
   const [formCompareAtPrice, setFormCompareAtPrice] = useState("");
   const [formModel, setFormModel] = useState("");
-  const [formBrand, setFormBrand] = useState("Ameer Store");
+  const [formBrand, setFormBrand] = useState("Amir Store");
   const [formShortDesc, setFormShortDesc] = useState("");
   const [formDesc, setFormDesc] = useState("");
   const [formFeatured, setFormFeatured] = useState(false);
@@ -70,7 +70,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
     setFormPrice("");
     setFormCompareAtPrice("");
     setFormModel("");
-    setFormBrand("Ameer Store");
+    setFormBrand("Amir Store");
     setFormShortDesc("");
     setFormDesc("");
     setFormFeatured(false);
@@ -92,7 +92,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
     setFormPrice(product.price !== undefined ? String(product.price) : "");
     setFormCompareAtPrice(product.compareAtPrice !== undefined ? String(product.compareAtPrice) : "");
     setFormModel(product.model || "");
-    setFormBrand(product.brand || "Ameer Store");
+    setFormBrand(product.brand || "Amir Store");
     setFormShortDesc(product.shortDescription);
     setFormDesc(product.description);
     setFormFeatured(Boolean(product.featured));
@@ -369,7 +369,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                     )}
                   </td>
                   <td className="py-3.5 px-4 text-xs font-mono text-brand-neutral-600">
-                    {product.model || "—"} ({product.brand || "Ameer Store"})
+                    {product.model || "—"} ({product.brand || "Amir Store"})
                   </td>
                   <td className="py-3.5 px-4">
                     <button
@@ -502,7 +502,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
 
           <Input
             label="الماركة أو العلامة التجارية"
-            placeholder="Ameer Store"
+            placeholder="Amir Store"
             value={formBrand}
             onChange={(e) => setFormBrand(e.target.value)}
           />

@@ -47,7 +47,7 @@ export const env = {
   isProduction,
   isDevelopment,
   
-  appUrl: process.env.NEXT_PUBLIC_APP_URL || (isProduction ? "https://ameer-store.vercel.app" : "http://localhost:3000"),
+  appUrl: process.env.NEXT_PUBLIC_APP_URL || (isProduction ? "https://amir-store.vercel.app" : "http://localhost:3000"),
   
   business: {
     name: process.env.NEXT_PUBLIC_BUSINESS_NAME || "أمير ستور للعطور والعود الفاخر",

@@ -3,7 +3,7 @@ import { v2 as cloudinary } from "cloudinary";
 
 /**
  * Cloudinary Media Storage Helper & Fallback Engine
- * Ameer Store - Luxury Fragrance Platform
+ * Amir Store - Luxury Fragrance Platform
  *
  * Free Tier Specs:
  * - 25 GB monthly storage & bandwidth

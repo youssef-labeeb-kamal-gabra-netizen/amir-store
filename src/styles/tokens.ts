@@ -1,5 +1,5 @@
 /**
- * Centralized Design System Tokens for Ameer Store (Strict OUD SHOP Specification)
+ * Centralized Design System Tokens for Amir Store (Strict OUD SHOP Specification)
  * Matches https://oud-shop.com design tokens 100%.
  */
 
